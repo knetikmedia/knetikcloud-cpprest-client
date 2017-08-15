@@ -36,7 +36,7 @@ AccessTokenApi::~AccessTokenApi()
 {
 }
 
-pplx::task<std::shared_ptr<OAuth2Resource>> AccessTokenApi::getOAuthToken(utility::string_t grantType, utility::string_t clientId, utility::string_t clientSecret, utility::string_t username, utility::string_t password)
+pplx::task<std::shared_ptr<OAuth2Resource>> AccessTokenApi::getOAuthToken(utility::string_t grantType, utility::string_t clientId, utility::string_t clientSecret, utility::string_t username, utility::string_t password, utility::string_t token, utility::string_t refreshToken)
 {
 
 
@@ -97,6 +97,14 @@ pplx::task<std::shared_ptr<OAuth2Resource>> AccessTokenApi::getOAuthToken(utilit
     
     {
         formParams[ U("password") ] = ApiClient::parameterToString(password);
+    }
+    
+    {
+        formParams[ U("token") ] = ApiClient::parameterToString(token);
+    }
+    
+    {
+        formParams[ U("refresh_token") ] = ApiClient::parameterToString(refreshToken);
     }
 
     std::shared_ptr<IHttpBody> httpBody;

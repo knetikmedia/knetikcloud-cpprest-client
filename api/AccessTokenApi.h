@@ -43,8 +43,8 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="grantType">Grant type</param>/// <param name="clientId">The id of the client</param>/// <param name="clientSecret">The secret key of the client.  Used only with a grant_type of client_credentials (optional)</param>/// <param name="username">The username of the client.  Used only with a grant_type of password (optional)</param>/// <param name="password">The password of the client.  Used only with a grant_type of password (optional)</param>
-    pplx::task<std::shared_ptr<OAuth2Resource>> getOAuthToken(utility::string_t grantType, utility::string_t clientId, utility::string_t clientSecret, utility::string_t username, utility::string_t password);
+    /// <param name="grantType">Grant type</param>/// <param name="clientId">The id of the client</param>/// <param name="clientSecret">The secret key of the client.  Used only with a grant_type of client_credentials (optional)</param>/// <param name="username">The username of the client. Used only with a grant_type of password (optional)</param>/// <param name="password">The password of the client. Used only with a grant_type of password (optional)</param>/// <param name="token">The 3rd party authentication token. Used only with a grant_type of facebook, google, etc (social plugins) (optional)</param>/// <param name="refreshToken">The refresh token obtained during prior authentication. Used only with a grant_type of refresh_token (optional)</param>
+    pplx::task<std::shared_ptr<OAuth2Resource>> getOAuthToken(utility::string_t grantType, utility::string_t clientId, utility::string_t clientSecret, utility::string_t username, utility::string_t password, utility::string_t token, utility::string_t refreshToken);
 
 protected:
     std::shared_ptr<ApiClient> m_ApiClient;
