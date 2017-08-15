@@ -114,8 +114,6 @@ pplx::task<std::shared_ptr<AnswerResource>> GamificationTriviaApi::addQuestionAn
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -247,8 +245,6 @@ pplx::task<void> GamificationTriviaApi::addQuestionTag(utility::string_t id, std
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -393,8 +389,6 @@ pplx::task<int32_t> GamificationTriviaApi::addTagToQuestionsBatch(std::shared_pt
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -526,8 +520,6 @@ pplx::task<std::shared_ptr<ImportJobResource>> GamificationTriviaApi::createImpo
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -658,8 +650,6 @@ pplx::task<std::shared_ptr<QuestionResource>> GamificationTriviaApi::createQuest
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -790,8 +780,6 @@ pplx::task<std::shared_ptr<QuestionTemplateResource>> GamificationTriviaApi::cre
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -910,8 +898,6 @@ pplx::task<void> GamificationTriviaApi::deleteImportJob(int64_t id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1012,8 +998,6 @@ pplx::task<void> GamificationTriviaApi::deleteQuestion(utility::string_t id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1115,8 +1099,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1221,8 +1203,6 @@ pplx::task<void> GamificationTriviaApi::deleteQuestionTemplate(utility::string_t
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1323,8 +1303,6 @@ pplx::task<std::shared_ptr<ImportJobResource>> GamificationTriviaApi::getImportJ
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1470,8 +1448,6 @@ pplx::task<std::shared_ptr<PageResource«ImportJobResource»>> GamificationTrivi
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1590,8 +1566,6 @@ pplx::task<std::shared_ptr<QuestionResource>> GamificationTriviaApi::getQuestion
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1711,8 +1685,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1831,8 +1803,6 @@ pplx::task<std::vector<std::shared_ptr<AnswerResource>>> GamificationTriviaApi::
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1961,8 +1931,6 @@ pplx::task<std::vector<std::shared_ptr<DeltaResource>>> GamificationTriviaApi::g
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2088,8 +2056,6 @@ pplx::task<std::vector<utility::string_t>> GamificationTriviaApi::getQuestionTag
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2213,8 +2179,6 @@ pplx::task<std::shared_ptr<QuestionTemplateResource>> GamificationTriviaApi::get
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2344,8 +2308,6 @@ pplx::task<std::shared_ptr<PageResource«QuestionTemplateResource»>> Gamificati
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2507,8 +2469,6 @@ pplx::task<std::shared_ptr<PageResource«QuestionResource»>> GamificationTrivia
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2654,8 +2614,6 @@ pplx::task<int64_t> GamificationTriviaApi::getQuestionsCount(utility::string_t f
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2779,8 +2737,6 @@ pplx::task<std::shared_ptr<ImportJobResource>> GamificationTriviaApi::processImp
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2900,8 +2856,6 @@ boost::replace_all(path, U("{") U("tag") U("}"), ApiClient::parameterToString(ta
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -3034,8 +2988,6 @@ pplx::task<int32_t> GamificationTriviaApi::removeTagToQuestionsBatch(utility::st
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -3166,8 +3118,6 @@ pplx::task<std::shared_ptr<Collection«string»>> GamificationTriviaApi::searchQ
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -3299,8 +3249,6 @@ pplx::task<std::shared_ptr<ImportJobResource>> GamificationTriviaApi::updateImpo
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -3432,8 +3380,6 @@ pplx::task<std::shared_ptr<QuestionResource>> GamificationTriviaApi::updateQuest
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -3566,8 +3512,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -3681,8 +3625,6 @@ pplx::task<std::shared_ptr<QuestionTemplateResource>> GamificationTriviaApi::upd
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -3841,8 +3783,6 @@ pplx::task<int32_t> GamificationTriviaApi::updateQuestionsInBulk(std::shared_ptr
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

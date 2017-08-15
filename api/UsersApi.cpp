@@ -120,8 +120,6 @@ pplx::task<void> UsersApi::addUserTag(int32_t userId, std::shared_ptr<StringWrap
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -234,8 +232,6 @@ pplx::task<std::shared_ptr<TemplateResource>> UsersApi::createUserTemplate(std::
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -358,8 +354,6 @@ pplx::task<void> UsersApi::deleteUserTemplate(utility::string_t id, utility::str
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -460,8 +454,6 @@ pplx::task<std::shared_ptr<UserResource>> UsersApi::getUser(utility::string_t id
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -580,8 +572,6 @@ pplx::task<std::vector<utility::string_t>> UsersApi::getUserTags(int32_t userId)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -705,8 +695,6 @@ pplx::task<std::shared_ptr<TemplateResource>> UsersApi::getUserTemplate(utility:
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -836,8 +824,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> UsersApi::getUserT
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1007,8 +993,6 @@ pplx::task<std::shared_ptr<PageResource«UserBaseResource»>> UsersApi::getUsers
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1371,8 +1355,6 @@ boost::replace_all(path, U("{") U("tag") U("}"), ApiClient::parameterToString(ta
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1486,8 +1468,6 @@ pplx::task<void> UsersApi::setPassword(int32_t id, std::shared_ptr<StringWrapper
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1813,8 +1793,6 @@ pplx::task<void> UsersApi::updateUser(utility::string_t id, std::shared_ptr<User
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1928,8 +1906,6 @@ pplx::task<std::shared_ptr<TemplateResource>> UsersApi::updateUserTemplate(utili
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

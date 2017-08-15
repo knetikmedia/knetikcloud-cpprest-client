@@ -113,8 +113,6 @@ pplx::task<std::shared_ptr<CommentResource>> ContentCommentsApi::addComment(std:
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -233,8 +231,6 @@ pplx::task<void> ContentCommentsApi::deleteComment(int64_t id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -737,8 +733,6 @@ pplx::task<void> ContentCommentsApi::updateComment(int64_t id, std::shared_ptr<S
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

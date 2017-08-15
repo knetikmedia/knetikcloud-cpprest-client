@@ -234,8 +234,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

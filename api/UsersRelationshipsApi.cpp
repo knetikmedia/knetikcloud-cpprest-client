@@ -113,8 +113,6 @@ pplx::task<std::shared_ptr<UserRelationshipResource>> UsersRelationshipsApi::cre
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -233,8 +231,6 @@ pplx::task<void> UsersRelationshipsApi::deleteUserRelationship(int64_t id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -335,8 +331,6 @@ pplx::task<std::shared_ptr<UserRelationshipResource>> UsersRelationshipsApi::get
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -466,8 +460,6 @@ pplx::task<std::shared_ptr<PageResource«UserRelationshipResource»>> UsersRelat
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -599,8 +591,6 @@ pplx::task<std::shared_ptr<UserRelationshipResource>> UsersRelationshipsApi::upd
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

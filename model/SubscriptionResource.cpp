@@ -24,6 +24,7 @@ SubscriptionResource::SubscriptionResource()
     m_Additional_propertiesIsSet = false;
     m_Availability = U("");
     m_AvailabilityIsSet = false;
+    m_BehaviorsIsSet = false;
     m_Category = U("");
     m_CategoryIsSet = false;
     m_Consolidation_day_of_month = 0;
@@ -87,6 +88,17 @@ web::json::value SubscriptionResource::toJson() const
     if(m_AvailabilityIsSet)
     {
         val[U("availability")] = ModelBase::toJson(m_Availability);
+    }
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Behaviors )
+        {
+            jsonArray.push_back(ModelBase::toJson(item));
+        }
+        if(jsonArray.size() > 0)
+        {
+            val[U("behaviors")] = web::json::value::array(jsonArray);
+        }
     }
     if(m_CategoryIsSet)
     {
@@ -209,6 +221,26 @@ void SubscriptionResource::fromJson(web::json::value& val)
     if(val.has_field(U("availability")))
     {
         setAvailability(ModelBase::stringFromJson(val[U("availability")]));
+    }
+    {
+        m_Behaviors.clear();
+        std::vector<web::json::value> jsonArray;
+        if(val.has_field(U("behaviors")))
+        {
+        for( auto& item : val[U("behaviors")].as_array() )
+        {
+            if(item.is_null())
+            {
+                m_Behaviors.push_back( std::shared_ptr<Behavior>(nullptr) );
+            }
+            else
+            {
+                std::shared_ptr<Behavior> newItem(new Behavior());
+                newItem->fromJson(item);
+                m_Behaviors.push_back( newItem );
+            }
+        }
+        }
     }
     if(val.has_field(U("category")))
     {
@@ -335,6 +367,18 @@ void SubscriptionResource::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("availability"), m_Availability));
         
+    }
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Behaviors )
+        {
+            jsonArray.push_back(ModelBase::toJson(item));
+        }
+        
+        if(jsonArray.size() > 0)
+        {
+            multipart->add(ModelBase::toHttpContent(namePrefix + U("behaviors"), web::json::value::array(jsonArray), U("application/json")));
+        }
     }
     if(m_CategoryIsSet)
     {
@@ -471,6 +515,27 @@ void SubscriptionResource::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     if(multipart->hasContent(U("availability")))
     {
         setAvailability(ModelBase::stringFromHttpContent(multipart->getContent(U("availability"))));
+    }
+    {
+        m_Behaviors.clear();
+        if(multipart->hasContent(U("behaviors")))
+        {
+
+        web::json::value jsonArray = web::json::value::parse(ModelBase::stringFromHttpContent(multipart->getContent(U("behaviors"))));
+        for( auto& item : jsonArray.as_array() )
+        {
+            if(item.is_null())
+            {
+                m_Behaviors.push_back( std::shared_ptr<Behavior>(nullptr) );
+            }
+            else
+            {
+                std::shared_ptr<Behavior> newItem(new Behavior());
+                newItem->fromJson(item);
+                m_Behaviors.push_back( newItem );
+            }
+        }
+        }
     }
     if(multipart->hasContent(U("category")))
     {
@@ -612,6 +677,26 @@ bool SubscriptionResource::availabilityIsSet() const
 void SubscriptionResource::unsetAvailability()
 {
     m_AvailabilityIsSet = false;
+}
+
+std::vector<std::shared_ptr<Behavior>>& SubscriptionResource::getBehaviors()
+{
+    return m_Behaviors;
+}
+
+void SubscriptionResource::setBehaviors(std::vector<std::shared_ptr<Behavior>> value)
+{
+    m_Behaviors = value;
+    m_BehaviorsIsSet = true;
+}
+bool SubscriptionResource::behaviorsIsSet() const
+{
+    return m_BehaviorsIsSet;
+}
+
+void SubscriptionResource::unsetBehaviors()
+{
+    m_BehaviorsIsSet = false;
 }
 
 utility::string_t SubscriptionResource::getCategory() const

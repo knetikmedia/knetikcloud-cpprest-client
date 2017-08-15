@@ -113,8 +113,6 @@ pplx::task<std::shared_ptr<ArticleResource>> ContentArticlesApi::createArticle(s
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -245,8 +243,6 @@ pplx::task<std::shared_ptr<TemplateResource>> ContentArticlesApi::createArticleT
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -365,8 +361,6 @@ pplx::task<void> ContentArticlesApi::deleteArticle(utility::string_t id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -471,8 +465,6 @@ pplx::task<void> ContentArticlesApi::deleteArticleTemplate(utility::string_t id,
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -691,8 +683,6 @@ pplx::task<std::shared_ptr<TemplateResource>> ContentArticlesApi::getArticleTemp
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -822,8 +812,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> ContentArticlesApi
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -877,7 +865,7 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> ContentArticlesApi
         return result;
     });
 }
-pplx::task<std::shared_ptr<PageResource«ArticleResource»>> ContentArticlesApi::getArticles(utility::string_t filterCategory, utility::string_t filterTagset, utility::string_t filterTagIntersection, utility::string_t filterTagExclusion, utility::string_t filterTitle, int32_t size, int32_t page, utility::string_t order)
+pplx::task<std::shared_ptr<PageResource«ArticleResource»>> ContentArticlesApi::getArticles(bool filterActiveOnly, utility::string_t filterCategory, utility::string_t filterTagset, utility::string_t filterTagIntersection, utility::string_t filterTagExclusion, utility::string_t filterTitle, int32_t size, int32_t page, utility::string_t order)
 {
 
 
@@ -919,6 +907,10 @@ pplx::task<std::shared_ptr<PageResource«ArticleResource»>> ContentArticlesApi:
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
     consumeHttpContentTypes.insert( U("application/json") );
 
+    
+    {
+        queryParams[U("filter_active_only")] = ApiClient::parameterToString(filterActiveOnly);
+    }
     
     {
         queryParams[U("filter_category")] = ApiClient::parameterToString(filterCategory);
@@ -1104,8 +1096,6 @@ pplx::task<std::shared_ptr<ArticleResource>> ContentArticlesApi::updateArticle(u
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1237,8 +1227,6 @@ pplx::task<std::shared_ptr<TemplateResource>> ContentArticlesApi::updateArticleT
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
-    // authentication (OAuth2) required
-    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

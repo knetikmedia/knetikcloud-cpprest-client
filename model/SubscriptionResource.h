@@ -22,6 +22,7 @@
 
 #include "ModelBase.h"
 
+#include "Behavior.h"
 #include "SubscriptionPlanResource.h"
 #include <cpprest/details/basic_types.h>
 #include <map>
@@ -71,6 +72,13 @@ public:
     bool availabilityIsSet() const;
     void unsetAvailability();
     void setAvailability(utility::string_t value);
+    /// <summary>
+    /// The behaviors linked to the item, describing various options and interactions. May not be included in item lists
+    /// </summary>
+    std::vector<std::shared_ptr<Behavior>>& getBehaviors();
+    bool behaviorsIsSet() const;
+    void unsetBehaviors();
+    void setBehaviors(std::vector<std::shared_ptr<Behavior>> value);
     /// <summary>
     /// A category for filtering items
     /// </summary>
@@ -199,6 +207,8 @@ protected:
     bool m_Additional_propertiesIsSet;
     utility::string_t m_Availability;
     bool m_AvailabilityIsSet;
+    std::vector<std::shared_ptr<Behavior>> m_Behaviors;
+    bool m_BehaviorsIsSet;
     utility::string_t m_Category;
     bool m_CategoryIsSet;
     int32_t m_Consolidation_day_of_month;

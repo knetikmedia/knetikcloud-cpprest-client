@@ -39,10 +39,18 @@ public:
     AmazonWebServicesS3Api( std::shared_ptr<ApiClient> apiClient );
     virtual ~AmazonWebServicesS3Api();
     /// <summary>
-    /// Get a signed S3 URL
+    /// Get a temporary signed S3 URL for download
     /// </summary>
     /// <remarks>
-    /// Requires the file name and file content type (i.e., &#39;video/mpeg&#39;)
+    /// To give access to files in your own S3 account, you will need to grant KnetikcCloud access to the file by adjusting your bucket policy accordingly. See S3 documentation for details.
+    /// </remarks>
+    /// <param name="bucket">S3 bucket name (optional)</param>/// <param name="path">The path to the file relative the bucket (the s3 object key) (optional)</param>/// <param name="expiration">The number of seconds this URL will be valid. Default to 60 (optional, default to 60)</param>
+    pplx::task<utility::string_t> getDownloadURL(utility::string_t bucket, utility::string_t path, int32_t expiration);
+    /// <summary>
+    /// Get a signed S3 URL for upload
+    /// </summary>
+    /// <remarks>
+    /// Requires the file name and file content type (i.e., &#39;video/mpeg&#39;). Make a PUT to the resulting url to upload the file and use the cdn_url to retrieve it after.
     /// </remarks>
     /// <param name="filename">The file name (optional)</param>/// <param name="contentType">The content type (optional)</param>
     pplx::task<std::shared_ptr<AmazonS3Activity>> getSignedS3URL(utility::string_t filename, utility::string_t contentType);
