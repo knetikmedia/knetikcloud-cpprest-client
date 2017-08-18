@@ -57,10 +57,19 @@ public:
     /// </summary>
     int32_t getPaymentMethod() const;
         void setPaymentMethod(int32_t value);
+    /// <summary>
+    /// The id of a user to bill. Must have PAYMENTS_ADMIN permission
+    /// </summary>
+    int32_t getUserId() const;
+    bool userIdIsSet() const;
+    void unsetUser_id();
+    void setUserId(int32_t value);
 
 protected:
     int32_t m_Payment_method;
-    };
+        int32_t m_User_id;
+    bool m_User_idIsSet;
+};
 
 }
 }

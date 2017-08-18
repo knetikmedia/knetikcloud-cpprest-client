@@ -22,6 +22,8 @@ namespace model {
 PayBySavedMethodRequest::PayBySavedMethodRequest()
 {
     m_Payment_method = 0;
+    m_User_id = 0;
+    m_User_idIsSet = false;
 }
 
 PayBySavedMethodRequest::~PayBySavedMethodRequest()
@@ -38,6 +40,10 @@ web::json::value PayBySavedMethodRequest::toJson() const
     web::json::value val = web::json::value::object();
 
     val[U("payment_method")] = ModelBase::toJson(m_Payment_method);
+    if(m_User_idIsSet)
+    {
+        val[U("user_id")] = ModelBase::toJson(m_User_id);
+    }
 
     return val;
 }
@@ -45,6 +51,10 @@ web::json::value PayBySavedMethodRequest::toJson() const
 void PayBySavedMethodRequest::fromJson(web::json::value& val)
 {
     setPaymentMethod(ModelBase::int32_tFromJson(val[U("payment_method")]));
+    if(val.has_field(U("user_id")))
+    {
+        setUserId(ModelBase::int32_tFromJson(val[U("user_id")]));
+    }
 }
 
 void PayBySavedMethodRequest::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
@@ -56,6 +66,10 @@ void PayBySavedMethodRequest::toMultipart(std::shared_ptr<MultipartFormData> mul
     }
 
     multipart->add(ModelBase::toHttpContent(namePrefix + U("payment_method"), m_Payment_method));
+    if(m_User_idIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("user_id"), m_User_id));
+    }
 }
 
 void PayBySavedMethodRequest::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -67,6 +81,10 @@ void PayBySavedMethodRequest::fromMultiPart(std::shared_ptr<MultipartFormData> m
     }
 
     setPaymentMethod(ModelBase::int32_tFromHttpContent(multipart->getContent(U("payment_method"))));
+    if(multipart->hasContent(U("user_id")))
+    {
+        setUserId(ModelBase::int32_tFromHttpContent(multipart->getContent(U("user_id"))));
+    }
 }
 
 int32_t PayBySavedMethodRequest::getPaymentMethod() const
@@ -80,6 +98,27 @@ void PayBySavedMethodRequest::setPaymentMethod(int32_t value)
     m_Payment_method = value;
     
 }
+int32_t PayBySavedMethodRequest::getUserId() const
+{
+    return m_User_id;
+}
+
+
+void PayBySavedMethodRequest::setUserId(int32_t value)
+{
+    m_User_id = value;
+    m_User_idIsSet = true;
+}
+bool PayBySavedMethodRequest::userIdIsSet() const
+{
+    return m_User_idIsSet;
+}
+
+void PayBySavedMethodRequest::unsetUser_id()
+{
+    m_User_idIsSet = false;
+}
+
 }
 }
 }
