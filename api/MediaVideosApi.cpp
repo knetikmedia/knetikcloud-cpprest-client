@@ -114,6 +114,10 @@ pplx::task<void> MediaVideosApi::addUserToVideoWhitelist(int64_t id, std::shared
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -226,6 +230,10 @@ pplx::task<std::shared_ptr<VideoResource>> MediaVideosApi::addVideo(std::shared_
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -357,6 +365,10 @@ pplx::task<std::shared_ptr<CommentResource>> MediaVideosApi::addVideoComment(int
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -488,6 +500,10 @@ pplx::task<void> MediaVideosApi::addVideoContributor(int64_t videoId, std::share
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -601,6 +617,10 @@ pplx::task<std::shared_ptr<FlagResource>> MediaVideosApi::addVideoFlag(int64_t v
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -732,6 +752,10 @@ pplx::task<std::shared_ptr<VideoRelationshipResource>> MediaVideosApi::addVideoR
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -863,6 +887,10 @@ pplx::task<std::shared_ptr<DispositionResource>> MediaVideosApi::createVideoDisp
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -981,6 +1009,10 @@ pplx::task<void> MediaVideosApi::deleteVideo(int64_t id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1082,6 +1114,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1182,6 +1218,10 @@ pplx::task<void> MediaVideosApi::deleteVideoDisposition(int64_t dispositionId)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1282,6 +1322,10 @@ pplx::task<void> MediaVideosApi::deleteVideoFlag(int64_t videoId)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1383,6 +1427,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1495,6 +1543,10 @@ pplx::task<std::shared_ptr<PageResource«VideoResource»>> MediaVideosApi::getUs
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1613,6 +1665,10 @@ pplx::task<std::shared_ptr<VideoResource>> MediaVideosApi::getVideo(int64_t id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2287,6 +2343,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2388,6 +2448,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2501,6 +2565,10 @@ pplx::task<void> MediaVideosApi::updateVideo(int64_t id, std::shared_ptr<VideoRe
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2615,6 +2683,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2729,6 +2801,10 @@ boost::replace_all(path, U("{") U("relationship_id") U("}"), ApiClient::paramete
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

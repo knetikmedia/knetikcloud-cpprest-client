@@ -114,6 +114,10 @@ pplx::task<std::shared_ptr<InvoiceResource>> UsersInventoryApi::addItemToUserInv
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -237,6 +241,10 @@ boost::replace_all(path, U("{") U("item_id") U("}"), ApiClient::parameterToStrin
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -353,6 +361,10 @@ pplx::task<std::shared_ptr<EntitlementItem>> UsersInventoryApi::createEntitlemen
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -483,6 +495,10 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> UsersInventoryApi::createEntit
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -601,6 +617,10 @@ pplx::task<void> UsersInventoryApi::deleteEntitlementItem(int32_t entitlementId)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -705,6 +725,10 @@ pplx::task<void> UsersInventoryApi::deleteEntitlementTemplate(utility::string_t 
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1052,6 +1076,10 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> UsersInventoryApi::getEntitlem
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1181,6 +1209,10 @@ pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> UsersInventory
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1331,6 +1363,10 @@ pplx::task<std::shared_ptr<PageResource«UserInventoryResource»>> UsersInventor
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1450,6 +1486,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1577,6 +1617,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1726,6 +1770,10 @@ pplx::task<std::shared_ptr<PageResource«UserInventoryResource»>> UsersInventor
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1863,6 +1911,10 @@ pplx::task<void> UsersInventoryApi::grantUserEntitlement(int32_t userId, std::sh
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1980,6 +2032,10 @@ pplx::task<void> UsersInventoryApi::updateEntitlementItem(int32_t entitlementId,
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2093,6 +2149,10 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> UsersInventoryApi::updateEntit
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2225,6 +2285,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2336,6 +2400,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2447,6 +2515,10 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2556,6 +2628,10 @@ boost::replace_all(path, U("{") U("item_id") U("}"), ApiClient::parameterToStrin
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

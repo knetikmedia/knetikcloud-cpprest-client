@@ -113,6 +113,10 @@ pplx::task<std::shared_ptr<CountryTaxResource>> TaxesApi::createCountryTax(std::
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -244,6 +248,10 @@ pplx::task<std::shared_ptr<StateTaxResource>> TaxesApi::createStateTax(utility::
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -362,6 +370,10 @@ pplx::task<void> TaxesApi::deleteCountryTax(utility::string_t countryCodeIso3)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -463,6 +475,10 @@ boost::replace_all(path, U("{") U("state_code") U("}"), ApiClient::parameterToSt
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1201,6 +1217,10 @@ pplx::task<std::shared_ptr<CountryTaxResource>> TaxesApi::updateCountryTax(utili
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1333,6 +1353,10 @@ boost::replace_all(path, U("{") U("state_code") U("}"), ApiClient::parameterToSt
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)

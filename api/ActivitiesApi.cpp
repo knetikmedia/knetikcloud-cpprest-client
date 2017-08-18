@@ -113,6 +113,10 @@ pplx::task<std::shared_ptr<ActivityResource>> ActivitiesApi::createActivity(std:
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -247,6 +251,10 @@ pplx::task<std::shared_ptr<ActivityOccurrenceResource>> ActivitiesApi::createAct
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -377,6 +385,10 @@ pplx::task<std::shared_ptr<TemplateResource>> ActivitiesApi::createActivityTempl
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -495,6 +507,10 @@ pplx::task<void> ActivitiesApi::deleteActivity(int64_t id)
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -599,6 +615,10 @@ pplx::task<void> ActivitiesApi::deleteActivityTemplate(utility::string_t id, uti
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -958,6 +978,10 @@ pplx::task<std::shared_ptr<TemplateResource>> ActivitiesApi::getActivityTemplate
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1087,6 +1111,10 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> ActivitiesApi::get
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1218,6 +1246,10 @@ pplx::task<std::shared_ptr<ActivityOccurrenceResults>> ActivitiesApi::setActivit
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1349,6 +1381,10 @@ pplx::task<std::shared_ptr<ActivityResource>> ActivitiesApi::updateActivity(int6
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1477,6 +1513,10 @@ pplx::task<void> ActivitiesApi::updateActivityOccurrence(int64_t activityOccurre
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1590,6 +1630,10 @@ pplx::task<std::shared_ptr<TemplateResource>> ActivitiesApi::updateActivityTempl
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
