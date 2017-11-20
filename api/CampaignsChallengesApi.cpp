@@ -215,7 +215,7 @@ pplx::task<std::shared_ptr<ChallengeActivityResource>> CampaignsChallengesApi::c
 
     
     {
-        queryParams[U("validateSettings")] = ApiClient::parameterToString(validateSettings);
+        queryParams[U("validate_settings")] = ApiClient::parameterToString(validateSettings);
     }
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1171,6 +1171,10 @@ pplx::task<std::shared_ptr<ChallengeResource>> CampaignsChallengesApi::getChalle
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1301,6 +1305,10 @@ pplx::task<std::shared_ptr<PageResource«BareChallengeActivityResource»>> Campa
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1420,6 +1428,10 @@ boost::replace_all(path, U("{") U("challenge_id") U("}"), ApiClient::parameterTo
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1793,6 +1805,10 @@ pplx::task<std::shared_ptr<ChallengeEventResource>> CampaignsChallengesApi::getC
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1938,6 +1954,10 @@ pplx::task<std::shared_ptr<PageResource«ChallengeEventResource»>> CampaignsCha
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2334,6 +2354,10 @@ pplx::task<std::shared_ptr<PageResource«ChallengeResource»>> CampaignsChalleng
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -2522,7 +2546,7 @@ pplx::task<std::shared_ptr<ChallengeResource>> CampaignsChallengesApi::updateCha
         return result;
     });
 }
-pplx::task<std::shared_ptr<ChallengeActivityResource>> CampaignsChallengesApi::updateChallengeActivity(int64_t id, int64_t challengeId, std::shared_ptr<ChallengeActivityResource> challengeActivityResource)
+pplx::task<std::shared_ptr<ChallengeActivityResource>> CampaignsChallengesApi::updateChallengeActivity(int64_t id, int64_t challengeId, std::shared_ptr<ChallengeActivityResource> challengeActivityResource, bool validateSettings)
 {
 
 
@@ -2566,6 +2590,10 @@ boost::replace_all(path, U("{") U("challenge_id") U("}"), ApiClient::parameterTo
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
     consumeHttpContentTypes.insert( U("application/json") );
 
+    
+    {
+        queryParams[U("validateSettings")] = ApiClient::parameterToString(validateSettings);
+    }
 
     std::shared_ptr<IHttpBody> httpBody;
     utility::string_t requestHttpContentType;

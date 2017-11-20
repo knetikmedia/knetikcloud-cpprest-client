@@ -211,8 +211,8 @@ public:
     /// <remarks>
     /// A challenge can have multiple instances of the same activity and thus the id used is of the specific entry within the challenge
     /// </remarks>
-    /// <param name="id">The challenge_activity id</param>/// <param name="challengeId">The challenge id</param>/// <param name="challengeActivityResource">The challenge activity resource object (optional)</param>
-    pplx::task<std::shared_ptr<ChallengeActivityResource>> updateChallengeActivity(int64_t id, int64_t challengeId, std::shared_ptr<ChallengeActivityResource> challengeActivityResource);
+    /// <param name="id">The challenge_activity id</param>/// <param name="challengeId">The challenge id</param>/// <param name="challengeActivityResource">The challenge activity resource object (optional)</param>/// <param name="validateSettings">Whether to validate the settings being sent against the available settings on the base activity. (optional, default to false)</param>
+    pplx::task<std::shared_ptr<ChallengeActivityResource>> updateChallengeActivity(int64_t id, int64_t challengeId, std::shared_ptr<ChallengeActivityResource> challengeActivityResource, bool validateSettings);
     /// <summary>
     /// Update an challenge activity template
     /// </summary>
