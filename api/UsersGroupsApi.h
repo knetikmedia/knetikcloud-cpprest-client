@@ -87,10 +87,10 @@ public:
     /// <param name="groupTemplateResource">The group template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createGroupTemplate(std::shared_ptr<TemplateResource> groupTemplateResource);
     /// <summary>
-    /// Removes a group from the system IF no resources are attached to it
+    /// Removes a group from the system
     /// </summary>
     /// <remarks>
-    /// 
+    /// All groups listing this as the parent are also removed and users are in turn removed from this and those groups. This may result in users no longer being in this group&#39;s parent if they were not added to it directly as well.
     /// </remarks>
     /// <param name="uniqueName">The group unique name</param>
     pplx::task<void> deleteGroup(utility::string_t uniqueName);
@@ -118,6 +118,14 @@ public:
     /// </remarks>
     /// <param name="uniqueName">The group unique name</param>
     pplx::task<std::shared_ptr<GroupResource>> getGroup(utility::string_t uniqueName);
+    /// <summary>
+    /// Get group ancestors
+    /// </summary>
+    /// <remarks>
+    /// Returns a list of ancestor groups in reverse order (parent, then grandparent, etc
+    /// </remarks>
+    /// <param name="uniqueName">The group unique name</param>
+    pplx::task<std::vector<std::shared_ptr<GroupResource>>> getGroupAncestors(utility::string_t uniqueName);
     /// <summary>
     /// Get a user from a group
     /// </summary>
@@ -194,7 +202,7 @@ public:
     /// Update a group
     /// </summary>
     /// <remarks>
-    /// 
+    /// If adding/removing/changing parent, user membership in group/new parent groups may be modified. The parent being removed will remove members from this sub group unless they were added explicitly to the parent and the new parent will gain members unless they were already a part of it.
     /// </remarks>
     /// <param name="uniqueName">The group unique name</param>/// <param name="groupResource">The updated group (optional)</param>
     pplx::task<void> updateGroup(utility::string_t uniqueName, std::shared_ptr<GroupResource> groupResource);

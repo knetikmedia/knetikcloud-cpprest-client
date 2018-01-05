@@ -21,10 +21,8 @@ namespace model {
 
 CacheClearEvent::CacheClearEvent()
 {
-    m_Customer_setup = false;
-    m_Customer_setupIsSet = false;
-    m_Customer_teardown = false;
-    m_Customer_teardownIsSet = false;
+    m_Teardown = false;
+    m_TeardownIsSet = false;
 }
 
 CacheClearEvent::~CacheClearEvent()
@@ -40,13 +38,9 @@ web::json::value CacheClearEvent::toJson() const
 {
     web::json::value val = this->BroadcastableEvent::toJson();
 
-    if(m_Customer_setupIsSet)
+    if(m_TeardownIsSet)
     {
-        val[U("customer_setup")] = ModelBase::toJson(m_Customer_setup);
-    }
-    if(m_Customer_teardownIsSet)
-    {
-        val[U("customer_teardown")] = ModelBase::toJson(m_Customer_teardown);
+        val[U("teardown")] = ModelBase::toJson(m_Teardown);
     }
 
     return val;
@@ -56,13 +50,9 @@ void CacheClearEvent::fromJson(web::json::value& val)
 {
     this->BroadcastableEvent::fromJson(val);
 
-    if(val.has_field(U("customer_setup")))
+    if(val.has_field(U("teardown")))
     {
-        setCustomerSetup(ModelBase::boolFromJson(val[U("customer_setup")]));
-    }
-    if(val.has_field(U("customer_teardown")))
-    {
-        setCustomerTeardown(ModelBase::boolFromJson(val[U("customer_teardown")]));
+        setTeardown(ModelBase::boolFromJson(val[U("teardown")]));
     }
 }
 
@@ -115,13 +105,9 @@ void CacheClearEvent::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
         multipart->add(ModelBase::toHttpContent(namePrefix + U("timestamp"), m_Timestamp));
     }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("type"), m_Type));
-    if(m_Customer_setupIsSet)
+    if(m_TeardownIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + U("customer_setup"), m_Customer_setup));
-    }
-    if(m_Customer_teardownIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + U("customer_teardown"), m_Customer_teardown));
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("teardown"), m_Teardown));
     }
 }
 
@@ -171,56 +157,31 @@ void CacheClearEvent::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         setTimestamp(ModelBase::int64_tFromHttpContent(multipart->getContent(U("timestamp"))));
     }
     setType(ModelBase::stringFromHttpContent(multipart->getContent(U("type"))));
-    if(multipart->hasContent(U("customer_setup")))
+    if(multipart->hasContent(U("teardown")))
     {
-        setCustomerSetup(ModelBase::boolFromHttpContent(multipart->getContent(U("customer_setup"))));
-    }
-    if(multipart->hasContent(U("customer_teardown")))
-    {
-        setCustomerTeardown(ModelBase::boolFromHttpContent(multipart->getContent(U("customer_teardown"))));
+        setTeardown(ModelBase::boolFromHttpContent(multipart->getContent(U("teardown"))));
     }
 }
 
-bool CacheClearEvent::getCustomerSetup() const
+bool CacheClearEvent::getTeardown() const
 {
-    return m_Customer_setup;
+    return m_Teardown;
 }
 
 
-void CacheClearEvent::setCustomerSetup(bool value)
+void CacheClearEvent::setTeardown(bool value)
 {
-    m_Customer_setup = value;
-    m_Customer_setupIsSet = true;
+    m_Teardown = value;
+    m_TeardownIsSet = true;
 }
-bool CacheClearEvent::customerSetupIsSet() const
+bool CacheClearEvent::teardownIsSet() const
 {
-    return m_Customer_setupIsSet;
-}
-
-void CacheClearEvent::unsetCustomer_setup()
-{
-    m_Customer_setupIsSet = false;
+    return m_TeardownIsSet;
 }
 
-bool CacheClearEvent::getCustomerTeardown() const
+void CacheClearEvent::unsetTeardown()
 {
-    return m_Customer_teardown;
-}
-
-
-void CacheClearEvent::setCustomerTeardown(bool value)
-{
-    m_Customer_teardown = value;
-    m_Customer_teardownIsSet = true;
-}
-bool CacheClearEvent::customerTeardownIsSet() const
-{
-    return m_Customer_teardownIsSet;
-}
-
-void CacheClearEvent::unsetCustomer_teardown()
-{
-    m_Customer_teardownIsSet = false;
+    m_TeardownIsSet = false;
 }
 
 }

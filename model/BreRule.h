@@ -97,6 +97,13 @@ public:
     void unsetEnd_date();
     void setEndDate(int64_t value);
     /// <summary>
+    /// How many times the rule has been evaluated (it&#39;s conditions checked, whether it then runs or not)
+    /// </summary>
+    int64_t getEvaluationCount() const;
+    bool evaluationCountIsSet() const;
+    void unsetEvaluation_count();
+    void setEvaluationCount(int64_t value);
+    /// <summary>
     /// The event name of the trigger this rule runs for. Affects which parameters are available
     /// </summary>
     utility::string_t getEventName() const;
@@ -113,6 +120,13 @@ public:
     /// </summary>
     utility::string_t getName() const;
         void setName(utility::string_t value);
+    /// <summary>
+    /// How many times the rule has run
+    /// </summary>
+    int64_t getRunCount() const;
+    bool runCountIsSet() const;
+    void unsetRun_count();
+    void setRunCount(int64_t value);
     /// <summary>
     /// Used to sort rules to control the order they run in. Larger numbered sort values run first.  Default 500
     /// </summary>
@@ -147,11 +161,15 @@ protected:
     bool m_EnabledIsSet;
     int64_t m_End_date;
     bool m_End_dateIsSet;
+    int64_t m_Evaluation_count;
+    bool m_Evaluation_countIsSet;
     utility::string_t m_Event_name;
         utility::string_t m_Id;
     bool m_IdIsSet;
     utility::string_t m_Name;
-        int32_t m_Sort;
+        int64_t m_Run_count;
+    bool m_Run_countIsSet;
+    int32_t m_Sort;
     bool m_SortIsSet;
     int64_t m_Start_date;
     bool m_Start_dateIsSet;

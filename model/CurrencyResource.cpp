@@ -26,6 +26,8 @@ CurrencyResource::CurrencyResource()
     m_Code = U("");
     m_Created_date = 0L;
     m_Created_dateIsSet = false;
+    m_Default_currency = false;
+    m_Default_currencyIsSet = false;
     m_Factor = 0.0;
     m_Icon = U("");
     m_IconIsSet = false;
@@ -58,6 +60,10 @@ web::json::value CurrencyResource::toJson() const
     {
         val[U("created_date")] = ModelBase::toJson(m_Created_date);
     }
+    if(m_Default_currencyIsSet)
+    {
+        val[U("default_currency")] = ModelBase::toJson(m_Default_currency);
+    }
     val[U("factor")] = ModelBase::toJson(m_Factor);
     if(m_IconIsSet)
     {
@@ -86,6 +92,10 @@ void CurrencyResource::fromJson(web::json::value& val)
     if(val.has_field(U("created_date")))
     {
         setCreatedDate(ModelBase::int64_tFromJson(val[U("created_date")]));
+    }
+    if(val.has_field(U("default_currency")))
+    {
+        setDefaultCurrency(ModelBase::boolFromJson(val[U("default_currency")]));
     }
     setFactor(ModelBase::doubleFromJson(val[U("factor")]));
     if(val.has_field(U("icon")))
@@ -119,6 +129,10 @@ void CurrencyResource::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_Created_dateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("created_date"), m_Created_date));
+    }
+    if(m_Default_currencyIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("default_currency"), m_Default_currency));
     }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("factor"), m_Factor));
     if(m_IconIsSet)
@@ -154,6 +168,10 @@ void CurrencyResource::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     if(multipart->hasContent(U("created_date")))
     {
         setCreatedDate(ModelBase::int64_tFromHttpContent(multipart->getContent(U("created_date"))));
+    }
+    if(multipart->hasContent(U("default_currency")))
+    {
+        setDefaultCurrency(ModelBase::boolFromHttpContent(multipart->getContent(U("default_currency"))));
     }
     setFactor(ModelBase::doubleFromHttpContent(multipart->getContent(U("factor"))));
     if(multipart->hasContent(U("icon")))
@@ -222,6 +240,27 @@ bool CurrencyResource::createdDateIsSet() const
 void CurrencyResource::unsetCreated_date()
 {
     m_Created_dateIsSet = false;
+}
+
+bool CurrencyResource::getDefaultCurrency() const
+{
+    return m_Default_currency;
+}
+
+
+void CurrencyResource::setDefaultCurrency(bool value)
+{
+    m_Default_currency = value;
+    m_Default_currencyIsSet = true;
+}
+bool CurrencyResource::defaultCurrencyIsSet() const
+{
+    return m_Default_currencyIsSet;
+}
+
+void CurrencyResource::unsetDefault_currency()
+{
+    m_Default_currencyIsSet = false;
 }
 
 double CurrencyResource::getFactor() const

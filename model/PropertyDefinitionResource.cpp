@@ -21,8 +21,18 @@ namespace model {
 
 PropertyDefinitionResource::PropertyDefinitionResource()
 {
+    m_Description = U("");
+    m_DescriptionIsSet = false;
     m_Field_listIsSet = false;
+    m_Friendly_name = U("");
+    m_Friendly_nameIsSet = false;
     m_Name = U("");
+    m_Option_label_path = U("");
+    m_Option_label_pathIsSet = false;
+    m_Option_value_path = U("");
+    m_Option_value_pathIsSet = false;
+    m_Options_url = U("");
+    m_Options_urlIsSet = false;
     m_Required = false;
     m_Type = U("");
 }
@@ -40,11 +50,31 @@ web::json::value PropertyDefinitionResource::toJson() const
 {
     web::json::value val = web::json::value::object();
 
+    if(m_DescriptionIsSet)
+    {
+        val[U("description")] = ModelBase::toJson(m_Description);
+    }
     if(m_Field_listIsSet)
     {
         val[U("field_list")] = ModelBase::toJson(m_Field_list);
     }
+    if(m_Friendly_nameIsSet)
+    {
+        val[U("friendly_name")] = ModelBase::toJson(m_Friendly_name);
+    }
     val[U("name")] = ModelBase::toJson(m_Name);
+    if(m_Option_label_pathIsSet)
+    {
+        val[U("option_label_path")] = ModelBase::toJson(m_Option_label_path);
+    }
+    if(m_Option_value_pathIsSet)
+    {
+        val[U("option_value_path")] = ModelBase::toJson(m_Option_value_path);
+    }
+    if(m_Options_urlIsSet)
+    {
+        val[U("options_url")] = ModelBase::toJson(m_Options_url);
+    }
     val[U("required")] = ModelBase::toJson(m_Required);
     val[U("type")] = ModelBase::toJson(m_Type);
 
@@ -53,6 +83,10 @@ web::json::value PropertyDefinitionResource::toJson() const
 
 void PropertyDefinitionResource::fromJson(web::json::value& val)
 {
+    if(val.has_field(U("description")))
+    {
+        setDescription(ModelBase::stringFromJson(val[U("description")]));
+    }
     if(val.has_field(U("field_list")))
     {
         if(!val[U("field_list")].is_null())
@@ -62,7 +96,23 @@ void PropertyDefinitionResource::fromJson(web::json::value& val)
             setFieldList( newItem );
         }
     }
+    if(val.has_field(U("friendly_name")))
+    {
+        setFriendlyName(ModelBase::stringFromJson(val[U("friendly_name")]));
+    }
     setName(ModelBase::stringFromJson(val[U("name")]));
+    if(val.has_field(U("option_label_path")))
+    {
+        setOptionLabelPath(ModelBase::stringFromJson(val[U("option_label_path")]));
+    }
+    if(val.has_field(U("option_value_path")))
+    {
+        setOptionValuePath(ModelBase::stringFromJson(val[U("option_value_path")]));
+    }
+    if(val.has_field(U("options_url")))
+    {
+        setOptionsUrl(ModelBase::stringFromJson(val[U("options_url")]));
+    }
     setRequired(ModelBase::boolFromJson(val[U("required")]));
     setType(ModelBase::stringFromJson(val[U("type")]));
 }
@@ -75,6 +125,11 @@ void PropertyDefinitionResource::toMultipart(std::shared_ptr<MultipartFormData> 
         namePrefix += U(".");
     }
 
+    if(m_DescriptionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("description"), m_Description));
+        
+    }
     if(m_Field_listIsSet)
     {
         if (m_Field_list.get())
@@ -83,7 +138,27 @@ void PropertyDefinitionResource::toMultipart(std::shared_ptr<MultipartFormData> 
         }
         
     }
+    if(m_Friendly_nameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("friendly_name"), m_Friendly_name));
+        
+    }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("name"), m_Name));
+    if(m_Option_label_pathIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("option_label_path"), m_Option_label_path));
+        
+    }
+    if(m_Option_value_pathIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("option_value_path"), m_Option_value_path));
+        
+    }
+    if(m_Options_urlIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("options_url"), m_Options_url));
+        
+    }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("required"), m_Required));
     multipart->add(ModelBase::toHttpContent(namePrefix + U("type"), m_Type));
 }
@@ -96,6 +171,10 @@ void PropertyDefinitionResource::fromMultiPart(std::shared_ptr<MultipartFormData
         namePrefix += U(".");
     }
 
+    if(multipart->hasContent(U("description")))
+    {
+        setDescription(ModelBase::stringFromHttpContent(multipart->getContent(U("description"))));
+    }
     if(multipart->hasContent(U("field_list")))
     {
         if(multipart->hasContent(U("field_list")))
@@ -105,9 +184,46 @@ void PropertyDefinitionResource::fromMultiPart(std::shared_ptr<MultipartFormData
             setFieldList( newItem );
         }
     }
+    if(multipart->hasContent(U("friendly_name")))
+    {
+        setFriendlyName(ModelBase::stringFromHttpContent(multipart->getContent(U("friendly_name"))));
+    }
     setName(ModelBase::stringFromHttpContent(multipart->getContent(U("name"))));
+    if(multipart->hasContent(U("option_label_path")))
+    {
+        setOptionLabelPath(ModelBase::stringFromHttpContent(multipart->getContent(U("option_label_path"))));
+    }
+    if(multipart->hasContent(U("option_value_path")))
+    {
+        setOptionValuePath(ModelBase::stringFromHttpContent(multipart->getContent(U("option_value_path"))));
+    }
+    if(multipart->hasContent(U("options_url")))
+    {
+        setOptionsUrl(ModelBase::stringFromHttpContent(multipart->getContent(U("options_url"))));
+    }
     setRequired(ModelBase::boolFromHttpContent(multipart->getContent(U("required"))));
     setType(ModelBase::stringFromHttpContent(multipart->getContent(U("type"))));
+}
+
+utility::string_t PropertyDefinitionResource::getDescription() const
+{
+    return m_Description;
+}
+
+
+void PropertyDefinitionResource::setDescription(utility::string_t value)
+{
+    m_Description = value;
+    m_DescriptionIsSet = true;
+}
+bool PropertyDefinitionResource::descriptionIsSet() const
+{
+    return m_DescriptionIsSet;
+}
+
+void PropertyDefinitionResource::unsetDescription()
+{
+    m_DescriptionIsSet = false;
 }
 
 std::shared_ptr<PropertyFieldListResource> PropertyDefinitionResource::getFieldList() const
@@ -131,6 +247,27 @@ void PropertyDefinitionResource::unsetField_list()
     m_Field_listIsSet = false;
 }
 
+utility::string_t PropertyDefinitionResource::getFriendlyName() const
+{
+    return m_Friendly_name;
+}
+
+
+void PropertyDefinitionResource::setFriendlyName(utility::string_t value)
+{
+    m_Friendly_name = value;
+    m_Friendly_nameIsSet = true;
+}
+bool PropertyDefinitionResource::friendlyNameIsSet() const
+{
+    return m_Friendly_nameIsSet;
+}
+
+void PropertyDefinitionResource::unsetFriendly_name()
+{
+    m_Friendly_nameIsSet = false;
+}
+
 utility::string_t PropertyDefinitionResource::getName() const
 {
     return m_Name;
@@ -142,6 +279,69 @@ void PropertyDefinitionResource::setName(utility::string_t value)
     m_Name = value;
     
 }
+utility::string_t PropertyDefinitionResource::getOptionLabelPath() const
+{
+    return m_Option_label_path;
+}
+
+
+void PropertyDefinitionResource::setOptionLabelPath(utility::string_t value)
+{
+    m_Option_label_path = value;
+    m_Option_label_pathIsSet = true;
+}
+bool PropertyDefinitionResource::optionLabelPathIsSet() const
+{
+    return m_Option_label_pathIsSet;
+}
+
+void PropertyDefinitionResource::unsetOption_label_path()
+{
+    m_Option_label_pathIsSet = false;
+}
+
+utility::string_t PropertyDefinitionResource::getOptionValuePath() const
+{
+    return m_Option_value_path;
+}
+
+
+void PropertyDefinitionResource::setOptionValuePath(utility::string_t value)
+{
+    m_Option_value_path = value;
+    m_Option_value_pathIsSet = true;
+}
+bool PropertyDefinitionResource::optionValuePathIsSet() const
+{
+    return m_Option_value_pathIsSet;
+}
+
+void PropertyDefinitionResource::unsetOption_value_path()
+{
+    m_Option_value_pathIsSet = false;
+}
+
+utility::string_t PropertyDefinitionResource::getOptionsUrl() const
+{
+    return m_Options_url;
+}
+
+
+void PropertyDefinitionResource::setOptionsUrl(utility::string_t value)
+{
+    m_Options_url = value;
+    m_Options_urlIsSet = true;
+}
+bool PropertyDefinitionResource::optionsUrlIsSet() const
+{
+    return m_Options_urlIsSet;
+}
+
+void PropertyDefinitionResource::unsetOptions_url()
+{
+    m_Options_urlIsSet = false;
+}
+
 bool PropertyDefinitionResource::getRequired() const
 {
     return m_Required;

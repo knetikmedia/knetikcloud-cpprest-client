@@ -22,19 +22,17 @@ namespace model {
 GroupMemberResource::GroupMemberResource()
 {
     m_Additional_propertiesIsSet = false;
-    m_Avatar_url = U("");
-    m_Avatar_urlIsSet = false;
-    m_Display_name = U("");
-    m_Display_nameIsSet = false;
-    m_Id = 0;
+    m_GroupIsSet = false;
+    m_Implicit = false;
+    m_ImplicitIsSet = false;
+    m_Membership_id = 0L;
+    m_Membership_idIsSet = false;
     m_Order = U("");
     m_OrderIsSet = false;
     m_Status = U("");
     m_StatusIsSet = false;
     m_Template = U("");
     m_TemplateIsSet = false;
-    m_Username = U("");
-    m_UsernameIsSet = false;
 }
 
 GroupMemberResource::~GroupMemberResource()
@@ -64,15 +62,18 @@ web::json::value GroupMemberResource::toJson() const
             val[U("additional_properties")] = web::json::value::array(jsonArray);
         }
     }
-    if(m_Avatar_urlIsSet)
+    if(m_GroupIsSet)
     {
-        val[U("avatar_url")] = ModelBase::toJson(m_Avatar_url);
+        val[U("group")] = ModelBase::toJson(m_Group);
     }
-    if(m_Display_nameIsSet)
+    if(m_ImplicitIsSet)
     {
-        val[U("display_name")] = ModelBase::toJson(m_Display_name);
+        val[U("implicit")] = ModelBase::toJson(m_Implicit);
     }
-    val[U("id")] = ModelBase::toJson(m_Id);
+    if(m_Membership_idIsSet)
+    {
+        val[U("membership_id")] = ModelBase::toJson(m_Membership_id);
+    }
     if(m_OrderIsSet)
     {
         val[U("order")] = ModelBase::toJson(m_Order);
@@ -85,10 +86,7 @@ web::json::value GroupMemberResource::toJson() const
     {
         val[U("template")] = ModelBase::toJson(m_Template);
     }
-    if(m_UsernameIsSet)
-    {
-        val[U("username")] = ModelBase::toJson(m_Username);
-    }
+    val[U("user")] = ModelBase::toJson(m_User);
 
     return val;
 }
@@ -120,15 +118,23 @@ void GroupMemberResource::fromJson(web::json::value& val)
         }
         }
     }
-    if(val.has_field(U("avatar_url")))
+    if(val.has_field(U("group")))
     {
-        setAvatarUrl(ModelBase::stringFromJson(val[U("avatar_url")]));
+        if(!val[U("group")].is_null())
+        {
+            std::shared_ptr<SimpleGroupResource> newItem(new SimpleGroupResource());
+            newItem->fromJson(val[U("group")]);
+            setGroup( newItem );
+        }
     }
-    if(val.has_field(U("display_name")))
+    if(val.has_field(U("implicit")))
     {
-        setDisplayName(ModelBase::stringFromJson(val[U("display_name")]));
+        setImplicit(ModelBase::boolFromJson(val[U("implicit")]));
     }
-    setId(ModelBase::int32_tFromJson(val[U("id")]));
+    if(val.has_field(U("membership_id")))
+    {
+        setMembershipId(ModelBase::int64_tFromJson(val[U("membership_id")]));
+    }
     if(val.has_field(U("order")))
     {
         setOrder(ModelBase::stringFromJson(val[U("order")]));
@@ -141,10 +147,9 @@ void GroupMemberResource::fromJson(web::json::value& val)
     {
         setTemplate(ModelBase::stringFromJson(val[U("template")]));
     }
-    if(val.has_field(U("username")))
-    {
-        setUsername(ModelBase::stringFromJson(val[U("username")]));
-    }
+    std::shared_ptr<SimpleUserResource> newUser(new SimpleUserResource());
+    newUser->fromJson(val[U("user")]);
+    setUser( newUser );
 }
 
 void GroupMemberResource::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
@@ -170,17 +175,22 @@ void GroupMemberResource::toMultipart(std::shared_ptr<MultipartFormData> multipa
             multipart->add(ModelBase::toHttpContent(namePrefix + U("additional_properties"), web::json::value::array(jsonArray), U("application/json")));
         }
     }
-    if(m_Avatar_urlIsSet)
+    if(m_GroupIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + U("avatar_url"), m_Avatar_url));
+        if (m_Group.get())
+        {
+            m_Group->toMultipart(multipart, U("group."));
+        }
         
     }
-    if(m_Display_nameIsSet)
+    if(m_ImplicitIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + U("display_name"), m_Display_name));
-        
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("implicit"), m_Implicit));
     }
-    multipart->add(ModelBase::toHttpContent(namePrefix + U("id"), m_Id));
+    if(m_Membership_idIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("membership_id"), m_Membership_id));
+    }
     if(m_OrderIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("order"), m_Order));
@@ -196,11 +206,7 @@ void GroupMemberResource::toMultipart(std::shared_ptr<MultipartFormData> multipa
         multipart->add(ModelBase::toHttpContent(namePrefix + U("template"), m_Template));
         
     }
-    if(m_UsernameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + U("username"), m_Username));
-        
-    }
+    m_User->toMultipart(multipart, U("user."));
 }
 
 void GroupMemberResource::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -237,15 +243,23 @@ void GroupMemberResource::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         }
         }
     }
-    if(multipart->hasContent(U("avatar_url")))
+    if(multipart->hasContent(U("group")))
     {
-        setAvatarUrl(ModelBase::stringFromHttpContent(multipart->getContent(U("avatar_url"))));
+        if(multipart->hasContent(U("group")))
+        {
+            std::shared_ptr<SimpleGroupResource> newItem(new SimpleGroupResource());
+            newItem->fromMultiPart(multipart, U("group."));
+            setGroup( newItem );
+        }
     }
-    if(multipart->hasContent(U("display_name")))
+    if(multipart->hasContent(U("implicit")))
     {
-        setDisplayName(ModelBase::stringFromHttpContent(multipart->getContent(U("display_name"))));
+        setImplicit(ModelBase::boolFromHttpContent(multipart->getContent(U("implicit"))));
     }
-    setId(ModelBase::int32_tFromHttpContent(multipart->getContent(U("id"))));
+    if(multipart->hasContent(U("membership_id")))
+    {
+        setMembershipId(ModelBase::int64_tFromHttpContent(multipart->getContent(U("membership_id"))));
+    }
     if(multipart->hasContent(U("order")))
     {
         setOrder(ModelBase::stringFromHttpContent(multipart->getContent(U("order"))));
@@ -258,10 +272,9 @@ void GroupMemberResource::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     {
         setTemplate(ModelBase::stringFromHttpContent(multipart->getContent(U("template"))));
     }
-    if(multipart->hasContent(U("username")))
-    {
-        setUsername(ModelBase::stringFromHttpContent(multipart->getContent(U("username"))));
-    }
+    std::shared_ptr<SimpleUserResource> newUser(new SimpleUserResource());
+    newUser->fromMultiPart(multipart, U("user."));
+    setUser( newUser );
 }
 
 std::map<utility::string_t, std::shared_ptr<Property>>& GroupMemberResource::getAdditionalProperties()
@@ -284,59 +297,69 @@ void GroupMemberResource::unsetAdditional_properties()
     m_Additional_propertiesIsSet = false;
 }
 
-utility::string_t GroupMemberResource::getAvatarUrl() const
+std::shared_ptr<SimpleGroupResource> GroupMemberResource::getGroup() const
 {
-    return m_Avatar_url;
+    return m_Group;
 }
 
 
-void GroupMemberResource::setAvatarUrl(utility::string_t value)
+void GroupMemberResource::setGroup(std::shared_ptr<SimpleGroupResource> value)
 {
-    m_Avatar_url = value;
-    m_Avatar_urlIsSet = true;
+    m_Group = value;
+    m_GroupIsSet = true;
 }
-bool GroupMemberResource::avatarUrlIsSet() const
+bool GroupMemberResource::groupIsSet() const
 {
-    return m_Avatar_urlIsSet;
-}
-
-void GroupMemberResource::unsetAvatar_url()
-{
-    m_Avatar_urlIsSet = false;
+    return m_GroupIsSet;
 }
 
-utility::string_t GroupMemberResource::getDisplayName() const
+void GroupMemberResource::unsetGroup()
 {
-    return m_Display_name;
+    m_GroupIsSet = false;
 }
 
-
-void GroupMemberResource::setDisplayName(utility::string_t value)
+bool GroupMemberResource::getImplicit() const
 {
-    m_Display_name = value;
-    m_Display_nameIsSet = true;
-}
-bool GroupMemberResource::displayNameIsSet() const
-{
-    return m_Display_nameIsSet;
-}
-
-void GroupMemberResource::unsetDisplay_name()
-{
-    m_Display_nameIsSet = false;
-}
-
-int32_t GroupMemberResource::getId() const
-{
-    return m_Id;
+    return m_Implicit;
 }
 
 
-void GroupMemberResource::setId(int32_t value)
+void GroupMemberResource::setImplicit(bool value)
 {
-    m_Id = value;
-    
+    m_Implicit = value;
+    m_ImplicitIsSet = true;
 }
+bool GroupMemberResource::implicitIsSet() const
+{
+    return m_ImplicitIsSet;
+}
+
+void GroupMemberResource::unsetImplicit()
+{
+    m_ImplicitIsSet = false;
+}
+
+int64_t GroupMemberResource::getMembershipId() const
+{
+    return m_Membership_id;
+}
+
+
+void GroupMemberResource::setMembershipId(int64_t value)
+{
+    m_Membership_id = value;
+    m_Membership_idIsSet = true;
+}
+bool GroupMemberResource::membershipIdIsSet() const
+{
+    return m_Membership_idIsSet;
+}
+
+void GroupMemberResource::unsetMembership_id()
+{
+    m_Membership_idIsSet = false;
+}
+
 utility::string_t GroupMemberResource::getOrder() const
 {
     return m_Order;
@@ -400,27 +423,17 @@ void GroupMemberResource::unsetTemplate()
     m_TemplateIsSet = false;
 }
 
-utility::string_t GroupMemberResource::getUsername() const
+std::shared_ptr<SimpleUserResource> GroupMemberResource::getUser() const
 {
-    return m_Username;
+    return m_User;
 }
 
 
-void GroupMemberResource::setUsername(utility::string_t value)
+void GroupMemberResource::setUser(std::shared_ptr<SimpleUserResource> value)
 {
-    m_Username = value;
-    m_UsernameIsSet = true;
+    m_User = value;
+    
 }
-bool GroupMemberResource::usernameIsSet() const
-{
-    return m_UsernameIsSet;
-}
-
-void GroupMemberResource::unsetUsername()
-{
-    m_UsernameIsSet = false;
-}
-
 }
 }
 }

@@ -30,10 +30,14 @@ BreRule::BreRule()
     m_EnabledIsSet = false;
     m_End_date = 0L;
     m_End_dateIsSet = false;
+    m_Evaluation_count = 0L;
+    m_Evaluation_countIsSet = false;
     m_Event_name = U("");
     m_Id = U("");
     m_IdIsSet = false;
     m_Name = U("");
+    m_Run_count = 0L;
+    m_Run_countIsSet = false;
     m_Sort = 0;
     m_SortIsSet = false;
     m_Start_date = 0L;
@@ -83,12 +87,20 @@ web::json::value BreRule::toJson() const
     {
         val[U("end_date")] = ModelBase::toJson(m_End_date);
     }
+    if(m_Evaluation_countIsSet)
+    {
+        val[U("evaluation_count")] = ModelBase::toJson(m_Evaluation_count);
+    }
     val[U("event_name")] = ModelBase::toJson(m_Event_name);
     if(m_IdIsSet)
     {
         val[U("id")] = ModelBase::toJson(m_Id);
     }
     val[U("name")] = ModelBase::toJson(m_Name);
+    if(m_Run_countIsSet)
+    {
+        val[U("run_count")] = ModelBase::toJson(m_Run_count);
+    }
     if(m_SortIsSet)
     {
         val[U("sort")] = ModelBase::toJson(m_Sort);
@@ -149,12 +161,20 @@ void BreRule::fromJson(web::json::value& val)
     {
         setEndDate(ModelBase::int64_tFromJson(val[U("end_date")]));
     }
+    if(val.has_field(U("evaluation_count")))
+    {
+        setEvaluationCount(ModelBase::int64_tFromJson(val[U("evaluation_count")]));
+    }
     setEventName(ModelBase::stringFromJson(val[U("event_name")]));
     if(val.has_field(U("id")))
     {
         setId(ModelBase::stringFromJson(val[U("id")]));
     }
     setName(ModelBase::stringFromJson(val[U("name")]));
+    if(val.has_field(U("run_count")))
+    {
+        setRunCount(ModelBase::int64_tFromJson(val[U("run_count")]));
+    }
     if(val.has_field(U("sort")))
     {
         setSort(ModelBase::int32_tFromJson(val[U("sort")]));
@@ -211,6 +231,10 @@ void BreRule::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("end_date"), m_End_date));
     }
+    if(m_Evaluation_countIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("evaluation_count"), m_Evaluation_count));
+    }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("event_name"), m_Event_name));
     if(m_IdIsSet)
     {
@@ -218,6 +242,10 @@ void BreRule::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
         
     }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("name"), m_Name));
+    if(m_Run_countIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("run_count"), m_Run_count));
+    }
     if(m_SortIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("sort"), m_Sort));
@@ -283,12 +311,20 @@ void BreRule::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         setEndDate(ModelBase::int64_tFromHttpContent(multipart->getContent(U("end_date"))));
     }
+    if(multipart->hasContent(U("evaluation_count")))
+    {
+        setEvaluationCount(ModelBase::int64_tFromHttpContent(multipart->getContent(U("evaluation_count"))));
+    }
     setEventName(ModelBase::stringFromHttpContent(multipart->getContent(U("event_name"))));
     if(multipart->hasContent(U("id")))
     {
         setId(ModelBase::stringFromHttpContent(multipart->getContent(U("id"))));
     }
     setName(ModelBase::stringFromHttpContent(multipart->getContent(U("name"))));
+    if(multipart->hasContent(U("run_count")))
+    {
+        setRunCount(ModelBase::int64_tFromHttpContent(multipart->getContent(U("run_count"))));
+    }
     if(multipart->hasContent(U("sort")))
     {
         setSort(ModelBase::int32_tFromHttpContent(multipart->getContent(U("sort"))));
@@ -418,6 +454,27 @@ void BreRule::unsetEnd_date()
     m_End_dateIsSet = false;
 }
 
+int64_t BreRule::getEvaluationCount() const
+{
+    return m_Evaluation_count;
+}
+
+
+void BreRule::setEvaluationCount(int64_t value)
+{
+    m_Evaluation_count = value;
+    m_Evaluation_countIsSet = true;
+}
+bool BreRule::evaluationCountIsSet() const
+{
+    return m_Evaluation_countIsSet;
+}
+
+void BreRule::unsetEvaluation_count()
+{
+    m_Evaluation_countIsSet = false;
+}
+
 utility::string_t BreRule::getEventName() const
 {
     return m_Event_name;
@@ -461,6 +518,27 @@ void BreRule::setName(utility::string_t value)
     m_Name = value;
     
 }
+int64_t BreRule::getRunCount() const
+{
+    return m_Run_count;
+}
+
+
+void BreRule::setRunCount(int64_t value)
+{
+    m_Run_count = value;
+    m_Run_countIsSet = true;
+}
+bool BreRule::runCountIsSet() const
+{
+    return m_Run_countIsSet;
+}
+
+void BreRule::unsetRun_count()
+{
+    m_Run_countIsSet = false;
+}
+
 int32_t BreRule::getSort() const
 {
     return m_Sort;

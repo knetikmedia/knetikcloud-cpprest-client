@@ -61,8 +61,8 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="filterEnabledCurrencies">Filter for alternate currencies setup explicitely in system config (optional)</param>/// <param name="filterType">Filter currencies by type.  Allowable values: (&#39;virtual&#39;, &#39;real&#39;) (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to name:ASC)</param>
-    pplx::task<std::shared_ptr<PageResource«CurrencyResource»>> getCurrencies(bool filterEnabledCurrencies, utility::string_t filterType, int32_t size, int32_t page, utility::string_t order);
+    /// <param name="filterDefault">Filter for the one currency that is set as default (true), or all that are not (false) (optional)</param>/// <param name="filterEnabledCurrencies">Filter for alternate currencies setup explicitely in system config (optional)</param>/// <param name="filterType">Filter currencies by type.  Allowable values: (&#39;virtual&#39;, &#39;real&#39;) (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to name:ASC)</param>
+    pplx::task<std::shared_ptr<PageResource«CurrencyResource»>> getCurrencies(bool filterDefault, bool filterEnabledCurrencies, utility::string_t filterType, int32_t size, int32_t page, utility::string_t order);
     /// <summary>
     /// Get a single currency
     /// </summary>

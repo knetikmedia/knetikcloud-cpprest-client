@@ -55,6 +55,13 @@ public:
     /// PropertyDefinitionResource members
 
     /// <summary>
+    /// The description of the property
+    /// </summary>
+    utility::string_t getDescription() const;
+    bool descriptionIsSet() const;
+    void unsetDescription();
+    void setDescription(utility::string_t value);
+    /// <summary>
     /// A list of the fields on both the property definition and property of this type
     /// </summary>
     std::shared_ptr<PropertyFieldListResource> getFieldList() const;
@@ -62,10 +69,38 @@ public:
     void unsetField_list();
     void setFieldList(std::shared_ptr<PropertyFieldListResource> value);
     /// <summary>
+    /// The friendly front-facing name of the property
+    /// </summary>
+    utility::string_t getFriendlyName() const;
+    bool friendlyNameIsSet() const;
+    void unsetFriendly_name();
+    void setFriendlyName(utility::string_t value);
+    /// <summary>
     /// The name of the property
     /// </summary>
     utility::string_t getName() const;
         void setName(utility::string_t value);
+    /// <summary>
+    /// The JSON path to the option label
+    /// </summary>
+    utility::string_t getOptionLabelPath() const;
+    bool optionLabelPathIsSet() const;
+    void unsetOption_label_path();
+    void setOptionLabelPath(utility::string_t value);
+    /// <summary>
+    /// The JSON path to the option value
+    /// </summary>
+    utility::string_t getOptionValuePath() const;
+    bool optionValuePathIsSet() const;
+    void unsetOption_value_path();
+    void setOptionValuePath(utility::string_t value);
+    /// <summary>
+    /// URL of service containing the property options (assumed JSON array)
+    /// </summary>
+    utility::string_t getOptionsUrl() const;
+    bool optionsUrlIsSet() const;
+    void unsetOptions_url();
+    void setOptionsUrl(utility::string_t value);
     /// <summary>
     /// Whether the property is required
     /// </summary>
@@ -78,10 +113,20 @@ public:
         void setType(utility::string_t value);
 
 protected:
+    utility::string_t m_Description;
+    bool m_DescriptionIsSet;
     std::shared_ptr<PropertyFieldListResource> m_Field_list;
     bool m_Field_listIsSet;
+    utility::string_t m_Friendly_name;
+    bool m_Friendly_nameIsSet;
     utility::string_t m_Name;
-        bool m_Required;
+        utility::string_t m_Option_label_path;
+    bool m_Option_label_pathIsSet;
+    utility::string_t m_Option_value_path;
+    bool m_Option_value_pathIsSet;
+    utility::string_t m_Options_url;
+    bool m_Options_urlIsSet;
+    bool m_Required;
         utility::string_t m_Type;
     };
 

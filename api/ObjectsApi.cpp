@@ -1034,14 +1034,14 @@ pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> ObjectsApi::ge
         return result;
     });
 }
-pplx::task<void> ObjectsApi::updateObjectItem(utility::string_t templateId, int32_t entitlementId, bool cascade, std::shared_ptr<EntitlementItem> objectItem)
+pplx::task<void> ObjectsApi::updateObjectItem(utility::string_t templateId, int32_t objectId, bool cascade, std::shared_ptr<ObjectResource> objectItem)
 {
 
 
     std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
     utility::string_t path = U("/objects/{template_id}/{object_id}");
     boost::replace_all(path, U("{") U("template_id") U("}"), ApiClient::parameterToString(templateId));
-boost::replace_all(path, U("{") U("entitlement_id") U("}"), ApiClient::parameterToString(entitlementId));
+boost::replace_all(path, U("{") U("object_id") U("}"), ApiClient::parameterToString(objectId));
 
     std::map<utility::string_t, utility::string_t> queryParams;
     std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );

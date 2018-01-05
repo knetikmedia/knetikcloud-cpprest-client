@@ -40,13 +40,21 @@ public:
     SearchApi( std::shared_ptr<ApiClient> apiClient );
     virtual ~SearchApi();
     /// <summary>
-    /// Search an index
+    /// Search an index with no template
     /// </summary>
     /// <remarks>
     /// The body is an ElasticSearch query in JSON format. Please see their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html&#39;&gt;documentation&lt;/a&gt; for details on the format and search options. The searchable object&#39;s format depends on on the type but mostly matches the resource from it&#39;s main endpoint. Exceptions include referenced objects (like user) being replaced with the full user resource to allow deeper searching.
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="query">The query to be used for the search (optional)</param>/// <param name="size">The number of documents returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«Map«string,object»»>> searchIndex(utility::string_t type, std::shared_ptr<Object> query, int32_t size, int32_t page);
+    /// <summary>
+    /// Search an index with a template
+    /// </summary>
+    /// <remarks>
+    /// The body is an ElasticSearch query in JSON format. Please see their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html&#39;&gt;documentation&lt;/a&gt; for details on the format and search options. The searchable object&#39;s format depends on on the type but mostly matches the resource from it&#39;s main endpoint. Exceptions include referenced objects (like user) being replaced with the full user resource to allow deeper searching.
+    /// </remarks>
+    /// <param name="type">The index type</param>/// <param name="template">The index template</param>/// <param name="query">The query to be used for the search (optional)</param>/// <param name="size">The number of documents returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
+    pplx::task<std::shared_ptr<PageResource«Map«string,object»»>> searchIndexWithTemplate(utility::string_t type, utility::string_t template, std::shared_ptr<Object> query, int32_t size, int32_t page);
 
 protected:
     std::shared_ptr<ApiClient> m_ApiClient;

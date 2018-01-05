@@ -22,7 +22,6 @@
 
 #include "ApiClient.h"
 
-#include "EntitlementItem.h"
 #include "ItemTemplateResource.h"
 #include "ObjectResource.h"
 #include "PageResource«ItemTemplateResource».h"
@@ -112,8 +111,8 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="templateId">The id of the template this object is part of</param>/// <param name="entitlementId">The id of the entitlement</param>/// <param name="cascade">Whether to cascade group changes, such as in the limited gettable behavior. A 400 error will return otherwise if the group is already in use with different values. (optional, default to false)</param>/// <param name="objectItem">The object item object (optional)</param>
-    pplx::task<void> updateObjectItem(utility::string_t templateId, int32_t entitlementId, bool cascade, std::shared_ptr<EntitlementItem> objectItem);
+    /// <param name="templateId">The id of the template this object is part of</param>/// <param name="objectId">The id of the object</param>/// <param name="cascade">Whether to cascade group changes, such as in the limited gettable behavior. A 400 error will return otherwise if the group is already in use with different values. (optional, default to false)</param>/// <param name="objectItem">The object item object (optional)</param>
+    pplx::task<void> updateObjectItem(utility::string_t templateId, int32_t objectId, bool cascade, std::shared_ptr<ObjectResource> objectItem);
     /// <summary>
     /// Update an entitlement template
     /// </summary>

@@ -23,7 +23,9 @@
 #include "ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include "SimpleUserResource.h"
 #include <map>
+#include "SimpleGroupResource.h"
 #include <vector>
 #include "Property.h"
 
@@ -64,24 +66,26 @@ public:
     void unsetAdditional_properties();
     void setAdditionalProperties(std::map<utility::string_t, std::shared_ptr<Property>> value);
     /// <summary>
-    /// The url of the user&#39;s avatar image
+    /// The group. Id is the unique name
     /// </summary>
-    utility::string_t getAvatarUrl() const;
-    bool avatarUrlIsSet() const;
-    void unsetAvatar_url();
-    void setAvatarUrl(utility::string_t value);
+    std::shared_ptr<SimpleGroupResource> getGroup() const;
+    bool groupIsSet() const;
+    void unsetGroup();
+    void setGroup(std::shared_ptr<SimpleGroupResource> value);
     /// <summary>
-    /// The public username of the user
+    /// Whether this membership is explicit (the user was added directly to the group) or implicit (the user was added only to one or more child groups)
     /// </summary>
-    utility::string_t getDisplayName() const;
-    bool displayNameIsSet() const;
-    void unsetDisplay_name();
-    void setDisplayName(utility::string_t value);
+    bool getImplicit() const;
+    bool implicitIsSet() const;
+    void unsetImplicit();
+    void setImplicit(bool value);
     /// <summary>
-    /// The id of the user
+    /// The id of the membership entry
     /// </summary>
-    int32_t getId() const;
-        void setId(int32_t value);
+    int64_t getMembershipId() const;
+    bool membershipIdIsSet() const;
+    void unsetMembership_id();
+    void setMembershipId(int64_t value);
     /// <summary>
     /// The position of the member in the group if applicable. Read notes for details
     /// </summary>
@@ -104,30 +108,28 @@ public:
     void unsetTemplate();
     void setTemplate(utility::string_t value);
     /// <summary>
-    /// The username of the user
+    /// The user
     /// </summary>
-    utility::string_t getUsername() const;
-    bool usernameIsSet() const;
-    void unsetUsername();
-    void setUsername(utility::string_t value);
+    std::shared_ptr<SimpleUserResource> getUser() const;
+        void setUser(std::shared_ptr<SimpleUserResource> value);
 
 protected:
     std::map<utility::string_t, std::shared_ptr<Property>> m_Additional_properties;
     bool m_Additional_propertiesIsSet;
-    utility::string_t m_Avatar_url;
-    bool m_Avatar_urlIsSet;
-    utility::string_t m_Display_name;
-    bool m_Display_nameIsSet;
-    int32_t m_Id;
-        utility::string_t m_Order;
+    std::shared_ptr<SimpleGroupResource> m_Group;
+    bool m_GroupIsSet;
+    bool m_Implicit;
+    bool m_ImplicitIsSet;
+    int64_t m_Membership_id;
+    bool m_Membership_idIsSet;
+    utility::string_t m_Order;
     bool m_OrderIsSet;
     utility::string_t m_Status;
     bool m_StatusIsSet;
     utility::string_t m_Template;
     bool m_TemplateIsSet;
-    utility::string_t m_Username;
-    bool m_UsernameIsSet;
-};
+    std::shared_ptr<SimpleUserResource> m_User;
+    };
 
 }
 }

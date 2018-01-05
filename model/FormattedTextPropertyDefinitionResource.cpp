@@ -64,6 +64,11 @@ void FormattedTextPropertyDefinitionResource::toMultipart(std::shared_ptr<Multip
         namePrefix += U(".");
     }
 
+    if(m_DescriptionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("description"), m_Description));
+        
+    }
     if(m_Field_listIsSet)
     {
         if (m_Field_list.get())
@@ -72,7 +77,27 @@ void FormattedTextPropertyDefinitionResource::toMultipart(std::shared_ptr<Multip
         }
         
     }
+    if(m_Friendly_nameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("friendly_name"), m_Friendly_name));
+        
+    }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("name"), m_Name));
+    if(m_Option_label_pathIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("option_label_path"), m_Option_label_path));
+        
+    }
+    if(m_Option_value_pathIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("option_value_path"), m_Option_value_path));
+        
+    }
+    if(m_Options_urlIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("options_url"), m_Options_url));
+        
+    }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("required"), m_Required));
     multipart->add(ModelBase::toHttpContent(namePrefix + U("type"), m_Type));
     if(m_Max_lengthIsSet)
@@ -89,6 +114,10 @@ void FormattedTextPropertyDefinitionResource::fromMultiPart(std::shared_ptr<Mult
         namePrefix += U(".");
     }
 
+    if(multipart->hasContent(U("description")))
+    {
+        setDescription(ModelBase::stringFromHttpContent(multipart->getContent(U("description"))));
+    }
     if(multipart->hasContent(U("field_list")))
     {
         if(multipart->hasContent(U("field_list")))
@@ -98,7 +127,23 @@ void FormattedTextPropertyDefinitionResource::fromMultiPart(std::shared_ptr<Mult
             setFieldList( newItem );
         }
     }
+    if(multipart->hasContent(U("friendly_name")))
+    {
+        setFriendlyName(ModelBase::stringFromHttpContent(multipart->getContent(U("friendly_name"))));
+    }
     setName(ModelBase::stringFromHttpContent(multipart->getContent(U("name"))));
+    if(multipart->hasContent(U("option_label_path")))
+    {
+        setOptionLabelPath(ModelBase::stringFromHttpContent(multipart->getContent(U("option_label_path"))));
+    }
+    if(multipart->hasContent(U("option_value_path")))
+    {
+        setOptionValuePath(ModelBase::stringFromHttpContent(multipart->getContent(U("option_value_path"))));
+    }
+    if(multipart->hasContent(U("options_url")))
+    {
+        setOptionsUrl(ModelBase::stringFromHttpContent(multipart->getContent(U("options_url"))));
+    }
     setRequired(ModelBase::boolFromHttpContent(multipart->getContent(U("required"))));
     setType(ModelBase::stringFromHttpContent(multipart->getContent(U("type"))));
     if(multipart->hasContent(U("max_length")))

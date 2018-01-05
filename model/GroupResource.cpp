@@ -34,9 +34,11 @@ GroupResource::GroupResource()
     m_Status = U("");
     m_Sub_member_count = 0;
     m_Sub_member_countIsSet = false;
+    m_TagsIsSet = false;
     m_Template = U("");
     m_TemplateIsSet = false;
     m_Unique_name = U("");
+    m_Unique_nameIsSet = false;
 }
 
 GroupResource::~GroupResource()
@@ -88,11 +90,25 @@ web::json::value GroupResource::toJson() const
     {
         val[U("sub_member_count")] = ModelBase::toJson(m_Sub_member_count);
     }
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Tags )
+        {
+            jsonArray.push_back(ModelBase::toJson(item));
+        }
+        if(jsonArray.size() > 0)
+        {
+            val[U("tags")] = web::json::value::array(jsonArray);
+        }
+    }
     if(m_TemplateIsSet)
     {
         val[U("template")] = ModelBase::toJson(m_Template);
     }
-    val[U("unique_name")] = ModelBase::toJson(m_Unique_name);
+    if(m_Unique_nameIsSet)
+    {
+        val[U("unique_name")] = ModelBase::toJson(m_Unique_name);
+    }
 
     return val;
 }
@@ -146,11 +162,25 @@ void GroupResource::fromJson(web::json::value& val)
     {
         setSubMemberCount(ModelBase::int32_tFromJson(val[U("sub_member_count")]));
     }
+    {
+        m_Tags.clear();
+        std::vector<web::json::value> jsonArray;
+        if(val.has_field(U("tags")))
+        {
+        for( auto& item : val[U("tags")].as_array() )
+        {
+            m_Tags.push_back(ModelBase::stringFromJson(item));
+        }
+        }
+    }
     if(val.has_field(U("template")))
     {
         setTemplate(ModelBase::stringFromJson(val[U("template")]));
     }
-    setUniqueName(ModelBase::stringFromJson(val[U("unique_name")]));
+    if(val.has_field(U("unique_name")))
+    {
+        setUniqueName(ModelBase::stringFromJson(val[U("unique_name")]));
+    }
 }
 
 void GroupResource::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
@@ -201,12 +231,28 @@ void GroupResource::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("sub_member_count"), m_Sub_member_count));
     }
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Tags )
+        {
+            jsonArray.push_back(ModelBase::toJson(item));
+        }
+        
+        if(jsonArray.size() > 0)
+        {
+            multipart->add(ModelBase::toHttpContent(namePrefix + U("tags"), web::json::value::array(jsonArray), U("application/json")));
+        }
+    }
     if(m_TemplateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("template"), m_Template));
         
     }
-    multipart->add(ModelBase::toHttpContent(namePrefix + U("unique_name"), m_Unique_name));
+    if(m_Unique_nameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("unique_name"), m_Unique_name));
+        
+    }
 }
 
 void GroupResource::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -265,11 +311,26 @@ void GroupResource::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     {
         setSubMemberCount(ModelBase::int32_tFromHttpContent(multipart->getContent(U("sub_member_count"))));
     }
+    {
+        m_Tags.clear();
+        if(multipart->hasContent(U("tags")))
+        {
+
+        web::json::value jsonArray = web::json::value::parse(ModelBase::stringFromHttpContent(multipart->getContent(U("tags"))));
+        for( auto& item : jsonArray.as_array() )
+        {
+            m_Tags.push_back(ModelBase::stringFromJson(item));
+        }
+        }
+    }
     if(multipart->hasContent(U("template")))
     {
         setTemplate(ModelBase::stringFromHttpContent(multipart->getContent(U("template"))));
     }
-    setUniqueName(ModelBase::stringFromHttpContent(multipart->getContent(U("unique_name"))));
+    if(multipart->hasContent(U("unique_name")))
+    {
+        setUniqueName(ModelBase::stringFromHttpContent(multipart->getContent(U("unique_name"))));
+    }
 }
 
 std::map<utility::string_t, std::shared_ptr<Property>>& GroupResource::getAdditionalProperties()
@@ -419,6 +480,26 @@ void GroupResource::unsetSub_member_count()
     m_Sub_member_countIsSet = false;
 }
 
+std::vector<utility::string_t>& GroupResource::getTags()
+{
+    return m_Tags;
+}
+
+void GroupResource::setTags(std::vector<utility::string_t> value)
+{
+    m_Tags = value;
+    m_TagsIsSet = true;
+}
+bool GroupResource::tagsIsSet() const
+{
+    return m_TagsIsSet;
+}
+
+void GroupResource::unsetTags()
+{
+    m_TagsIsSet = false;
+}
+
 utility::string_t GroupResource::getTemplate() const
 {
     return m_Template;
@@ -449,8 +530,18 @@ utility::string_t GroupResource::getUniqueName() const
 void GroupResource::setUniqueName(utility::string_t value)
 {
     m_Unique_name = value;
-    
+    m_Unique_nameIsSet = true;
 }
+bool GroupResource::uniqueNameIsSet() const
+{
+    return m_Unique_nameIsSet;
+}
+
+void GroupResource::unsetUnique_name()
+{
+    m_Unique_nameIsSet = false;
+}
+
 }
 }
 }

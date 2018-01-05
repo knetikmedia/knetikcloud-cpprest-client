@@ -274,7 +274,7 @@ pplx::task<void> CurrenciesApi::deleteCurrency(utility::string_t code)
         return void();
     });
 }
-pplx::task<std::shared_ptr<PageResource«CurrencyResource»>> CurrenciesApi::getCurrencies(bool filterEnabledCurrencies, utility::string_t filterType, int32_t size, int32_t page, utility::string_t order)
+pplx::task<std::shared_ptr<PageResource«CurrencyResource»>> CurrenciesApi::getCurrencies(bool filterDefault, bool filterEnabledCurrencies, utility::string_t filterType, int32_t size, int32_t page, utility::string_t order)
 {
 
 
@@ -316,6 +316,10 @@ pplx::task<std::shared_ptr<PageResource«CurrencyResource»>> CurrenciesApi::get
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
     consumeHttpContentTypes.insert( U("application/json") );
 
+    
+    {
+        queryParams[U("filter_default")] = ApiClient::parameterToString(filterDefault);
+    }
     
     {
         queryParams[U("filter_enabled_currencies")] = ApiClient::parameterToString(filterEnabledCurrencies);

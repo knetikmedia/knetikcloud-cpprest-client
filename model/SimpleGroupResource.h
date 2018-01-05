@@ -11,18 +11,18 @@
  */
 
 /*
- * CacheClearEvent.h
+ * SimpleGroupResource.h
  *
  * 
  */
 
-#ifndef CacheClearEvent_H_
-#define CacheClearEvent_H_
+#ifndef SimpleGroupResource_H_
+#define SimpleGroupResource_H_
 
 
-#include "BroadcastableEvent.h"
+#include "ModelBase.h"
+
 #include <cpprest/details/basic_types.h>
-#include "Object.h"
 
 namespace com {
 namespace knetikcloud {
@@ -32,12 +32,12 @@ namespace model {
 /// <summary>
 /// 
 /// </summary>
-class  CacheClearEvent
-    : public BroadcastableEvent
+class  SimpleGroupResource
+    : public ModelBase
 {
 public:
-    CacheClearEvent();
-    virtual ~CacheClearEvent();
+    SimpleGroupResource();
+    virtual ~SimpleGroupResource();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,19 +51,25 @@ public:
     void fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// CacheClearEvent members
+    /// SimpleGroupResource members
 
     /// <summary>
-    /// 
+    /// The name of the group. Max 50 characters
     /// </summary>
-    bool getTeardown() const;
-    bool teardownIsSet() const;
-    void unsetTeardown();
-    void setTeardown(bool value);
+    utility::string_t getName() const;
+        void setName(utility::string_t value);
+    /// <summary>
+    /// Unique name used in url and references. Uppercase, lowercase, numbers and hyphens only. Max 50 characters. Cannot be altered once created. Default: random UUID
+    /// </summary>
+    utility::string_t getUniqueName() const;
+    bool uniqueNameIsSet() const;
+    void unsetUnique_name();
+    void setUniqueName(utility::string_t value);
 
 protected:
-    bool m_Teardown;
-    bool m_TeardownIsSet;
+    utility::string_t m_Name;
+        utility::string_t m_Unique_name;
+    bool m_Unique_nameIsSet;
 };
 
 }
@@ -71,4 +77,4 @@ protected:
 }
 }
 
-#endif /* CacheClearEvent_H_ */
+#endif /* SimpleGroupResource_H_ */

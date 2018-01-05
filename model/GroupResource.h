@@ -109,6 +109,13 @@ public:
     void unsetSub_member_count();
     void setSubMemberCount(int32_t value);
     /// <summary>
+    /// Tags for search
+    /// </summary>
+    std::vector<utility::string_t>& getTags();
+    bool tagsIsSet() const;
+    void unsetTags();
+    void setTags(std::vector<utility::string_t> value);
+    /// <summary>
     /// A group template this group is validated against. May be null and no validation of additional_properties will be done
     /// </summary>
     utility::string_t getTemplate() const;
@@ -116,10 +123,12 @@ public:
     void unsetTemplate();
     void setTemplate(utility::string_t value);
     /// <summary>
-    /// Unique name used in url and references. Uppercase, lowercase, numbers and hyphens only. Max 50 characters. Cannot be altered once created
+    /// Unique name used in url and references. Uppercase, lowercase, numbers and hyphens only. Max 50 characters. Cannot be altered once created. Default: random UUID
     /// </summary>
     utility::string_t getUniqueName() const;
-        void setUniqueName(utility::string_t value);
+    bool uniqueNameIsSet() const;
+    void unsetUnique_name();
+    void setUniqueName(utility::string_t value);
 
 protected:
     std::map<utility::string_t, std::shared_ptr<Property>> m_Additional_properties;
@@ -136,10 +145,13 @@ protected:
     utility::string_t m_Status;
         int32_t m_Sub_member_count;
     bool m_Sub_member_countIsSet;
+    std::vector<utility::string_t> m_Tags;
+    bool m_TagsIsSet;
     utility::string_t m_Template;
     bool m_TemplateIsSet;
     utility::string_t m_Unique_name;
-    };
+    bool m_Unique_nameIsSet;
+};
 
 }
 }
