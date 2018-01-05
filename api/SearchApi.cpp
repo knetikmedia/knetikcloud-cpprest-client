@@ -36,7 +36,1290 @@ SearchApi::~SearchApi()
 {
 }
 
-pplx::task<std::shared_ptr<PageResource«Map«string,object»»>> SearchApi::searchIndex(utility::string_t type, std::shared_ptr<Object> query, int32_t size, int32_t page)
+pplx::task<std::shared_ptr<Object>> SearchApi::searchCountGET(utility::string_t type)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/count/{type}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchCountGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchCountGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchCountGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchCountGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchCountGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchCountPOST(utility::string_t type, std::shared_ptr<Object> query)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/count/{type}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchCountPOST does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(query);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(query.get())
+        {
+            query->toMultipart(multipart, U("query"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchCountPOST does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchCountPOST: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchCountPOST: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchCountPOST: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchCountWithTemplateGET(utility::string_t type, utility::string_t template)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/count/{type}/{template}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchCountWithTemplateGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchCountWithTemplateGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchCountWithTemplateGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchCountWithTemplateGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchCountWithTemplateGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchCountWithTemplatePOST(utility::string_t type, utility::string_t template, std::shared_ptr<Object> query)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/count/{type}/{template}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchCountWithTemplatePOST does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(query);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(query.get())
+        {
+            query->toMultipart(multipart, U("query"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchCountWithTemplatePOST does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchCountWithTemplatePOST: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchCountWithTemplatePOST: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchCountWithTemplatePOST: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchDocumentGET(utility::string_t type, utility::string_t id)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/documents/{type}/{id}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchDocumentGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchDocumentGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchDocumentGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchDocumentGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchDocumentGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchDocumentWithTemplateGET(utility::string_t type, utility::string_t id, utility::string_t template)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/documents/{type}/{template}/{id}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchDocumentWithTemplateGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchDocumentWithTemplateGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchDocumentWithTemplateGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchDocumentWithTemplateGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchDocumentWithTemplateGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchExplainGET(utility::string_t type, utility::string_t id)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/explain/{type}/{id}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchExplainGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchExplainGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchExplainGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchExplainGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchExplainGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchExplainPOST(utility::string_t type, utility::string_t id, std::shared_ptr<Object> query)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/explain/{type}/{id}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchExplainPOST does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(query);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(query.get())
+        {
+            query->toMultipart(multipart, U("query"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchExplainPOST does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchExplainPOST: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchExplainPOST: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchExplainPOST: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchExplainWithTemplateGET(utility::string_t type, utility::string_t id, utility::string_t template)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/explain/{type}/{template}/{id}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchExplainWithTemplateGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchExplainWithTemplateGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchExplainWithTemplateGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchExplainWithTemplateGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchExplainWithTemplateGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchExplainWithTemplatePOST(utility::string_t type, utility::string_t id, utility::string_t template, std::shared_ptr<Object> query)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/explain/{type}/{template}/{id}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchExplainWithTemplatePOST does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(query);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(query.get())
+        {
+            query->toMultipart(multipart, U("query"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchExplainWithTemplatePOST does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchExplainWithTemplatePOST: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchExplainWithTemplatePOST: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchExplainWithTemplatePOST: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchIndex(utility::string_t type, std::shared_ptr<Object> query)
 {
 
 
@@ -79,14 +1362,6 @@ pplx::task<std::shared_ptr<PageResource«Map«string,object»»>> SearchApi::sea
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
     consumeHttpContentTypes.insert( U("application/json") );
 
-    
-    {
-        queryParams[U("size")] = ApiClient::parameterToString(size);
-    }
-    
-    {
-        queryParams[U("page")] = ApiClient::parameterToString(page);
-    }
 
     std::shared_ptr<IHttpBody> httpBody;
     utility::string_t requestHttpContentType;
@@ -158,7 +1433,7 @@ pplx::task<std::shared_ptr<PageResource«Map«string,object»»>> SearchApi::sea
     })
     .then([=](utility::string_t response)
     {
-        std::shared_ptr<PageResource«Map«string,object»»> result(new PageResource«Map«string,object»»());
+        std::shared_ptr<Object> result(nullptr);
 
         if(responseHttpContentType == U("application/json"))
         {
@@ -179,7 +1454,129 @@ pplx::task<std::shared_ptr<PageResource«Map«string,object»»>> SearchApi::sea
         return result;
     });
 }
-pplx::task<std::shared_ptr<PageResource«Map«string,object»»>> SearchApi::searchIndexWithTemplate(utility::string_t type, utility::string_t template, std::shared_ptr<Object> query, int32_t size, int32_t page)
+pplx::task<std::shared_ptr<Object>> SearchApi::searchIndexGET(utility::string_t type)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/index/{type}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchIndexGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchIndexGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchIndexGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchIndexGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchIndexGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchIndexWithTemplateGET(utility::string_t type, utility::string_t template)
 {
 
 
@@ -215,7 +1612,7 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     }
     else
     {
-        throw ApiException(400, U("SearchApi->searchIndexWithTemplate does not produce any supported media type"));
+        throw ApiException(400, U("SearchApi->searchIndexWithTemplateGET does not produce any supported media type"));
     }
 
     headerParams[U("Accept")] = responseHttpContentType;
@@ -223,14 +1620,129 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
     consumeHttpContentTypes.insert( U("application/json") );
 
-    
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
     {
-        queryParams[U("size")] = ApiClient::parameterToString(size);
+        requestHttpContentType = U("application/json");
     }
-    
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
     {
-        queryParams[U("page")] = ApiClient::parameterToString(page);
+        requestHttpContentType = U("multipart/form-data");
     }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchIndexWithTemplateGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchIndexWithTemplateGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchIndexWithTemplateGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchIndexWithTemplateGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchIndexWithTemplatePOST(utility::string_t type, utility::string_t template, std::shared_ptr<Object> query)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/index/{type}/{template}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchIndexWithTemplatePOST does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
 
     std::shared_ptr<IHttpBody> httpBody;
     utility::string_t requestHttpContentType;
@@ -260,12 +1772,16 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     }
     else
     {
-        throw ApiException(415, U("SearchApi->searchIndexWithTemplate does not consume any supported media type"));
+        throw ApiException(415, U("SearchApi->searchIndexWithTemplatePOST does not consume any supported media type"));
     }
 
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -278,7 +1794,7 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , U("error calling searchIndexWithTemplate: ") + response.reason_phrase()
+                , U("error calling searchIndexWithTemplatePOST: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -289,7 +1805,7 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , U("error calling searchIndexWithTemplate: unexpected response type: ") + contentType
+                    , U("error calling searchIndexWithTemplatePOST: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -298,7 +1814,7 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     })
     .then([=](utility::string_t response)
     {
-        std::shared_ptr<PageResource«Map«string,object»»> result(new PageResource«Map«string,object»»());
+        std::shared_ptr<Object> result(nullptr);
 
         if(responseHttpContentType == U("application/json"))
         {
@@ -313,7 +1829,889 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
         else
         {
             throw ApiException(500
-                , U("error calling searchIndexWithTemplate: unsupported response type"));
+                , U("error calling searchIndexWithTemplatePOST: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchIndicesGET()
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/indices");
+    
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchIndicesGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchIndicesGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchIndicesGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchIndicesGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchIndicesGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchMappingsGET(utility::string_t type)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/mappings/{type}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchMappingsGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchMappingsGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchMappingsGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchMappingsGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchMappingsGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchMappingsWithTemplateGET(utility::string_t type, utility::string_t template)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/mappings/{type}/{template}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchMappingsWithTemplateGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchMappingsWithTemplateGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchMappingsWithTemplateGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchMappingsWithTemplateGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchMappingsWithTemplateGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchValidateGET(utility::string_t type)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/validate/{type}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchValidateGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchValidateGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchValidateGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchValidateGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchValidateGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchValidatePOST(utility::string_t type, std::shared_ptr<Object> query)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/validate/{type}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchValidatePOST does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(query);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(query.get())
+        {
+            query->toMultipart(multipart, U("query"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchValidatePOST does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchValidatePOST: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchValidatePOST: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchValidatePOST: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchValidateWithTemplateGET(utility::string_t type, utility::string_t template)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/validate/{type}/{template}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchValidateWithTemplateGET does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchValidateWithTemplateGET does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchValidateWithTemplateGET: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchValidateWithTemplateGET: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchValidateWithTemplateGET: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<Object>> SearchApi::searchValidateWithTemplatePOST(utility::string_t type, utility::string_t template, std::shared_ptr<Object> query)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/search/validate/{type}/{template}");
+    boost::replace_all(path, U("{") U("type") U("}"), ApiClient::parameterToString(type));
+boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToString(template));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("SearchApi->searchValidateWithTemplatePOST does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(query);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(query.get())
+        {
+            query->toMultipart(multipart, U("query"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("SearchApi->searchValidateWithTemplatePOST does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling searchValidateWithTemplatePOST: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling searchValidateWithTemplatePOST: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Object> result(nullptr);
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling searchValidateWithTemplatePOST: unsupported response type"));
         }
 
         return result;

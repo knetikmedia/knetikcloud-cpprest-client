@@ -23,7 +23,6 @@
 #include "ApiClient.h"
 
 #include "CommentResource.h"
-#include "Object.h"
 #include "PageResource«CommentResource».h"
 #include "Result.h"
 #include "StringWrapper.h"
@@ -73,14 +72,6 @@ public:
     /// </remarks>
     /// <param name="context">Get comments by context type</param>/// <param name="contextId">Get comments by context id</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«CommentResource»>> getComments(utility::string_t context, int32_t contextId, int32_t size, int32_t page);
-    /// <summary>
-    /// Search the comment index
-    /// </summary>
-    /// <remarks>
-    /// The body is an ElasticSearch query json. Please see their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html&#39;&gt;documentation&lt;/a&gt; for details on the format and search options
-    /// </remarks>
-    /// <param name="query">The search query (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
-    pplx::task<std::shared_ptr<PageResource«CommentResource»>> searchComments(std::shared_ptr<Object> query, int32_t size, int32_t page);
     /// <summary>
     /// Update a comment
     /// </summary>

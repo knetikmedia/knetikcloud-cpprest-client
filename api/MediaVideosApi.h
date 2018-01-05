@@ -29,10 +29,12 @@
 #include "IntWrapper.h"
 #include "PageResource«CommentResource».h"
 #include "PageResource«DispositionResource».h"
+#include "PageResource«TemplateResource».h"
 #include "PageResource«VideoRelationshipResource».h"
 #include "PageResource«VideoResource».h"
 #include "Result.h"
 #include "StringWrapper.h"
+#include "TemplateResource.h"
 #include "VideoRelationshipResource.h"
 #include "VideoResource.h"
 #include <cpprest/details/basic_types.h>
@@ -106,6 +108,14 @@ public:
     /// <param name="videoId">The video id</param>/// <param name="dispositionResource">The disposition object (optional)</param>
     pplx::task<std::shared_ptr<DispositionResource>> createVideoDisposition(int32_t videoId, std::shared_ptr<DispositionResource> dispositionResource);
     /// <summary>
+    /// Create a video template
+    /// </summary>
+    /// <remarks>
+    /// Video Templates define a type of video and the properties they have
+    /// </remarks>
+    /// <param name="videoTemplateResource">The video template resource object (optional)</param>
+    pplx::task<std::shared_ptr<TemplateResource>> createVideoTemplate(std::shared_ptr<TemplateResource> videoTemplateResource);
+    /// <summary>
     /// Deletes a video from the system if no resources are attached to it
     /// </summary>
     /// <remarks>
@@ -146,6 +156,14 @@ public:
     /// <param name="videoId">The video id</param>/// <param name="id">The relationship id</param>
     pplx::task<void> deleteVideoRelationship(int64_t videoId, int64_t id);
     /// <summary>
+    /// Delete a video template
+    /// </summary>
+    /// <remarks>
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// </remarks>
+    /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
+    pplx::task<void> deleteVideoTemplate(utility::string_t id, utility::string_t cascade);
+    /// <summary>
     /// Get user videos
     /// </summary>
     /// <remarks>
@@ -185,6 +203,22 @@ public:
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«VideoRelationshipResource»>> getVideoRelationships(int64_t videoId, int32_t size, int32_t page);
+    /// <summary>
+    /// Get a single video template
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="id">The id of the template</param>
+    pplx::task<std::shared_ptr<TemplateResource>> getVideoTemplate(utility::string_t id);
+    /// <summary>
+    /// List and search video templates
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
+    pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getVideoTemplates(int32_t size, int32_t page, utility::string_t order);
     /// <summary>
     /// Search videos using the documented filters
     /// </summary>
@@ -233,6 +267,14 @@ public:
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="relationshipId">The relationship id</param>/// <param name="details">The video relationship details (optional)</param>
     pplx::task<void> updateVideoRelationship(int64_t videoId, int64_t relationshipId, std::shared_ptr<StringWrapper> details);
+    /// <summary>
+    /// Update a video template
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="id">The id of the template</param>/// <param name="videoTemplateResource">The video template resource object (optional)</param>
+    pplx::task<std::shared_ptr<TemplateResource>> updateVideoTemplate(utility::string_t id, std::shared_ptr<TemplateResource> videoTemplateResource);
     /// <summary>
     /// Increment a video&#39;s view count
     /// </summary>

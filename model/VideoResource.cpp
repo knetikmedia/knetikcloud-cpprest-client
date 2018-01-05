@@ -23,6 +23,7 @@ VideoResource::VideoResource()
 {
     m_Active = false;
     m_ActiveIsSet = false;
+    m_Additional_propertiesIsSet = false;
     m_AuthorIsSet = false;
     m_Authored = 0L;
     m_AuthoredIsSet = false;
@@ -56,6 +57,8 @@ VideoResource::VideoResource()
     m_Size = 0L;
     m_SizeIsSet = false;
     m_TagsIsSet = false;
+    m_Template = U("");
+    m_TemplateIsSet = false;
     m_Thumbnail = U("");
     m_ThumbnailIsSet = false;
     m_Updated_date = 0L;
@@ -82,6 +85,20 @@ web::json::value VideoResource::toJson() const
     if(m_ActiveIsSet)
     {
         val[U("active")] = ModelBase::toJson(m_Active);
+    }
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Additional_properties )
+        {
+            web::json::value tmp = web::json::value::object();
+            tmp[U("key")] = ModelBase::toJson(item.first);
+            tmp[U("value")] = ModelBase::toJson(item.second);
+            jsonArray.push_back(tmp);
+        }
+        if(jsonArray.size() > 0)
+        {
+            val[U("additional_properties")] = web::json::value::array(jsonArray);
+        }
     }
     if(m_AuthorIsSet)
     {
@@ -174,6 +191,10 @@ web::json::value VideoResource::toJson() const
             val[U("tags")] = web::json::value::array(jsonArray);
         }
     }
+    if(m_TemplateIsSet)
+    {
+        val[U("template")] = ModelBase::toJson(m_Template);
+    }
     if(m_ThumbnailIsSet)
     {
         val[U("thumbnail")] = ModelBase::toJson(m_Thumbnail);
@@ -200,6 +221,31 @@ void VideoResource::fromJson(web::json::value& val)
     if(val.has_field(U("active")))
     {
         setActive(ModelBase::boolFromJson(val[U("active")]));
+    }
+    {
+        m_Additional_properties.clear();
+        std::vector<web::json::value> jsonArray;
+        if(val.has_field(U("additional_properties")))
+        {
+        for( auto& item : val[U("additional_properties")].as_array() )
+        {  
+            utility::string_t key;
+            if(item.has_field(U("key")))
+            {
+                key = ModelBase::stringFromJson(item[U("key")]);
+            }
+            if(item.is_null())
+            {
+                m_Additional_properties.insert(std::pair<utility::string_t,std::shared_ptr<Property>>( key, std::shared_ptr<Property>(nullptr) ));
+            }
+            else
+            {
+                std::shared_ptr<Property> newItem(new Property());
+                newItem->fromJson(item[U("value")]);
+                m_Additional_properties.insert(std::pair<utility::string_t,std::shared_ptr<Property>>( key, newItem ));
+            }
+        }
+        }
     }
     if(val.has_field(U("author")))
     {
@@ -317,6 +363,10 @@ void VideoResource::fromJson(web::json::value& val)
         }
         }
     }
+    if(val.has_field(U("template")))
+    {
+        setTemplate(ModelBase::stringFromJson(val[U("template")]));
+    }
     if(val.has_field(U("thumbnail")))
     {
         setThumbnail(ModelBase::stringFromJson(val[U("thumbnail")]));
@@ -352,6 +402,21 @@ void VideoResource::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     if(m_ActiveIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("active"), m_Active));
+    }
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Additional_properties )
+        {
+            web::json::value tmp = web::json::value::object();
+            tmp[U("key")] = ModelBase::toJson(item.first);
+            tmp[U("value")] = ModelBase::toJson(item.second);
+            jsonArray.push_back(tmp);
+        }
+        
+        if(jsonArray.size() > 0)
+        {
+            multipart->add(ModelBase::toHttpContent(namePrefix + U("additional_properties"), web::json::value::array(jsonArray), U("application/json")));
+        }
     }
     if(m_AuthorIsSet)
     {
@@ -456,6 +521,11 @@ void VideoResource::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
             multipart->add(ModelBase::toHttpContent(namePrefix + U("tags"), web::json::value::array(jsonArray), U("application/json")));
         }
     }
+    if(m_TemplateIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("template"), m_Template));
+        
+    }
     if(m_ThumbnailIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("thumbnail"), m_Thumbnail));
@@ -491,6 +561,32 @@ void VideoResource::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
     if(multipart->hasContent(U("active")))
     {
         setActive(ModelBase::boolFromHttpContent(multipart->getContent(U("active"))));
+    }
+    {
+        m_Additional_properties.clear();
+        if(multipart->hasContent(U("additional_properties")))
+        {
+
+        web::json::value jsonArray = web::json::value::parse(ModelBase::stringFromHttpContent(multipart->getContent(U("additional_properties"))));
+        for( auto& item : jsonArray.as_array() )
+        {
+            utility::string_t key;
+            if(item.has_field(U("key")))
+            {
+                key = ModelBase::stringFromJson(item[U("key")]);
+            }
+            if(item.is_null())
+            {
+                m_Additional_properties.insert(std::pair<utility::string_t,std::shared_ptr<Property>>( key, std::shared_ptr<Property>(nullptr) ));
+            }
+            else
+            {
+                std::shared_ptr<Property> newItem(new Property());
+                newItem->fromJson(item[U("value")]);
+                m_Additional_properties.insert(std::pair<utility::string_t,std::shared_ptr<Property>>( key, newItem ));
+            }
+        }
+        }
     }
     if(multipart->hasContent(U("author")))
     {
@@ -611,6 +707,10 @@ void VideoResource::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         }
         }
     }
+    if(multipart->hasContent(U("template")))
+    {
+        setTemplate(ModelBase::stringFromHttpContent(multipart->getContent(U("template"))));
+    }
     if(multipart->hasContent(U("thumbnail")))
     {
         setThumbnail(ModelBase::stringFromHttpContent(multipart->getContent(U("thumbnail"))));
@@ -654,6 +754,26 @@ bool VideoResource::activeIsSet() const
 void VideoResource::unsetActive()
 {
     m_ActiveIsSet = false;
+}
+
+std::map<utility::string_t, std::shared_ptr<Property>>& VideoResource::getAdditionalProperties()
+{
+    return m_Additional_properties;
+}
+
+void VideoResource::setAdditionalProperties(std::map<utility::string_t, std::shared_ptr<Property>> value)
+{
+    m_Additional_properties = value;
+    m_Additional_propertiesIsSet = true;
+}
+bool VideoResource::additionalPropertiesIsSet() const
+{
+    return m_Additional_propertiesIsSet;
+}
+
+void VideoResource::unsetAdditional_properties()
+{
+    m_Additional_propertiesIsSet = false;
 }
 
 std::shared_ptr<SimpleReferenceResource«long»> VideoResource::getAuthor() const
@@ -1053,6 +1173,27 @@ bool VideoResource::tagsIsSet() const
 void VideoResource::unsetTags()
 {
     m_TagsIsSet = false;
+}
+
+utility::string_t VideoResource::getTemplate() const
+{
+    return m_Template;
+}
+
+
+void VideoResource::setTemplate(utility::string_t value)
+{
+    m_Template = value;
+    m_TemplateIsSet = true;
+}
+bool VideoResource::templateIsSet() const
+{
+    return m_TemplateIsSet;
+}
+
+void VideoResource::unsetTemplate()
+{
+    m_TemplateIsSet = false;
 }
 
 utility::string_t VideoResource::getThumbnail() const

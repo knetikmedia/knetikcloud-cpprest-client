@@ -26,7 +26,9 @@
 #include "SimpleReferenceResource«long».h"
 #include <cpprest/details/basic_types.h>
 #include "SimpleUserResource.h"
+#include <map>
 #include <vector>
+#include "Property.h"
 #include "SimpleReferenceResource«string».h"
 #include "ContributionResource.h"
 
@@ -66,6 +68,13 @@ public:
     bool activeIsSet() const;
     void unsetActive();
     void setActive(bool value);
+    /// <summary>
+    /// A map of additional properties, keyed on the property name.  Must match the names and types defined in the template for this item type
+    /// </summary>
+    std::map<utility::string_t, std::shared_ptr<Property>>& getAdditionalProperties();
+    bool additionalPropertiesIsSet() const;
+    void unsetAdditional_properties();
+    void setAdditionalProperties(std::map<utility::string_t, std::shared_ptr<Property>> value);
     /// <summary>
     /// The original artist of the media
     /// </summary>
@@ -209,6 +218,13 @@ public:
     void unsetTags();
     void setTags(std::vector<utility::string_t> value);
     /// <summary>
+    /// A video template this video is validated against (private). May be null and no validation of additional_properties will be done
+    /// </summary>
+    utility::string_t getTemplate() const;
+    bool templateIsSet() const;
+    void unsetTemplate();
+    void setTemplate(utility::string_t value);
+    /// <summary>
     /// The country of a thumbnail version. Typically a url
     /// </summary>
     utility::string_t getThumbnail() const;
@@ -245,6 +261,8 @@ public:
 protected:
     bool m_Active;
     bool m_ActiveIsSet;
+    std::map<utility::string_t, std::shared_ptr<Property>> m_Additional_properties;
+    bool m_Additional_propertiesIsSet;
     std::shared_ptr<SimpleReferenceResource«long»> m_Author;
     bool m_AuthorIsSet;
     int64_t m_Authored;
@@ -283,6 +301,8 @@ protected:
     bool m_SizeIsSet;
     std::vector<utility::string_t> m_Tags;
     bool m_TagsIsSet;
+    utility::string_t m_Template;
+    bool m_TemplateIsSet;
     utility::string_t m_Thumbnail;
     bool m_ThumbnailIsSet;
     int64_t m_Updated_date;
