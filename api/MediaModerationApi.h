@@ -45,7 +45,7 @@ public:
     /// Add a flag
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="flagResource">The flag resource object (optional)</param>
     pplx::task<std::shared_ptr<FlagResource>> addFlag(std::shared_ptr<FlagResource> flagResource);
@@ -53,7 +53,7 @@ public:
     /// Delete a flag
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; MODERATION_ADMIN or owner
     /// </remarks>
     /// <param name="contextName">The name of the context (optional)</param>/// <param name="contextId">The id of the context (optional)</param>/// <param name="userId">The id of the user (optional)</param>
     pplx::task<void> deleteFlag(utility::string_t contextName, utility::string_t contextId, int32_t userId);
@@ -61,7 +61,7 @@ public:
     /// Returns a page of flags
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; MODERATION_ADMIN or owner
     /// </remarks>
     /// <param name="filterContext">Filter by flag context (optional)</param>/// <param name="filterContextId">Filter by flag context ID (optional)</param>/// <param name="filterUserId">Filter by user ID (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«FlagResource»>> getFlags(utility::string_t filterContext, utility::string_t filterContextId, int32_t filterUserId, int32_t size, int32_t page);
@@ -69,7 +69,7 @@ public:
     /// Get a flag report
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; MODERATION_ADMIN
     /// </remarks>
     /// <param name="id">The flag report id</param>
     pplx::task<std::shared_ptr<FlagReportResource>> getModerationReport(int64_t id);
@@ -77,7 +77,7 @@ public:
     /// Returns a page of flag reports
     /// </summary>
     /// <remarks>
-    /// Context can be either a free-form string or a pre-defined context name
+    /// Context can be either a free-form string or a pre-defined context name. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; MODERATION_ADMIN
     /// </remarks>
     /// <param name="excludeResolved">Ignore resolved context (optional, default to true)</param>/// <param name="filterContext">Filter by moderation context (optional)</param>/// <param name="filterContextId">Filter by moderation context ID (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«FlagReportResource»>> getModerationReports(bool excludeResolved, utility::string_t filterContext, utility::string_t filterContextId, int32_t size, int32_t page);
@@ -85,7 +85,7 @@ public:
     /// Update a flag report
     /// </summary>
     /// <remarks>
-    /// Lets you set the resolution of a report. Resolution types is {banned,ignore} in case of &#39;banned&#39; you will need to pass the reason.
+    /// Lets you set the resolution of a report. Resolution types is {banned,ignore} in case of &#39;banned&#39; you will need to pass the reason. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; MODERATION_ADMIN
     /// </remarks>
     /// <param name="id">The flag report id</param>/// <param name="flagReportResource">The new flag report (optional)</param>
     pplx::task<void> updateModerationReport(int64_t id, std::shared_ptr<FlagReportResource> flagReportResource);

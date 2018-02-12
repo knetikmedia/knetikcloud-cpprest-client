@@ -346,7 +346,6 @@ pplx::task<void> TaxesApi::deleteCountryTax(utility::string_t countryCodeIso3)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -451,7 +450,6 @@ boost::replace_all(path, U("{") U("state_code") U("}"), ApiClient::parameterToSt
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -555,7 +553,6 @@ pplx::task<std::shared_ptr<CountryTaxResource>> TaxesApi::getCountryTax(utility:
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -676,7 +673,6 @@ pplx::task<std::shared_ptr<PageResource«CountryTaxResource»>> TaxesApi::getCou
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -811,7 +807,6 @@ boost::replace_all(path, U("{") U("state_code") U("}"), ApiClient::parameterToSt
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -932,7 +927,6 @@ pplx::task<std::shared_ptr<PageResource«StateTaxResource»>> TaxesApi::getState
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1066,7 +1060,6 @@ pplx::task<std::shared_ptr<PageResource«StateTaxResource»>> TaxesApi::getState
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

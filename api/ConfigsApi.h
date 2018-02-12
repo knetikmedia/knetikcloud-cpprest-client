@@ -43,7 +43,7 @@ public:
     /// Create a new config
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TOPICS_ADMIN
     /// </remarks>
     /// <param name="config">The config object (optional)</param>
     pplx::task<std::shared_ptr<Config>> createConfig(std::shared_ptr<Config> config);
@@ -51,7 +51,7 @@ public:
     /// Delete an existing config
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CONFIGS_ADMIN
     /// </remarks>
     /// <param name="name">The config name</param>
     pplx::task<void> deleteConfig(utility::string_t name);
@@ -59,7 +59,7 @@ public:
     /// Get a single config
     /// </summary>
     /// <remarks>
-    /// Only configs that are public readable will be shown without admin access
+    /// Only configs that are public readable will be shown without admin access. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="name">The config name</param>
     pplx::task<std::shared_ptr<Config>> getConfig(utility::string_t name);
@@ -67,15 +67,15 @@ public:
     /// List and search configs
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
-    /// <param name="filterSearch">Filter for configs whose name contains the given string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to 1)</param>
+    /// <param name="filterSearch">Filter for configs whose name contains the given string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«Config»>> getConfigs(utility::string_t filterSearch, int32_t size, int32_t page, utility::string_t order);
     /// <summary>
     /// Update an existing config
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CONFIGS_ADMIN
     /// </remarks>
     /// <param name="name">The config name</param>/// <param name="config">The config object (optional)</param>
     pplx::task<void> updateConfig(utility::string_t name, std::shared_ptr<Config> config);

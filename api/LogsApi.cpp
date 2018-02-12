@@ -193,7 +193,6 @@ pplx::task<std::shared_ptr<BreEventLog>> LogsApi::getBREEventLog(utility::string
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -274,7 +273,7 @@ pplx::task<std::shared_ptr<BreEventLog>> LogsApi::getBREEventLog(utility::string
         return result;
     });
 }
-pplx::task<std::shared_ptr<PageResource«BreEventLog»>> LogsApi::getBREEventLogs(utility::string_t filterStartDate, utility::string_t filterEventName, utility::string_t filterEventId, int32_t size, int32_t page, utility::string_t order)
+pplx::task<std::shared_ptr<PageResource«BreEventLog»>> LogsApi::getBREEventLogs(utility::string_t filterStartDate, utility::string_t filterEventName, utility::string_t filterEventId, int32_t size, int32_t page, utility::string_t order, utility::string_t filterRuleId)
 {
 
 
@@ -314,7 +313,6 @@ pplx::task<std::shared_ptr<PageResource«BreEventLog»>> LogsApi::getBREEventLog
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -339,6 +337,10 @@ pplx::task<std::shared_ptr<PageResource«BreEventLog»>> LogsApi::getBREEventLog
     
     {
         queryParams[U("order")] = ApiClient::parameterToString(order);
+    }
+    
+    {
+        queryParams[U("filter_rule_id")] = ApiClient::parameterToString(filterRuleId);
     }
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -460,7 +462,6 @@ pplx::task<std::shared_ptr<ForwardLog>> LogsApi::getBREForwardLog(utility::strin
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -541,7 +542,7 @@ pplx::task<std::shared_ptr<ForwardLog>> LogsApi::getBREForwardLog(utility::strin
         return result;
     });
 }
-pplx::task<std::shared_ptr<PageResource«ForwardLog»>> LogsApi::getBREForwardLogs(utility::string_t filterStartDate, utility::string_t filterEndDate, int32_t filterStatusCode, int32_t size, int32_t page, utility::string_t order)
+pplx::task<std::shared_ptr<PageResource«ForwardLog»>> LogsApi::getBREForwardLogs(utility::string_t filterStartDate, utility::string_t filterEndDate, int32_t filterStatusCode, int32_t filterUrl, int32_t size, int32_t page, utility::string_t order)
 {
 
 
@@ -581,7 +582,6 @@ pplx::task<std::shared_ptr<PageResource«ForwardLog»>> LogsApi::getBREForwardLo
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -594,6 +594,10 @@ pplx::task<std::shared_ptr<PageResource«ForwardLog»>> LogsApi::getBREForwardLo
     
     {
         queryParams[U("filter_status_code")] = ApiClient::parameterToString(filterStatusCode);
+    }
+    
+    {
+        queryParams[U("filter_url")] = ApiClient::parameterToString(filterUrl);
     }
     
     {
@@ -727,7 +731,6 @@ pplx::task<std::shared_ptr<UserActionLog>> LogsApi::getUserLog(utility::string_t
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -848,7 +851,6 @@ pplx::task<std::shared_ptr<PageResource«UserActionLog»>> LogsApi::getUserLogs(
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

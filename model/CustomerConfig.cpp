@@ -24,7 +24,6 @@ CustomerConfig::CustomerConfig()
     m_Aliases = U("");
     m_AliasesIsSet = false;
     m_DatabaseIsSet = false;
-    m_IoIsSet = false;
     m_Name = U("");
     m_NameIsSet = false;
     m_S3_configIsSet = false;
@@ -51,10 +50,6 @@ web::json::value CustomerConfig::toJson() const
     {
         val[U("database")] = ModelBase::toJson(m_Database);
     }
-    if(m_IoIsSet)
-    {
-        val[U("io")] = ModelBase::toJson(m_Io);
-    }
     if(m_NameIsSet)
     {
         val[U("name")] = ModelBase::toJson(m_Name);
@@ -80,15 +75,6 @@ void CustomerConfig::fromJson(web::json::value& val)
             std::shared_ptr<DatabaseConfig> newItem(new DatabaseConfig());
             newItem->fromJson(val[U("database")]);
             setDatabase( newItem );
-        }
-    }
-    if(val.has_field(U("io")))
-    {
-        if(!val[U("io")].is_null())
-        {
-            std::shared_ptr<IOConfig> newItem(new IOConfig());
-            newItem->fromJson(val[U("io")]);
-            setIo( newItem );
         }
     }
     if(val.has_field(U("name")))
@@ -127,14 +113,6 @@ void CustomerConfig::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
         }
         
     }
-    if(m_IoIsSet)
-    {
-        if (m_Io.get())
-        {
-            m_Io->toMultipart(multipart, U("io."));
-        }
-        
-    }
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("name"), m_Name));
@@ -169,15 +147,6 @@ void CustomerConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
             std::shared_ptr<DatabaseConfig> newItem(new DatabaseConfig());
             newItem->fromMultiPart(multipart, U("database."));
             setDatabase( newItem );
-        }
-    }
-    if(multipart->hasContent(U("io")))
-    {
-        if(multipart->hasContent(U("io")))
-        {
-            std::shared_ptr<IOConfig> newItem(new IOConfig());
-            newItem->fromMultiPart(multipart, U("io."));
-            setIo( newItem );
         }
     }
     if(multipart->hasContent(U("name")))
@@ -235,27 +204,6 @@ bool CustomerConfig::databaseIsSet() const
 void CustomerConfig::unsetDatabase()
 {
     m_DatabaseIsSet = false;
-}
-
-std::shared_ptr<IOConfig> CustomerConfig::getIo() const
-{
-    return m_Io;
-}
-
-
-void CustomerConfig::setIo(std::shared_ptr<IOConfig> value)
-{
-    m_Io = value;
-    m_IoIsSet = true;
-}
-bool CustomerConfig::ioIsSet() const
-{
-    return m_IoIsSet;
-}
-
-void CustomerConfig::unsetIo()
-{
-    m_IoIsSet = false;
 }
 
 utility::string_t CustomerConfig::getName() const

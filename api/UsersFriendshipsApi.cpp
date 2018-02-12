@@ -182,7 +182,6 @@ pplx::task<std::shared_ptr<PageResource«SimpleUserResource»>> UsersFriendships
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -325,7 +324,6 @@ pplx::task<utility::string_t> UsersFriendshipsApi::getInviteToken(utility::strin
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -452,7 +450,6 @@ pplx::task<std::shared_ptr<PageResource«SimpleUserResource»>> UsersFriendships
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -700,7 +697,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

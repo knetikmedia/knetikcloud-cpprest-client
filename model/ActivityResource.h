@@ -29,6 +29,7 @@
 #include "Property.h"
 #include "RewardSetResource.h"
 #include "AvailableSettingResource.h"
+#include "CoreActivitySettings.h"
 
 namespace com {
 namespace knetikcloud {
@@ -66,6 +67,13 @@ public:
     bool additionalPropertiesIsSet() const;
     void unsetAdditional_properties();
     void setAdditionalProperties(std::map<utility::string_t, std::shared_ptr<Property>> value);
+    /// <summary>
+    /// Defines core settings about the activity that affect how it can be created/played by users.
+    /// </summary>
+    std::shared_ptr<CoreActivitySettings> getCoreSettings() const;
+    bool coreSettingsIsSet() const;
+    void unsetCore_settings();
+    void setCoreSettings(std::shared_ptr<CoreActivitySettings> value);
     /// <summary>
     /// The date/time this resource was created in seconds since unix epoch
     /// </summary>
@@ -152,7 +160,9 @@ public:
     /// The type of the activity
     /// </summary>
     utility::string_t getType() const;
-        void setType(utility::string_t value);
+    bool typeIsSet() const;
+    void unsetType();
+    void setType(utility::string_t value);
     /// <summary>
     /// The unique key (for static reference in code) of the activity
     /// </summary>
@@ -171,6 +181,8 @@ public:
 protected:
     std::map<utility::string_t, std::shared_ptr<Property>> m_Additional_properties;
     bool m_Additional_propertiesIsSet;
+    std::shared_ptr<CoreActivitySettings> m_Core_settings;
+    bool m_Core_settingsIsSet;
     int64_t m_Created_date;
     bool m_Created_dateIsSet;
     std::vector<std::shared_ptr<ActivityEntitlementResource>> m_Entitlements;
@@ -195,7 +207,8 @@ protected:
     utility::string_t m_Template_id;
     bool m_Template_idIsSet;
     utility::string_t m_Type;
-        utility::string_t m_Unique_key;
+    bool m_TypeIsSet;
+    utility::string_t m_Unique_key;
     bool m_Unique_keyIsSet;
     int64_t m_Updated_date;
     bool m_Updated_dateIsSet;

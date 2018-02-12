@@ -43,7 +43,7 @@ public:
     /// Create a global definition
     /// </summary>
     /// <remarks>
-    /// Once created you can then use in a custom rule. Note that global definitions cannot be modified or deleted if in use.
+    /// Once created you can then use in a custom rule. Note that global definitions cannot be modified or deleted if in use. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_GLOBALS_ADMIN
     /// </remarks>
     /// <param name="breGlobalResource">The BRE global resource object (optional)</param>
     pplx::task<std::shared_ptr<BreGlobalResource>> createBREGlobal(std::shared_ptr<BreGlobalResource> breGlobalResource);
@@ -51,7 +51,7 @@ public:
     /// Delete a global
     /// </summary>
     /// <remarks>
-    /// May fail if there are existing rules against it. Cannot delete core globals
+    /// May fail if there are existing rules against it. Cannot delete core globals. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_GLOBALS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the global definition</param>
     pplx::task<void> deleteBREGlobal(utility::string_t id);
@@ -59,7 +59,7 @@ public:
     /// Get a single global definition
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_GLOBALS_USER
     /// </remarks>
     /// <param name="id">The id of the global definition</param>
     pplx::task<std::shared_ptr<BreGlobalResource>> getBREGlobal(utility::string_t id);
@@ -67,7 +67,7 @@ public:
     /// List global definitions
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_GLOBALS_USER
     /// </remarks>
     /// <param name="filterSystem">Filter for globals that are system globals when true, or not when false. Leave off for both mixed (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«BreGlobalResource»>> getBREGlobals(bool filterSystem, int32_t size, int32_t page);
@@ -75,7 +75,7 @@ public:
     /// Update a global definition
     /// </summary>
     /// <remarks>
-    /// May fail if new parameters mismatch requirements of existing rules. Cannot update core globals
+    /// May fail if new parameters mismatch requirements of existing rules. Cannot update core globals. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_GLOBALS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the global definition</param>/// <param name="breGlobalResource">The BRE global resource object (optional)</param>
     pplx::task<std::shared_ptr<BreGlobalResource>> updateBREGlobal(utility::string_t id, std::shared_ptr<BreGlobalResource> breGlobalResource);

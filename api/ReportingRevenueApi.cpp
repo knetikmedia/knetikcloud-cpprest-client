@@ -77,7 +77,6 @@ pplx::task<std::shared_ptr<RevenueReportResource>> ReportingRevenueApi::getItemR
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -207,7 +206,6 @@ pplx::task<std::shared_ptr<RevenueReportResource>> ReportingRevenueApi::getRefun
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -337,7 +335,6 @@ pplx::task<std::shared_ptr<PageResource«RevenueCountryReportResource»>> Report
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -475,7 +472,6 @@ pplx::task<std::shared_ptr<PageResource«RevenueProductReportResource»>> Report
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -613,7 +609,6 @@ pplx::task<std::shared_ptr<RevenueReportResource>> ReportingRevenueApi::getSubsc
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

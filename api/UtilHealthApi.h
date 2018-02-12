@@ -41,7 +41,7 @@ public:
     /// Get health info
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     
     pplx::task<std::shared_ptr<Object>> getHealth();

@@ -211,7 +211,6 @@ pplx::task<void> UsersRelationshipsApi::deleteUserRelationship(int64_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -315,7 +314,6 @@ pplx::task<std::shared_ptr<UserRelationshipResource>> UsersRelationshipsApi::get
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -436,7 +434,6 @@ pplx::task<std::shared_ptr<PageResource«UserRelationshipResource»>> UsersRelat
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

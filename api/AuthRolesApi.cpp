@@ -211,7 +211,6 @@ pplx::task<void> AuthRolesApi::deleteRole(utility::string_t role, bool force)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -319,7 +318,6 @@ pplx::task<std::vector<std::shared_ptr<RoleResource>>> AuthRolesApi::getClientRo
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -448,7 +446,6 @@ pplx::task<std::shared_ptr<RoleResource>> AuthRolesApi::getRole(utility::string_
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -569,7 +566,6 @@ pplx::task<std::shared_ptr<PageResource«RoleResource»>> AuthRolesApi::getRoles
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -711,7 +707,6 @@ pplx::task<std::vector<std::shared_ptr<RoleResource>>> AuthRolesApi::getUserRole
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

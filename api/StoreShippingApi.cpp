@@ -349,7 +349,6 @@ pplx::task<void> StoreShippingApi::deleteShippingItem(int32_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -453,7 +452,6 @@ pplx::task<void> StoreShippingApi::deleteShippingTemplate(utility::string_t id, 
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -561,7 +559,6 @@ pplx::task<std::shared_ptr<ShippingItem>> StoreShippingApi::getShippingItem(int3
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -683,7 +680,6 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> StoreShippingApi::getShippingT
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -804,7 +800,6 @@ pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> StoreShippingA
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

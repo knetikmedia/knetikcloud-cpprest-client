@@ -45,7 +45,7 @@ public:
     /// Get the details for a single transaction
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TRANSACTIONS_ADMIN or owner
     /// </remarks>
     /// <param name="id">id</param>
     pplx::task<std::shared_ptr<TransactionResource>> getTransaction(int32_t id);
@@ -53,7 +53,7 @@ public:
     /// List and search transactions
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TRANSACTIONS_ADMIN or owner
     /// </remarks>
     /// <param name="filterInvoice">Filter for transactions from a specific invoice (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TransactionResource»>> getTransactions(int32_t filterInvoice, int32_t size, int32_t page, utility::string_t order);
@@ -61,7 +61,7 @@ public:
     /// Refund a payment transaction, in full or in part
     /// </summary>
     /// <remarks>
-    /// Will not allow for refunding more than the full amount even with multiple partial refunds. Money is refunded to the payment method used to make the original payment. Payment method must support refunds.
+    /// Will not allow for refunding more than the full amount even with multiple partial refunds. Money is refunded to the payment method used to make the original payment. Payment method must support refunds. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; PAYMENTS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the transaction to refund</param>/// <param name="request">Request containing refund details (optional)</param>
     pplx::task<std::shared_ptr<RefundResource>> refundTransaction(int32_t id, std::shared_ptr<RefundRequest> request);

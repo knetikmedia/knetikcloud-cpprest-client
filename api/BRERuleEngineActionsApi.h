@@ -42,7 +42,7 @@ public:
     /// Get a list of available actions
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_ACTIONS_USER
     /// </remarks>
     /// <param name="filterCategory">Filter for actions that are within a specific category (optional)</param>/// <param name="filterName">Filter for actions that have names containing the given string (optional)</param>/// <param name="filterTags">Filter for actions that have all of the given tags (comma separated list) (optional)</param>/// <param name="filterSearch">Filter for actions containing the given words somewhere within name, description and tags (optional)</param>
     pplx::task<std::vector<std::shared_ptr<ActionResource>>> getBREActions(utility::string_t filterCategory, utility::string_t filterName, utility::string_t filterTags, utility::string_t filterSearch);

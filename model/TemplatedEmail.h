@@ -11,18 +11,19 @@
  */
 
 /*
- * IOConfig.h
+ * TemplatedEmail.h
  *
  * 
  */
 
-#ifndef IOConfig_H_
-#define IOConfig_H_
+#ifndef TemplatedEmail_H_
+#define TemplatedEmail_H_
 
 
 #include "ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include "Object.h"
 
 namespace com {
 namespace knetikcloud {
@@ -32,12 +33,12 @@ namespace model {
 /// <summary>
 /// 
 /// </summary>
-class  IOConfig
+class  TemplatedEmail
     : public ModelBase
 {
 public:
-    IOConfig();
-    virtual ~IOConfig();
+    TemplatedEmail();
+    virtual ~TemplatedEmail();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,46 +52,28 @@ public:
     void fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// IOConfig members
+    /// TemplatedEmail members
 
     /// <summary>
-    /// 
+    /// The external template ID used by the email provider
     /// </summary>
-    utility::string_t getCustomer() const;
-    bool customerIsSet() const;
-    void unsetCustomer();
-    void setCustomer(utility::string_t value);
+    utility::string_t getExternalTemplateId() const;
+    bool externalTemplateIdIsSet() const;
+    void unsetExternal_template_id();
+    void setExternalTemplateId(utility::string_t value);
     /// <summary>
-    /// 
+    /// The map of data used by the template
     /// </summary>
-    bool getEnabled() const;
-    bool enabledIsSet() const;
-    void unsetEnabled();
-    void setEnabled(bool value);
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnvironment() const;
-    bool environmentIsSet() const;
-    void unsetEnvironment();
-    void setEnvironment(utility::string_t value);
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getProduct() const;
-    bool productIsSet() const;
-    void unsetProduct();
-    void setProduct(utility::string_t value);
+    std::shared_ptr<Object> getTemplateData() const;
+    bool templateDataIsSet() const;
+    void unsetTemplate_data();
+    void setTemplateData(std::shared_ptr<Object> value);
 
 protected:
-    utility::string_t m_Customer;
-    bool m_CustomerIsSet;
-    bool m_Enabled;
-    bool m_EnabledIsSet;
-    utility::string_t m_Environment;
-    bool m_EnvironmentIsSet;
-    utility::string_t m_Product;
-    bool m_ProductIsSet;
+    utility::string_t m_External_template_id;
+    bool m_External_template_idIsSet;
+    std::shared_ptr<Object> m_Template_data;
+    bool m_Template_dataIsSet;
 };
 
 }
@@ -98,4 +81,4 @@ protected:
 }
 }
 
-#endif /* IOConfig_H_ */
+#endif /* TemplatedEmail_H_ */

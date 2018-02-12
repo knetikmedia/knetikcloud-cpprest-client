@@ -77,7 +77,6 @@ pplx::task<std::shared_ptr<Object>> SearchApi::searchCountGET(utility::string_t 
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -335,7 +334,6 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -594,7 +592,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -718,7 +715,6 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -841,7 +837,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1101,7 +1096,6 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1495,7 +1489,6 @@ pplx::task<std::shared_ptr<Object>> SearchApi::searchIndexGET(utility::string_t 
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1618,7 +1611,6 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1875,7 +1867,6 @@ pplx::task<std::shared_ptr<Object>> SearchApi::searchIndicesGET()
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1997,7 +1988,6 @@ pplx::task<std::shared_ptr<Object>> SearchApi::searchMappingsGET(utility::string
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -2120,7 +2110,6 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -2242,7 +2231,6 @@ pplx::task<std::shared_ptr<Object>> SearchApi::searchValidateGET(utility::string
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -2500,7 +2488,6 @@ boost::replace_all(path, U("{") U("template") U("}"), ApiClient::parameterToStri
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

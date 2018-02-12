@@ -45,7 +45,7 @@ public:
     /// Create a vendor
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VENDORS_ADMIN
     /// </remarks>
     /// <param name="vendor">The vendor (optional)</param>
     pplx::task<std::shared_ptr<VendorResource>> createVendor(std::shared_ptr<VendorResource> vendor);
@@ -53,7 +53,7 @@ public:
     /// Create a vendor template
     /// </summary>
     /// <remarks>
-    /// Vendor Templates define a type of vendor and the properties they have.
+    /// Vendor Templates define a type of vendor and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="vendorTemplateResource">The new vendor template (optional)</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> createVendorTemplate(std::shared_ptr<ItemTemplateResource> vendorTemplateResource);
@@ -61,7 +61,7 @@ public:
     /// Delete a vendor
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VENDORS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the vendor</param>
     pplx::task<void> deleteVendor(int32_t id);
@@ -69,7 +69,7 @@ public:
     /// Delete a vendor template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">force deleting the template if it&#39;s attached to other objects, cascade &#x3D; detach (optional)</param>
     pplx::task<void> deleteVendorTemplate(utility::string_t id, utility::string_t cascade);
@@ -77,7 +77,7 @@ public:
     /// Get a single vendor
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id of the vendor</param>
     pplx::task<std::shared_ptr<VendorResource>> getVendor(int32_t id);
@@ -85,7 +85,7 @@ public:
     /// Get a single vendor template
     /// </summary>
     /// <remarks>
-    /// Vendor Templates define a type of vendor and the properties they have.
+    /// Vendor Templates define a type of vendor and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> getVendorTemplate(utility::string_t id);
@@ -93,15 +93,15 @@ public:
     /// List and search vendor templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
-    /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to 1)</param>
+    /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> getVendorTemplates(int32_t size, int32_t page, utility::string_t order);
     /// <summary>
     /// List and search vendors
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterName">Filters vendors by name starting with the text provided in the filter (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«VendorResource»>> getVendors(utility::string_t filterName, int32_t size, int32_t page, utility::string_t order);
@@ -109,7 +109,7 @@ public:
     /// Update a vendor
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VENDORS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the vendor</param>/// <param name="vendor">The vendor (optional)</param>
     pplx::task<std::shared_ptr<VendorResource>> updateVendor(int32_t id, std::shared_ptr<VendorResource> vendor);
@@ -117,7 +117,7 @@ public:
     /// Update a vendor template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="vendorTemplateResource">The vendor template resource object (optional)</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> updateVendorTemplate(utility::string_t id, std::shared_ptr<ItemTemplateResource> vendorTemplateResource);

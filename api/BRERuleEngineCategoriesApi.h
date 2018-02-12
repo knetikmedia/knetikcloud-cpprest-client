@@ -45,7 +45,7 @@ public:
     /// Create a BRE category template
     /// </summary>
     /// <remarks>
-    /// Templates define a type of BRE category and the properties they have
+    /// Templates define a type of BRE category and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="template">The category template to create (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createBRECategoryTemplate(std::shared_ptr<TemplateResource> template);
@@ -53,7 +53,7 @@ public:
     /// Delete a BRE category template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deleteBRECategoryTemplate(utility::string_t id, utility::string_t cascade);
@@ -61,7 +61,7 @@ public:
     /// List categories
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_CATEGORIES_USER
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«BreCategoryResource»>> getBRECategories(int32_t size, int32_t page);
@@ -69,7 +69,7 @@ public:
     /// Get a single category
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_CATEGORIES_USER
     /// </remarks>
     /// <param name="name">The category name</param>
     pplx::task<std::shared_ptr<BreCategoryResource>> getBRECategory(utility::string_t name);
@@ -77,7 +77,7 @@ public:
     /// Get a single BRE category template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or BRE_RULE_ENGINE_CATEGORIES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<TemplateResource>> getBRECategoryTemplate(utility::string_t id);
@@ -85,7 +85,7 @@ public:
     /// List and search BRE category templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or BRE_RULE_ENGINE_CATEGORIES_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getBRECategoryTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -93,7 +93,7 @@ public:
     /// Update a category
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_CATEGORIES_ADMIN
     /// </remarks>
     /// <param name="name">The category name</param>/// <param name="category">The updated BRE category information (optional)</param>
     pplx::task<std::shared_ptr<BreCategoryResource>> updateBRECategory(utility::string_t name, std::shared_ptr<BreCategoryResource> category);
@@ -101,7 +101,7 @@ public:
     /// Update a BRE category template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="template">The updated category template definition (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> updateBRECategoryTemplate(utility::string_t id, std::shared_ptr<TemplateResource> template);

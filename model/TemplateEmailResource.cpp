@@ -23,6 +23,8 @@ TemplateEmailResource::TemplateEmailResource()
 {
     m_From = U("");
     m_FromIsSet = false;
+    m_Subject = U("");
+    m_SubjectIsSet = false;
     m_Template_key = U("");
     m_Template_varsIsSet = false;
 }
@@ -51,6 +53,10 @@ web::json::value TemplateEmailResource::toJson() const
             jsonArray.push_back(ModelBase::toJson(item));
         }
         val[U("recipients")] = web::json::value::array(jsonArray);
+    }
+    if(m_SubjectIsSet)
+    {
+        val[U("subject")] = ModelBase::toJson(m_Subject);
     }
     val[U("template_key")] = ModelBase::toJson(m_Template_key);
     {
@@ -81,6 +87,10 @@ void TemplateEmailResource::fromJson(web::json::value& val)
         {
             m_Recipients.push_back(ModelBase::int32_tFromJson(item));
         }
+    }
+    if(val.has_field(U("subject")))
+    {
+        setSubject(ModelBase::stringFromJson(val[U("subject")]));
     }
     setTemplateKey(ModelBase::stringFromJson(val[U("template_key")]));
     {
@@ -126,6 +136,11 @@ void TemplateEmailResource::toMultipart(std::shared_ptr<MultipartFormData> multi
         }
         multipart->add(ModelBase::toHttpContent(namePrefix + U("recipients"), web::json::value::array(jsonArray), U("application/json")));
             }
+    if(m_SubjectIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("subject"), m_Subject));
+        
+    }
     multipart->add(ModelBase::toHttpContent(namePrefix + U("template_key"), m_Template_key));
     {
         std::vector<web::json::value> jsonArray;
@@ -161,6 +176,10 @@ void TemplateEmailResource::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         {
             m_Recipients.push_back(ModelBase::int32_tFromJson(item));
         }
+    }
+    if(multipart->hasContent(U("subject")))
+    {
+        setSubject(ModelBase::stringFromHttpContent(multipart->getContent(U("subject"))));
     }
     setTemplateKey(ModelBase::stringFromHttpContent(multipart->getContent(U("template_key"))));
     {
@@ -217,6 +236,27 @@ void TemplateEmailResource::setRecipients(std::vector<int32_t> value)
     m_Recipients = value;
     
 }
+utility::string_t TemplateEmailResource::getSubject() const
+{
+    return m_Subject;
+}
+
+
+void TemplateEmailResource::setSubject(utility::string_t value)
+{
+    m_Subject = value;
+    m_SubjectIsSet = true;
+}
+bool TemplateEmailResource::subjectIsSet() const
+{
+    return m_SubjectIsSet;
+}
+
+void TemplateEmailResource::unsetSubject()
+{
+    m_SubjectIsSet = false;
+}
+
 utility::string_t TemplateEmailResource::getTemplateKey() const
 {
     return m_Template_key;

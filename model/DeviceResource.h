@@ -79,14 +79,14 @@ public:
     void unsetDescription();
     void setDescription(utility::string_t value);
     /// <summary>
-    /// The type of device. Use mobile to specifically register mobile devices. This particular type will be used to send and receive notifications
+    /// The type of device. Use mobile_device to specifically register mobile devices. This particular type will be used to send and receive notifications
     /// </summary>
     utility::string_t getDeviceType() const;
     bool deviceTypeIsSet() const;
     void unsetDevice_type();
     void setDeviceType(utility::string_t value);
     /// <summary>
-    /// The unique ID for this device
+    /// The unique ID for this device. Cannot be changed after creation. Default: random
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;

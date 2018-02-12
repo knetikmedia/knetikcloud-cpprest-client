@@ -351,7 +351,6 @@ boost::replace_all(path, U("{") U("object_id") U("}"), ApiClient::parameterToStr
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -455,7 +454,6 @@ pplx::task<void> ObjectsApi::deleteObjectTemplate(utility::string_t id, utility:
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -564,7 +562,6 @@ boost::replace_all(path, U("{") U("object_id") U("}"), ApiClient::parameterToStr
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -686,7 +683,6 @@ pplx::task<std::shared_ptr<PageResource«ObjectResource»>> ObjectsApi::getObjec
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -820,7 +816,6 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> ObjectsApi::getObjectTemplate(
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -941,7 +936,6 @@ pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> ObjectsApi::ge
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

@@ -23,16 +23,21 @@
 #include "ApiClient.h"
 
 #include "ActivityOccurrenceCreationFailure.h"
+#include "ActivityOccurrenceJoinResult.h"
 #include "ActivityOccurrenceResource.h"
 #include "ActivityOccurrenceResults.h"
 #include "ActivityOccurrenceResultsResource.h"
+#include "ActivityOccurrenceSettingsResource.h"
 #include "ActivityResource.h"
+#include "ActivityUserResource.h"
 #include "CreateActivityOccurrenceRequest.h"
+#include "IntWrapper.h"
 #include "PageResource«ActivityOccurrenceResource».h"
 #include "PageResource«BareActivityResource».h"
 #include "PageResource«TemplateResource».h"
 #include "Result.h"
 #include "TemplateResource.h"
+#include "ValueWrapper«string».h"
 #include <cpprest/details/basic_types.h>
 
 namespace com {
@@ -48,10 +53,18 @@ public:
     ActivitiesApi( std::shared_ptr<ApiClient> apiClient );
     virtual ~ActivitiesApi();
     /// <summary>
+    /// Add a user to an occurrence
+    /// </summary>
+    /// <remarks>
+    /// If called with no body, defaults to the user making the call.
+    /// </remarks>
+    /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="test">if true, indicates that the user should NOT be added. This can be used to test for eligibility (optional, default to false)</param>/// <param name="bypassRestrictions">if true, indicates that restrictions such as max player count should be ignored. Can only be used with ACTIVITIES_ADMIN (optional, default to false)</param>/// <param name="userId">The id of the user, or null for &#39;caller&#39; (optional)</param>
+    pplx::task<std::shared_ptr<ActivityOccurrenceResource>> addUser(int64_t activityOccurrenceId, bool test, bool bypassRestrictions, std::shared_ptr<IntWrapper> userId);
+    /// <summary>
     /// Create an activity
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="activityResource">The activity resource object (optional)</param>
     pplx::task<std::shared_ptr<ActivityResource>> createActivity(std::shared_ptr<ActivityResource> activityResource);
@@ -59,7 +72,7 @@ public:
     /// Create a new activity occurrence. Ex: start a game
     /// </summary>
     /// <remarks>
-    /// Has to enforce extra rules if not used as an admin
+    /// Has to enforce extra rules if not used as an admin. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_USER or ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="test">if true, indicates that the occurrence should NOT be created. This can be used to test for eligibility and valid settings (optional, default to false)</param>/// <param name="activityOccurrenceResource">The activity occurrence object (optional)</param>
     pplx::task<std::shared_ptr<ActivityOccurrenceResource>> createActivityOccurrence(bool test, std::shared_ptr<CreateActivityOccurrenceRequest> activityOccurrenceResource);
@@ -67,7 +80,7 @@ public:
     /// Create a activity template
     /// </summary>
     /// <remarks>
-    /// Activity Templates define a type of activity and the properties they have
+    /// Activity Templates define a type of activity and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="activityTemplateResource">The activity template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createActivityTemplate(std::shared_ptr<TemplateResource> activityTemplateResource);
@@ -75,7 +88,7 @@ public:
     /// Delete an activity
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the activity</param>
     pplx::task<void> deleteActivity(int64_t id);
@@ -83,7 +96,7 @@ public:
     /// Delete a activity template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deleteActivityTemplate(utility::string_t id, utility::string_t cascade);
@@ -91,7 +104,7 @@ public:
     /// List activity definitions
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterTemplate">Filter for activities that are templates, or specifically not if false (optional)</param>/// <param name="filterName">Filter for activities that have a name starting with specified string (optional)</param>/// <param name="filterId">Filter for activities with an id in the given comma separated list of ids (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«BareActivityResource»>> getActivities(bool filterTemplate, utility::string_t filterName, utility::string_t filterId, int32_t size, int32_t page, utility::string_t order);
@@ -99,7 +112,7 @@ public:
     /// Get a single activity
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id of the activity</param>
     pplx::task<std::shared_ptr<ActivityResource>> getActivity(int64_t id);
@@ -107,7 +120,7 @@ public:
     /// Load a single activity occurrence details
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="activityOccurrenceId">The id of the activity occurrence</param>
     pplx::task<std::shared_ptr<ActivityOccurrenceResource>> getActivityOccurrenceDetails(int64_t activityOccurrenceId);
@@ -115,7 +128,7 @@ public:
     /// Get a single activity template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<TemplateResource>> getActivityTemplate(utility::string_t id);
@@ -123,7 +136,7 @@ public:
     /// List and search activity templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getActivityTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -131,39 +144,63 @@ public:
     /// List activity occurrences
     /// </summary>
     /// <remarks>
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_ADMIN
+    /// </remarks>
+    /// <param name="filterActivity">Filter for occurrences of the given activity ID (optional)</param>/// <param name="filterStatus">Filter for occurrences in the given status (optional)</param>/// <param name="filterEvent">Filter for occurrences played during the given event (optional)</param>/// <param name="filterChallenge">Filter for occurrences played within the given challenge (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
+    pplx::task<std::shared_ptr<PageResource«ActivityOccurrenceResource»>> listActivityOccurrences(utility::string_t filterActivity, utility::string_t filterStatus, int32_t filterEvent, int32_t filterChallenge, int32_t size, int32_t page, utility::string_t order);
+    /// <summary>
+    /// Remove a user from an occurrence
+    /// </summary>
+    /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="filterActivity">Filter for occurrences of the given activity ID (optional)</param>/// <param name="filterStatus">Filter for occurrences of the given activity ID (optional)</param>/// <param name="filterEvent">Filter for occurrences played during the given event (optional)</param>/// <param name="filterChallenge">Filter for occurrences played within the given challenge (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
-    pplx::task<std::shared_ptr<PageResource«ActivityOccurrenceResource»>> listActivityOccurrences(utility::string_t filterActivity, utility::string_t filterStatus, int32_t filterEvent, int32_t filterChallenge, int32_t size, int32_t page, utility::string_t order);
+    /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="userId">The id of the user, or &#39;me&#39;</param>/// <param name="ban">if true, indicates that the user should not be allowed to re-join. Can only be set by host or admin (optional, default to false)</param>/// <param name="bypassRestrictions">if true, indicates that restrictions such as current status should be ignored. Can only be used with ACTIVITIES_ADMIN (optional, default to false)</param>
+    pplx::task<void> removeUser(int64_t activityOccurrenceId, utility::string_t userId, bool ban, bool bypassRestrictions);
     /// <summary>
     /// Sets the status of an activity occurrence to FINISHED and logs metrics
     /// </summary>
     /// <remarks>
-    /// 
+    /// In addition to user permissions requirements there is security based on the core_settings.results_trust setting.
     /// </remarks>
     /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="activityOccurrenceResults">The activity occurrence object (optional)</param>
     pplx::task<std::shared_ptr<ActivityOccurrenceResults>> setActivityOccurrenceResults(int64_t activityOccurrenceId, std::shared_ptr<ActivityOccurrenceResultsResource> activityOccurrenceResults);
     /// <summary>
-    /// Update an activity
+    /// Sets the settings of an activity occurrence
     /// </summary>
     /// <remarks>
     /// 
+    /// </remarks>
+    /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="settings">The new settings (optional)</param>
+    pplx::task<std::shared_ptr<ActivityOccurrenceResource>> setActivityOccurrenceSettings(int64_t activityOccurrenceId, std::shared_ptr<ActivityOccurrenceSettingsResource> settings);
+    /// <summary>
+    /// Set a user&#39;s status within an occurrence
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="userId">The id of the user</param>/// <param name="status">The new status (optional)</param>
+    pplx::task<std::shared_ptr<ActivityUserResource>> setUserStatus(int64_t activityOccurrenceId, utility::string_t userId, utility::string_t status);
+    /// <summary>
+    /// Update an activity
+    /// </summary>
+    /// <remarks>
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the activity</param>/// <param name="activityResource">The activity resource object (optional)</param>
     pplx::task<std::shared_ptr<ActivityResource>> updateActivity(int64_t id, std::shared_ptr<ActivityResource> activityResource);
     /// <summary>
-    /// Updated the status of an activity occurrence
+    /// Update the status of an activity occurrence
     /// </summary>
     /// <remarks>
-    /// If setting to &#39;FINISHED&#39; reward will be run based on current metrics that have been recorded already. Aternatively, see results endpoint to finish and record all metrics at once.
+    /// If setting to &#39;FINISHED&#39; reward will be run based on current metrics that have been recorded already. Alternatively, see results endpoint to finish and record all metrics at once. Can be called by non-host participants if non_host_status_control is true
     /// </remarks>
     /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="activityOccurrenceStatus">The activity occurrence status object (optional)</param>
-    pplx::task<void> updateActivityOccurrence(int64_t activityOccurrenceId, utility::string_t activityOccurrenceStatus);
+    pplx::task<void> updateActivityOccurrenceStatus(int64_t activityOccurrenceId, std::shared_ptr<ValueWrapper«string»> activityOccurrenceStatus);
     /// <summary>
     /// Update an activity template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="activityTemplateResource">The activity template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> updateActivityTemplate(utility::string_t id, std::shared_ptr<TemplateResource> activityTemplateResource);

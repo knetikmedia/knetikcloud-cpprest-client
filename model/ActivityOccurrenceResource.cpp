@@ -22,13 +22,16 @@ namespace model {
 ActivityOccurrenceResource::ActivityOccurrenceResource()
 {
     m_Activity_id = 0L;
+    m_BansIsSet = false;
     m_Challenge_activity_id = 0L;
     m_Challenge_activity_idIsSet = false;
+    m_Core_settingsIsSet = false;
     m_Created_date = 0L;
     m_Created_dateIsSet = false;
     m_EntitlementIsSet = false;
     m_Event_id = 0L;
     m_Event_idIsSet = false;
+    m_HostIsSet = false;
     m_Id = 0L;
     m_IdIsSet = false;
     m_Reward_status = U("");
@@ -59,9 +62,24 @@ web::json::value ActivityOccurrenceResource::toJson() const
     web::json::value val = web::json::value::object();
 
     val[U("activity_id")] = ModelBase::toJson(m_Activity_id);
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Bans )
+        {
+            jsonArray.push_back(ModelBase::toJson(item));
+        }
+        if(jsonArray.size() > 0)
+        {
+            val[U("bans")] = web::json::value::array(jsonArray);
+        }
+    }
     if(m_Challenge_activity_idIsSet)
     {
         val[U("challenge_activity_id")] = ModelBase::toJson(m_Challenge_activity_id);
+    }
+    if(m_Core_settingsIsSet)
+    {
+        val[U("core_settings")] = ModelBase::toJson(m_Core_settings);
     }
     if(m_Created_dateIsSet)
     {
@@ -74,6 +92,10 @@ web::json::value ActivityOccurrenceResource::toJson() const
     if(m_Event_idIsSet)
     {
         val[U("event_id")] = ModelBase::toJson(m_Event_id);
+    }
+    if(m_HostIsSet)
+    {
+        val[U("host")] = ModelBase::toJson(m_Host);
     }
     if(m_IdIsSet)
     {
@@ -128,9 +150,29 @@ web::json::value ActivityOccurrenceResource::toJson() const
 void ActivityOccurrenceResource::fromJson(web::json::value& val)
 {
     setActivityId(ModelBase::int64_tFromJson(val[U("activity_id")]));
+    {
+        m_Bans.clear();
+        std::vector<web::json::value> jsonArray;
+        if(val.has_field(U("bans")))
+        {
+        for( auto& item : val[U("bans")].as_array() )
+        {
+            m_Bans.push_back(ModelBase::int32_tFromJson(item));
+        }
+        }
+    }
     if(val.has_field(U("challenge_activity_id")))
     {
         setChallengeActivityId(ModelBase::int64_tFromJson(val[U("challenge_activity_id")]));
+    }
+    if(val.has_field(U("core_settings")))
+    {
+        if(!val[U("core_settings")].is_null())
+        {
+            std::shared_ptr<CoreActivityOccurrenceSettings> newItem(new CoreActivityOccurrenceSettings());
+            newItem->fromJson(val[U("core_settings")]);
+            setCoreSettings( newItem );
+        }
     }
     if(val.has_field(U("created_date")))
     {
@@ -148,6 +190,15 @@ void ActivityOccurrenceResource::fromJson(web::json::value& val)
     if(val.has_field(U("event_id")))
     {
         setEventId(ModelBase::int64_tFromJson(val[U("event_id")]));
+    }
+    if(val.has_field(U("host")))
+    {
+        if(!val[U("host")].is_null())
+        {
+            std::shared_ptr<SimpleUserResource> newItem(new SimpleUserResource());
+            newItem->fromJson(val[U("host")]);
+            setHost( newItem );
+        }
     }
     if(val.has_field(U("id")))
     {
@@ -224,9 +275,29 @@ void ActivityOccurrenceResource::toMultipart(std::shared_ptr<MultipartFormData> 
     }
 
     multipart->add(ModelBase::toHttpContent(namePrefix + U("activity_id"), m_Activity_id));
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Bans )
+        {
+            jsonArray.push_back(ModelBase::toJson(item));
+        }
+        
+        if(jsonArray.size() > 0)
+        {
+            multipart->add(ModelBase::toHttpContent(namePrefix + U("bans"), web::json::value::array(jsonArray), U("application/json")));
+        }
+    }
     if(m_Challenge_activity_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("challenge_activity_id"), m_Challenge_activity_id));
+    }
+    if(m_Core_settingsIsSet)
+    {
+        if (m_Core_settings.get())
+        {
+            m_Core_settings->toMultipart(multipart, U("core_settings."));
+        }
+        
     }
     if(m_Created_dateIsSet)
     {
@@ -243,6 +314,14 @@ void ActivityOccurrenceResource::toMultipart(std::shared_ptr<MultipartFormData> 
     if(m_Event_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("event_id"), m_Event_id));
+    }
+    if(m_HostIsSet)
+    {
+        if (m_Host.get())
+        {
+            m_Host->toMultipart(multipart, U("host."));
+        }
+        
     }
     if(m_IdIsSet)
     {
@@ -305,9 +384,30 @@ void ActivityOccurrenceResource::fromMultiPart(std::shared_ptr<MultipartFormData
     }
 
     setActivityId(ModelBase::int64_tFromHttpContent(multipart->getContent(U("activity_id"))));
+    {
+        m_Bans.clear();
+        if(multipart->hasContent(U("bans")))
+        {
+
+        web::json::value jsonArray = web::json::value::parse(ModelBase::stringFromHttpContent(multipart->getContent(U("bans"))));
+        for( auto& item : jsonArray.as_array() )
+        {
+            m_Bans.push_back(ModelBase::int32_tFromJson(item));
+        }
+        }
+    }
     if(multipart->hasContent(U("challenge_activity_id")))
     {
         setChallengeActivityId(ModelBase::int64_tFromHttpContent(multipart->getContent(U("challenge_activity_id"))));
+    }
+    if(multipart->hasContent(U("core_settings")))
+    {
+        if(multipart->hasContent(U("core_settings")))
+        {
+            std::shared_ptr<CoreActivityOccurrenceSettings> newItem(new CoreActivityOccurrenceSettings());
+            newItem->fromMultiPart(multipart, U("core_settings."));
+            setCoreSettings( newItem );
+        }
     }
     if(multipart->hasContent(U("created_date")))
     {
@@ -325,6 +425,15 @@ void ActivityOccurrenceResource::fromMultiPart(std::shared_ptr<MultipartFormData
     if(multipart->hasContent(U("event_id")))
     {
         setEventId(ModelBase::int64_tFromHttpContent(multipart->getContent(U("event_id"))));
+    }
+    if(multipart->hasContent(U("host")))
+    {
+        if(multipart->hasContent(U("host")))
+        {
+            std::shared_ptr<SimpleUserResource> newItem(new SimpleUserResource());
+            newItem->fromMultiPart(multipart, U("host."));
+            setHost( newItem );
+        }
     }
     if(multipart->hasContent(U("id")))
     {
@@ -405,6 +514,26 @@ void ActivityOccurrenceResource::setActivityId(int64_t value)
     m_Activity_id = value;
     
 }
+std::vector<int32_t>& ActivityOccurrenceResource::getBans()
+{
+    return m_Bans;
+}
+
+void ActivityOccurrenceResource::setBans(std::vector<int32_t> value)
+{
+    m_Bans = value;
+    m_BansIsSet = true;
+}
+bool ActivityOccurrenceResource::bansIsSet() const
+{
+    return m_BansIsSet;
+}
+
+void ActivityOccurrenceResource::unsetBans()
+{
+    m_BansIsSet = false;
+}
+
 int64_t ActivityOccurrenceResource::getChallengeActivityId() const
 {
     return m_Challenge_activity_id;
@@ -424,6 +553,27 @@ bool ActivityOccurrenceResource::challengeActivityIdIsSet() const
 void ActivityOccurrenceResource::unsetChallenge_activity_id()
 {
     m_Challenge_activity_idIsSet = false;
+}
+
+std::shared_ptr<CoreActivityOccurrenceSettings> ActivityOccurrenceResource::getCoreSettings() const
+{
+    return m_Core_settings;
+}
+
+
+void ActivityOccurrenceResource::setCoreSettings(std::shared_ptr<CoreActivityOccurrenceSettings> value)
+{
+    m_Core_settings = value;
+    m_Core_settingsIsSet = true;
+}
+bool ActivityOccurrenceResource::coreSettingsIsSet() const
+{
+    return m_Core_settingsIsSet;
+}
+
+void ActivityOccurrenceResource::unsetCore_settings()
+{
+    m_Core_settingsIsSet = false;
 }
 
 int64_t ActivityOccurrenceResource::getCreatedDate() const
@@ -487,6 +637,27 @@ bool ActivityOccurrenceResource::eventIdIsSet() const
 void ActivityOccurrenceResource::unsetEvent_id()
 {
     m_Event_idIsSet = false;
+}
+
+std::shared_ptr<SimpleUserResource> ActivityOccurrenceResource::getHost() const
+{
+    return m_Host;
+}
+
+
+void ActivityOccurrenceResource::setHost(std::shared_ptr<SimpleUserResource> value)
+{
+    m_Host = value;
+    m_HostIsSet = true;
+}
+bool ActivityOccurrenceResource::hostIsSet() const
+{
+    return m_HostIsSet;
+}
+
+void ActivityOccurrenceResource::unsetHost()
+{
+    m_HostIsSet = false;
 }
 
 int64_t ActivityOccurrenceResource::getId() const

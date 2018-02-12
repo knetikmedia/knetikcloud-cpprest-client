@@ -76,7 +76,6 @@ pplx::task<std::shared_ptr<PageResource«BillingReport»>> ReportingSubscription
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

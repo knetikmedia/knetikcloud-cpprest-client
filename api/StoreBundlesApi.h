@@ -44,7 +44,7 @@ public:
     /// Create a bundle item
     /// </summary>
     /// <remarks>
-    /// The SKU for the bundle itself must be unique and there can only be one SKU.  Extra notes for price_override:  The price of all the items (multiplied by the quantity) must equal the price of the bundle.  With individual prices set, items will be processed individually and can be refunded as such.  However, if all prices are set to null, the price of the bundle will be used and will be treated as one item.
+    /// The SKU for the bundle itself must be unique and there can only be one SKU.  Extra notes for price_override:  The price of all the items (multiplied by the quantity) must equal the price of the bundle.  With individual prices set, items will be processed individually and can be refunded as such.  However, if all prices are set to null, the price of the bundle will be used and will be treated as one item. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BUNDLES_ADMIN
     /// </remarks>
     /// <param name="cascade">Whether to cascade group changes, such as in the limited gettable behavior. A 400 error will return otherwise if the group is already in use with different values. (optional, default to false)</param>/// <param name="bundleItem">The bundle item object (optional)</param>
     pplx::task<std::shared_ptr<BundleItem>> createBundleItem(bool cascade, std::shared_ptr<BundleItem> bundleItem);
@@ -52,7 +52,7 @@ public:
     /// Create a bundle template
     /// </summary>
     /// <remarks>
-    /// Bundle Templates define a type of bundle and the properties they have.
+    /// Bundle Templates define a type of bundle and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BUNDLES_ADMIN
     /// </remarks>
     /// <param name="bundleTemplateResource">The new bundle template (optional)</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> createBundleTemplate(std::shared_ptr<ItemTemplateResource> bundleTemplateResource);
@@ -60,7 +60,7 @@ public:
     /// Delete a bundle item
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BUNDLES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the bundle</param>
     pplx::task<void> deleteBundleItem(int32_t id);
@@ -68,7 +68,7 @@ public:
     /// Delete a bundle template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BUNDLES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">force deleting the template if it&#39;s attached to other objects, cascade &#x3D; detach (optional)</param>
     pplx::task<void> deleteBundleTemplate(utility::string_t id, utility::string_t cascade);
@@ -76,7 +76,7 @@ public:
     /// Get a single bundle item
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id of the bundle</param>
     pplx::task<std::shared_ptr<BundleItem>> getBundleItem(int32_t id);
@@ -84,7 +84,7 @@ public:
     /// Get a single bundle template
     /// </summary>
     /// <remarks>
-    /// Bundle Templates define a type of bundle and the properties they have.
+    /// Bundle Templates define a type of bundle and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> getBundleTemplate(utility::string_t id);
@@ -92,7 +92,7 @@ public:
     /// List and search bundle templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> getBundleTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -100,7 +100,7 @@ public:
     /// Update a bundle item
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BUNDLES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the bundle</param>/// <param name="cascade">Whether to cascade group changes, such as in the limited gettable behavior. A 400 error will return otherwise if the group is already in use with different values. (optional, default to false)</param>/// <param name="bundleItem">The bundle item object (optional)</param>
     pplx::task<std::shared_ptr<BundleItem>> updateBundleItem(int32_t id, bool cascade, std::shared_ptr<BundleItem> bundleItem);
@@ -108,7 +108,7 @@ public:
     /// Update a bundle template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BUNDLES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="bundleTemplateResource">The bundle template resource object (optional)</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> updateBundleTemplate(utility::string_t id, std::shared_ptr<ItemTemplateResource> bundleTemplateResource);

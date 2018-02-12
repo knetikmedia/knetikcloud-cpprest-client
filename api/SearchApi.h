@@ -42,7 +42,7 @@ public:
     /// Count matches with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _count.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _count.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>
     pplx::task<std::shared_ptr<Object>> searchCountGET(utility::string_t type);
@@ -50,7 +50,7 @@ public:
     /// Count matches with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _count.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _count.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="query">The query to be used for the search (optional)</param>
     pplx::task<std::shared_ptr<Object>> searchCountPOST(utility::string_t type, std::shared_ptr<Object> query);
@@ -58,7 +58,7 @@ public:
     /// Count matches with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _count.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _count.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="template">The index template</param>
     pplx::task<std::shared_ptr<Object>> searchCountWithTemplateGET(utility::string_t type, utility::string_t template);
@@ -66,7 +66,7 @@ public:
     /// Count matches with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _count.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _count.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="template">The index template</param>/// <param name="query">The query to be used for the search (optional)</param>
     pplx::task<std::shared_ptr<Object>> searchCountWithTemplatePOST(utility::string_t type, utility::string_t template, std::shared_ptr<Object> query);
@@ -74,7 +74,7 @@ public:
     /// Get document with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="id">The index id</param>
     pplx::task<std::shared_ptr<Object>> searchDocumentGET(utility::string_t type, utility::string_t id);
@@ -82,7 +82,7 @@ public:
     /// Get document with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="id">The index id</param>/// <param name="template">The index template</param>
     pplx::task<std::shared_ptr<Object>> searchDocumentWithTemplateGET(utility::string_t type, utility::string_t id, utility::string_t template);
@@ -90,7 +90,7 @@ public:
     /// Explain matches with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _explain.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _explain.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="id">The index id</param>
     pplx::task<std::shared_ptr<Object>> searchExplainGET(utility::string_t type, utility::string_t id);
@@ -98,7 +98,7 @@ public:
     /// Explain matches with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _explain.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _explain.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="id">The index id</param>/// <param name="query">The query to be used for the search (optional)</param>
     pplx::task<std::shared_ptr<Object>> searchExplainPOST(utility::string_t type, utility::string_t id, std::shared_ptr<Object> query);
@@ -106,7 +106,7 @@ public:
     /// Explain matches with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _explain.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _explain.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="id">The index id</param>/// <param name="template">The index template</param>
     pplx::task<std::shared_ptr<Object>> searchExplainWithTemplateGET(utility::string_t type, utility::string_t id, utility::string_t template);
@@ -114,7 +114,7 @@ public:
     /// Explain matches with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _explain.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _explain.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="id">The index id</param>/// <param name="template">The index template</param>/// <param name="query">The query to be used for the search (optional)</param>
     pplx::task<std::shared_ptr<Object>> searchExplainWithTemplatePOST(utility::string_t type, utility::string_t id, utility::string_t template, std::shared_ptr<Object> query);
@@ -122,7 +122,7 @@ public:
     /// Search an index with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _search.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _search.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="query">The query to be used for the search (optional)</param>
     pplx::task<std::shared_ptr<Object>> searchIndex(utility::string_t type, std::shared_ptr<Object> query);
@@ -130,7 +130,7 @@ public:
     /// Search an index with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _search.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _search.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>
     pplx::task<std::shared_ptr<Object>> searchIndexGET(utility::string_t type);
@@ -138,7 +138,7 @@ public:
     /// Search an index with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _search.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _search.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="template">The index template</param>
     pplx::task<std::shared_ptr<Object>> searchIndexWithTemplateGET(utility::string_t type, utility::string_t template);
@@ -146,7 +146,7 @@ public:
     /// Search an index with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _search.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _search.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="template">The index template</param>/// <param name="query">The query to be used for the search (optional)</param>
     pplx::task<std::shared_ptr<Object>> searchIndexWithTemplatePOST(utility::string_t type, utility::string_t template, std::shared_ptr<Object> query);
@@ -154,7 +154,7 @@ public:
     /// Get indices
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _cat/indices for indices.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _cat/indices for indices.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     
     pplx::task<std::shared_ptr<Object>> searchIndicesGET();
@@ -162,7 +162,7 @@ public:
     /// Get mapping with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _mapping.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _mapping.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>
     pplx::task<std::shared_ptr<Object>> searchMappingsGET(utility::string_t type);
@@ -170,7 +170,7 @@ public:
     /// Get mapping with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _mapping.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _mapping.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="template">The index template</param>
     pplx::task<std::shared_ptr<Object>> searchMappingsWithTemplateGET(utility::string_t type, utility::string_t template);
@@ -178,7 +178,7 @@ public:
     /// Validate matches with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _validate/query.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _validate/query.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>
     pplx::task<std::shared_ptr<Object>> searchValidateGET(utility::string_t type);
@@ -186,7 +186,7 @@ public:
     /// Validate matches with no template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _validate/query.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _validate/query.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="query">The query to be used for the search (optional)</param>
     pplx::task<std::shared_ptr<Object>> searchValidatePOST(utility::string_t type, std::shared_ptr<Object> query);
@@ -194,7 +194,7 @@ public:
     /// Validate matches with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _validate/query.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _validate/query.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="template">The index template</param>
     pplx::task<std::shared_ptr<Object>> searchValidateWithTemplateGET(utility::string_t type, utility::string_t template);
@@ -202,7 +202,7 @@ public:
     /// Validate matches with a template
     /// </summary>
     /// <remarks>
-    /// This is a 1 to 1 mapping of a ElasticSearch call to _validate/query.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html&#39;&gt;API guide&lt;/a&gt;
+    /// This is a 1 to 1 mapping of a ElasticSearch call to _validate/query.  Further information can be found at their &lt;a href&#x3D;&#39;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html&#39;&gt;API guide&lt;/a&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SEARCH_ADMIN
     /// </remarks>
     /// <param name="type">The index type</param>/// <param name="template">The index template</param>/// <param name="query">The query to be used for the search (optional)</param>
     pplx::task<std::shared_ptr<Object>> searchValidateWithTemplatePOST(utility::string_t type, utility::string_t template, std::shared_ptr<Object> query);

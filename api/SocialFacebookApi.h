@@ -41,7 +41,7 @@ public:
     /// Link facebook account
     /// </summary>
     /// <remarks>
-    /// Links the current user account to a facebook account, using the acccess token from facebook. Can also be used to update the access token after it has expired.
+    /// Links the current user account to a facebook account, using the acccess token from facebook. Can also be used to update the access token after it has expired. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; Non-facebook user token
     /// </remarks>
     /// <param name="facebookToken">The token from facebook (optional)</param>
     pplx::task<void> linkAccounts(std::shared_ptr<FacebookToken> facebookToken);

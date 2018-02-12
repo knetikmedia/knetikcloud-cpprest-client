@@ -76,7 +76,6 @@ pplx::task<std::vector<std::shared_ptr<ActionResource>>> BRERuleEngineActionsApi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

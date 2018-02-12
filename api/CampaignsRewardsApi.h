@@ -43,7 +43,7 @@ public:
     /// Create a reward set
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; REWARDS_ADMIN
     /// </remarks>
     /// <param name="rewardSetResource">The reward set resource object (optional)</param>
     pplx::task<std::shared_ptr<RewardSetResource>> createRewardSet(std::shared_ptr<RewardSetResource> rewardSetResource);
@@ -51,7 +51,7 @@ public:
     /// Delete a reward set
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; REWARDS_ADMIN
     /// </remarks>
     /// <param name="id">The reward id</param>
     pplx::task<void> deleteRewardSet(int32_t id);
@@ -59,7 +59,7 @@ public:
     /// Get a single reward set
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The reward id</param>
     pplx::task<std::shared_ptr<RewardSetResource>> getRewardSet(int32_t id);
@@ -67,7 +67,7 @@ public:
     /// List and search reward sets
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«RewardSetResource»>> getRewardSets(int32_t size, int32_t page, utility::string_t order);
@@ -75,7 +75,7 @@ public:
     /// Update a reward set
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; REWARDS_ADMIN
     /// </remarks>
     /// <param name="id">The reward id</param>/// <param name="rewardSetResource">The reward set resource object (optional)</param>
     pplx::task<std::shared_ptr<RewardSetResource>> updateRewardSet(int32_t id, std::shared_ptr<RewardSetResource> rewardSetResource);

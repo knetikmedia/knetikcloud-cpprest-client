@@ -21,6 +21,7 @@ namespace model {
 
 BreRuleLog::BreRuleLog()
 {
+    m_ActionsIsSet = false;
     m_Ran = false;
     m_RanIsSet = false;
     m_Reason = U("");
@@ -48,6 +49,17 @@ web::json::value BreRuleLog::toJson() const
 {
     web::json::value val = web::json::value::object();
 
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Actions )
+        {
+            jsonArray.push_back(ModelBase::toJson(item));
+        }
+        if(jsonArray.size() > 0)
+        {
+            val[U("actions")] = web::json::value::array(jsonArray);
+        }
+    }
     if(m_RanIsSet)
     {
         val[U("ran")] = ModelBase::toJson(m_Ran);
@@ -78,6 +90,26 @@ web::json::value BreRuleLog::toJson() const
 
 void BreRuleLog::fromJson(web::json::value& val)
 {
+    {
+        m_Actions.clear();
+        std::vector<web::json::value> jsonArray;
+        if(val.has_field(U("actions")))
+        {
+        for( auto& item : val[U("actions")].as_array() )
+        {
+            if(item.is_null())
+            {
+                m_Actions.push_back( std::shared_ptr<BreActionLog>(nullptr) );
+            }
+            else
+            {
+                std::shared_ptr<BreActionLog> newItem(new BreActionLog());
+                newItem->fromJson(item);
+                m_Actions.push_back( newItem );
+            }
+        }
+        }
+    }
     if(val.has_field(U("ran")))
     {
         setRan(ModelBase::boolFromJson(val[U("ran")]));
@@ -112,6 +144,18 @@ void BreRuleLog::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
         namePrefix += U(".");
     }
 
+    {
+        std::vector<web::json::value> jsonArray;
+        for( auto& item : m_Actions )
+        {
+            jsonArray.push_back(ModelBase::toJson(item));
+        }
+        
+        if(jsonArray.size() > 0)
+        {
+            multipart->add(ModelBase::toHttpContent(namePrefix + U("actions"), web::json::value::array(jsonArray), U("application/json")));
+        }
+    }
     if(m_RanIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("ran"), m_Ran));
@@ -149,6 +193,27 @@ void BreRuleLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         namePrefix += U(".");
     }
 
+    {
+        m_Actions.clear();
+        if(multipart->hasContent(U("actions")))
+        {
+
+        web::json::value jsonArray = web::json::value::parse(ModelBase::stringFromHttpContent(multipart->getContent(U("actions"))));
+        for( auto& item : jsonArray.as_array() )
+        {
+            if(item.is_null())
+            {
+                m_Actions.push_back( std::shared_ptr<BreActionLog>(nullptr) );
+            }
+            else
+            {
+                std::shared_ptr<BreActionLog> newItem(new BreActionLog());
+                newItem->fromJson(item);
+                m_Actions.push_back( newItem );
+            }
+        }
+        }
+    }
     if(multipart->hasContent(U("ran")))
     {
         setRan(ModelBase::boolFromHttpContent(multipart->getContent(U("ran"))));
@@ -173,6 +238,26 @@ void BreRuleLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     {
         setRuleStartDate(ModelBase::int64_tFromHttpContent(multipart->getContent(U("rule_start_date"))));
     }
+}
+
+std::vector<std::shared_ptr<BreActionLog>>& BreRuleLog::getActions()
+{
+    return m_Actions;
+}
+
+void BreRuleLog::setActions(std::vector<std::shared_ptr<BreActionLog>> value)
+{
+    m_Actions = value;
+    m_ActionsIsSet = true;
+}
+bool BreRuleLog::actionsIsSet() const
+{
+    return m_ActionsIsSet;
+}
+
+void BreRuleLog::unsetActions()
+{
+    m_ActionsIsSet = false;
 }
 
 bool BreRuleLog::getRan() const

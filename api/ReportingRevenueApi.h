@@ -44,7 +44,7 @@ public:
     /// Get item revenue info
     /// </summary>
     /// <remarks>
-    /// Get basic info about revenue from sales of items and bundles (not subscriptions, shipping, etc), summed up within a time range
+    /// Get basic info about revenue from sales of items and bundles (not subscriptions, shipping, etc), summed up within a time range. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_REVENUE_ADMIN
     /// </remarks>
     /// <param name="currencyCode">The code for a currency to get sales data for</param>/// <param name="startDate">The start of the time range to aggregate, unix timestamp in seconds. Default is beginning of time (optional)</param>/// <param name="endDate">The end of the time range to aggregate, unix timestamp in seconds. Default is end of time (optional)</param>
     pplx::task<std::shared_ptr<RevenueReportResource>> getItemRevenue(utility::string_t currencyCode, int64_t startDate, int64_t endDate);
@@ -52,7 +52,7 @@ public:
     /// Get refund revenue info
     /// </summary>
     /// <remarks>
-    /// Get basic info about revenue loss from refunds (for all item types), summed up within a time range.
+    /// Get basic info about revenue loss from refunds (for all item types), summed up within a time range. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_REVENUE_ADMIN
     /// </remarks>
     /// <param name="currencyCode">The code for a currency to get refund data for</param>/// <param name="startDate">The start of the time range to aggregate, unix timestamp in seconds. Default is beginning of time (optional)</param>/// <param name="endDate">The end of the time range to aggregate, unix timestamp in seconds. Default is end of time (optional)</param>
     pplx::task<std::shared_ptr<RevenueReportResource>> getRefundRevenue(utility::string_t currencyCode, int64_t startDate, int64_t endDate);
@@ -60,7 +60,7 @@ public:
     /// Get revenue info by country
     /// </summary>
     /// <remarks>
-    /// Get basic info about revenue from sales of all types, summed up within a time range and split out by country. Sorted for largest revenue at the top
+    /// Get basic info about revenue from sales of all types, summed up within a time range and split out by country. Sorted for largest revenue at the top. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_REVENUE_ADMIN
     /// </remarks>
     /// <param name="currencyCode">The code for a currency to get sales data for</param>/// <param name="startDate">The start of the time range to aggregate, unix timestamp in seconds. Default is beginning of time (optional)</param>/// <param name="endDate">The end of the time range to aggregate, unix timestamp in seconds. Default is end of time (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«RevenueCountryReportResource»>> getRevenueByCountry(utility::string_t currencyCode, int64_t startDate, int64_t endDate, int32_t size, int32_t page);
@@ -68,7 +68,7 @@ public:
     /// Get revenue info by item
     /// </summary>
     /// <remarks>
-    /// Get basic info about revenue from sales of all types, summed up within a time range and split out by specific item. Sorted for largest revenue at the top
+    /// Get basic info about revenue from sales of all types, summed up within a time range and split out by specific item. Sorted for largest revenue at the top. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_REVENUE_ADMIN
     /// </remarks>
     /// <param name="currencyCode">The code for a currency to get sales data for</param>/// <param name="startDate">The start of the time range to aggregate, unix timestamp in seconds. Default is beginning of time (optional)</param>/// <param name="endDate">The end of the time range to aggregate, unix timestamp in seconds. Default is end of time (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«RevenueProductReportResource»>> getRevenueByItem(utility::string_t currencyCode, int64_t startDate, int64_t endDate, int32_t size, int32_t page);
@@ -76,7 +76,7 @@ public:
     /// Get subscription revenue info
     /// </summary>
     /// <remarks>
-    /// Get basic info about revenue from sales of new subscriptions as well as recurring payemnts, summed up within a time range
+    /// Get basic info about revenue from sales of new subscriptions as well as recurring payemnts, summed up within a time range. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_REVENUE_ADMIN
     /// </remarks>
     /// <param name="currencyCode">The code for a currency to get sales data for</param>/// <param name="startDate">The start of the time range to aggregate, unix timestamp in seconds. Default is beginning of time (optional)</param>/// <param name="endDate">The end of the time range to aggregate, unix timestamp in seconds. Default is end of time (optional)</param>
     pplx::task<std::shared_ptr<RevenueReportResource>> getSubscriptionRevenue(utility::string_t currencyCode, int64_t startDate, int64_t endDate);

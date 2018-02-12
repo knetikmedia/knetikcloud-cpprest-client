@@ -42,7 +42,7 @@ public:
     /// Retrieve invoice counts aggregated by time ranges
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_ORDERS_ADMIN
     /// </remarks>
     /// <param name="currencyCode">The code for a currency to get sales data for</param>/// <param name="granularity">The time duration to aggregate by (optional, default to day)</param>/// <param name="filterPaymentStatus">A payment status to filter results by, can be a comma separated list (optional)</param>/// <param name="filterFulfillmentStatus">An invoice fulfillment status to filter results by, can be a comma separated list (optional)</param>/// <param name="startDate">The start of the time range to return, unix timestamp in seconds. Default is beginning of time (optional)</param>/// <param name="endDate">The end of the time range to return, unix timestamp in seconds. Default is end of time (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«AggregateInvoiceReportResource»>> getInvoiceReports(utility::string_t currencyCode, utility::string_t granularity, utility::string_t filterPaymentStatus, utility::string_t filterFulfillmentStatus, int64_t startDate, int64_t endDate, int32_t size, int32_t page);

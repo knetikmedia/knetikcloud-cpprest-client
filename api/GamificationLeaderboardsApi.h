@@ -43,7 +43,7 @@ public:
     /// Retrieves leaderboard details and paginated entries
     /// </summary>
     /// <remarks>
-    /// The context type identifies the type of entity (i.e., &#39;activity&#39;) being tracked on the leaderboard. The context ID is the unique ID of the actual entity tracked by the leaderboard. Sorting is based on the fields of LeaderboardEntryResource rather than the returned LeaderboardResource.
+    /// The context type identifies the type of entity (i.e., &#39;activity&#39;) being tracked on the leaderboard. The context ID is the unique ID of the actual entity tracked by the leaderboard. Sorting is based on the fields of LeaderboardEntryResource rather than the returned LeaderboardResource. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="contextType">The context type for the leaderboard</param>/// <param name="contextId">The context id for the leaderboard</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to score:DESC,updated:ASC,user_id:ASC)</param>
     pplx::task<std::shared_ptr<LeaderboardResource>> getLeaderboard(utility::string_t contextType, utility::string_t contextId, int32_t size, int32_t page, utility::string_t order);
@@ -51,7 +51,7 @@ public:
     /// Retrieves a specific user entry with rank
     /// </summary>
     /// <remarks>
-    /// The context type identifies the type of entity (i.e., &#39;activity&#39;) being tracked on the leaderboard. The context ID is the unique ID of the actual entity tracked by the leaderboard
+    /// The context type identifies the type of entity (i.e., &#39;activity&#39;) being tracked on the leaderboard. The context ID is the unique ID of the actual entity tracked by the leaderboard. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="contextType">The context type for the leaderboard</param>/// <param name="contextId">The context id for the leaderboard</param>/// <param name="id">The id of a user</param>
     pplx::task<std::shared_ptr<LeaderboardEntryResource>> getLeaderboardRank(utility::string_t contextType, utility::string_t contextId, utility::string_t id);
@@ -59,7 +59,7 @@ public:
     /// Get a list of available leaderboard strategy names
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     
     pplx::task<std::vector<utility::string_t>> getLeaderboardStrategies();

@@ -345,7 +345,6 @@ pplx::task<void> StoreVendorsApi::deleteVendor(int32_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -449,7 +448,6 @@ pplx::task<void> StoreVendorsApi::deleteVendorTemplate(utility::string_t id, uti
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -557,7 +555,6 @@ pplx::task<std::shared_ptr<VendorResource>> StoreVendorsApi::getVendor(int32_t i
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -679,7 +676,6 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> StoreVendorsApi::getVendorTemp
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -800,7 +796,6 @@ pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> StoreVendorsAp
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -933,7 +928,6 @@ pplx::task<std::shared_ptr<PageResource«VendorResource»>> StoreVendorsApi::get
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

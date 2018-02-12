@@ -345,7 +345,6 @@ pplx::task<void> GamificationAchievementsApi::deleteAchievement(utility::string_
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -449,7 +448,6 @@ pplx::task<void> GamificationAchievementsApi::deleteAchievementTemplate(utility:
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -557,7 +555,6 @@ pplx::task<std::shared_ptr<AchievementDefinitionResource>> GamificationAchieveme
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -679,7 +676,6 @@ pplx::task<std::shared_ptr<TemplateResource>> GamificationAchievementsApi::getAc
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -800,7 +796,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> GamificationAchiev
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -933,7 +928,6 @@ pplx::task<std::vector<std::shared_ptr<BreTriggerResource>>> GamificationAchieve
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1061,7 +1055,6 @@ pplx::task<std::shared_ptr<PageResource«AchievementDefinitionResource»>> Gamif
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1211,7 +1204,6 @@ pplx::task<std::vector<std::shared_ptr<AchievementDefinitionResource>>> Gamifica
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1341,7 +1333,6 @@ boost::replace_all(path, U("{") U("achievement_name") U("}"), ApiClient::paramet
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1463,7 +1454,6 @@ pplx::task<std::shared_ptr<PageResource«UserAchievementGroupResource»>> Gamifi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1605,7 +1595,6 @@ pplx::task<std::shared_ptr<PageResource«UserAchievementGroupResource»>> Gamifi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1746,7 +1735,6 @@ pplx::task<std::shared_ptr<PageResource«UserAchievementGroupResource»>> Gamifi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

@@ -41,7 +41,7 @@ public:
     /// Get current version info
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     
     pplx::task<std::shared_ptr<Version>> getVersion();

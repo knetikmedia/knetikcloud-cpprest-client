@@ -211,7 +211,6 @@ pplx::task<void> CampaignsRewardsApi::deleteRewardSet(int32_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -315,7 +314,6 @@ pplx::task<std::shared_ptr<RewardSetResource>> CampaignsRewardsApi::getRewardSet
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -436,7 +434,6 @@ pplx::task<std::shared_ptr<PageResource«RewardSetResource»>> CampaignsRewardsA
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

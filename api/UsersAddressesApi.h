@@ -43,7 +43,7 @@ public:
     /// Create a new address
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="savedAddressResource">The new address (optional)</param>
     pplx::task<std::shared_ptr<SavedAddressResource>> createAddress(utility::string_t userId, std::shared_ptr<SavedAddressResource> savedAddressResource);
@@ -51,7 +51,7 @@ public:
     /// Delete an address
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="id">The id of the address</param>
     pplx::task<void> deleteAddress(utility::string_t userId, int32_t id);
@@ -59,7 +59,7 @@ public:
     /// Get a single address
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="id">The id of the address</param>
     pplx::task<std::shared_ptr<SavedAddressResource>> getAddress(utility::string_t userId, int32_t id);
@@ -67,7 +67,7 @@ public:
     /// List and search addresses
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«SavedAddressResource»>> getAddresses(utility::string_t userId, int32_t size, int32_t page, utility::string_t order);
@@ -75,7 +75,7 @@ public:
     /// Update an address
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="id">The id of the address</param>/// <param name="savedAddressResource">The saved address resource object (optional)</param>
     pplx::task<std::shared_ptr<SavedAddressResource>> updateAddress(utility::string_t userId, int32_t id, std::shared_ptr<SavedAddressResource> savedAddressResource);

@@ -44,7 +44,7 @@ public:
     /// Add a new comment
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; COMMENTS_USER or COMMENTS_ADMIN
     /// </remarks>
     /// <param name="commentResource">The comment to be added (optional)</param>
     pplx::task<std::shared_ptr<CommentResource>> addComment(std::shared_ptr<CommentResource> commentResource);
@@ -52,7 +52,7 @@ public:
     /// Delete a comment
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; COMMENTS_USER or COMMENTS_ADMIN
     /// </remarks>
     /// <param name="id">The comment id</param>
     pplx::task<void> deleteComment(int64_t id);
@@ -60,7 +60,7 @@ public:
     /// Return a comment
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The comment id</param>
     pplx::task<std::shared_ptr<CommentResource>> getComment(int64_t id);
@@ -68,7 +68,7 @@ public:
     /// Returns a page of comments
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="context">Get comments by context type</param>/// <param name="contextId">Get comments by context id</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«CommentResource»>> getComments(utility::string_t context, int32_t contextId, int32_t size, int32_t page);
@@ -76,7 +76,7 @@ public:
     /// Update a comment
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; COMMENTS_USER or COMMENTS_ADMIN
     /// </remarks>
     /// <param name="id">The comment id</param>/// <param name="content">The comment content (optional)</param>
     pplx::task<void> updateComment(int64_t id, std::shared_ptr<StringWrapper> content);

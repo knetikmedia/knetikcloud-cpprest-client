@@ -42,7 +42,7 @@ public:
     /// Get details for a template property type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="type">type</param>
     pplx::task<std::shared_ptr<PropertyFieldListResource>> getTemplatePropertyType(utility::string_t type);
@@ -50,7 +50,7 @@ public:
     /// List template property types
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     
     pplx::task<std::vector<std::shared_ptr<PropertyFieldListResource>>> getTemplatePropertyTypes();

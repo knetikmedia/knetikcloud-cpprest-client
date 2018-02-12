@@ -78,7 +78,6 @@ boost::replace_all(path, U("{") U("inventory_id") U("}"), ApiClient::parameterTo
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -200,7 +199,6 @@ pplx::task<std::vector<std::shared_ptr<InventorySubscriptionResource>>> UsersSub
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

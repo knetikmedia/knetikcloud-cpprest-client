@@ -22,7 +22,6 @@
 
 #include "ModelBase.h"
 
-#include "IOConfig.h"
 #include <cpprest/details/basic_types.h>
 #include "S3Config.h"
 #include "DatabaseConfig.h"
@@ -73,13 +72,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<IOConfig> getIo() const;
-    bool ioIsSet() const;
-    void unsetIo();
-    void setIo(std::shared_ptr<IOConfig> value);
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
@@ -97,8 +89,6 @@ protected:
     bool m_AliasesIsSet;
     std::shared_ptr<DatabaseConfig> m_Database;
     bool m_DatabaseIsSet;
-    std::shared_ptr<IOConfig> m_Io;
-    bool m_IoIsSet;
     utility::string_t m_Name;
     bool m_NameIsSet;
     std::shared_ptr<S3Config> m_S3_config;

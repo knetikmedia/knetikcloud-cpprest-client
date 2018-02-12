@@ -217,7 +217,6 @@ pplx::task<std::vector<utility::string_t>> InvoicesApi::getFulFillmentStatuses()
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -344,7 +343,6 @@ pplx::task<std::shared_ptr<InvoiceResource>> InvoicesApi::getInvoice(int32_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -466,7 +464,6 @@ pplx::task<std::shared_ptr<PageResource«InvoiceLogEntry»>> InvoicesApi::getInv
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -595,7 +592,6 @@ pplx::task<std::shared_ptr<PageResource«InvoiceResource»>> InvoicesApi::getInv
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -784,7 +780,6 @@ pplx::task<std::vector<utility::string_t>> InvoicesApi::getPaymentStatuses()
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

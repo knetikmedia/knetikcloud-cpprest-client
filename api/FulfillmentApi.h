@@ -43,7 +43,7 @@ public:
     /// Create a fulfillment type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; FULFILLMENT_ADMIN
     /// </remarks>
     /// <param name="type">The fulfillment type (optional)</param>
     pplx::task<std::shared_ptr<FulfillmentType>> createFulfillmentType(std::shared_ptr<FulfillmentType> type);
@@ -51,7 +51,7 @@ public:
     /// Delete a fulfillment type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; FULFILLMENT_ADMIN
     /// </remarks>
     /// <param name="id">The id</param>
     pplx::task<void> deleteFulfillmentType(int32_t id);
@@ -59,7 +59,7 @@ public:
     /// Get a single fulfillment type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id</param>
     pplx::task<std::shared_ptr<FulfillmentType>> getFulfillmentType(int32_t id);
@@ -67,7 +67,7 @@ public:
     /// List and search fulfillment types
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«FulfillmentType»>> getFulfillmentTypes(int32_t size, int32_t page, utility::string_t order);
@@ -75,7 +75,7 @@ public:
     /// Update a fulfillment type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; FULFILLMENT_ADMIN
     /// </remarks>
     /// <param name="id">The id</param>/// <param name="fulfillmentType">The fulfillment type (optional)</param>
     pplx::task<void> updateFulfillmentType(int32_t id, std::shared_ptr<FulfillmentType> fulfillmentType);

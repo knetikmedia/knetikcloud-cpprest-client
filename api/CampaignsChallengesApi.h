@@ -49,7 +49,7 @@ public:
     /// Create a challenge
     /// </summary>
     /// <remarks>
-    /// Challenges do not run on their own.  They must be added to a campaign before events will spawn.
+    /// Challenges do not run on their own.  They must be added to a campaign before events will spawn. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="challengeResource">The challenge resource object (optional)</param>
     pplx::task<std::shared_ptr<ChallengeResource>> createChallenge(std::shared_ptr<ChallengeResource> challengeResource);
@@ -57,7 +57,7 @@ public:
     /// Create a challenge activity
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="challengeId">The challenge id</param>/// <param name="challengeActivityResource">The challenge activity resource object (optional)</param>/// <param name="validateSettings">Whether to validate the settings being sent against the available settings on the base activity. (optional, default to false)</param>
     pplx::task<std::shared_ptr<ChallengeActivityResource>> createChallengeActivity(int64_t challengeId, std::shared_ptr<ChallengeActivityResource> challengeActivityResource, bool validateSettings);
@@ -65,7 +65,7 @@ public:
     /// Create a challenge activity template
     /// </summary>
     /// <remarks>
-    /// Challenge Activity Templates define a type of challenge activity and the properties they have
+    /// Challenge Activity Templates define a type of challenge activity and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="challengeActivityTemplateResource">The challengeActivity template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createChallengeActivityTemplate(std::shared_ptr<TemplateResource> challengeActivityTemplateResource);
@@ -73,7 +73,7 @@ public:
     /// Create a challenge template
     /// </summary>
     /// <remarks>
-    /// Challenge Templates define a type of challenge and the properties they have
+    /// Challenge Templates define a type of challenge and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="challengeTemplateResource">The challenge template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createChallengeTemplate(std::shared_ptr<TemplateResource> challengeTemplateResource);
@@ -81,7 +81,7 @@ public:
     /// Delete a challenge
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="id">The challenge id</param>
     pplx::task<void> deleteChallenge(int64_t id);
@@ -89,7 +89,7 @@ public:
     /// Delete a challenge activity
     /// </summary>
     /// <remarks>
-    /// A challenge can have multiple instances of the same activity and thus the id used is of the specific entry within the challenge
+    /// A challenge can have multiple instances of the same activity and thus the id used is of the specific entry within the challenge. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="id">The challenge_activity id</param>/// <param name="challengeId">The challenge id</param>
     pplx::task<void> deleteChallengeActivity(int64_t id, int64_t challengeId);
@@ -97,7 +97,7 @@ public:
     /// Delete a challenge activity template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deleteChallengeActivityTemplate(utility::string_t id, utility::string_t cascade);
@@ -105,7 +105,7 @@ public:
     /// Delete a challenge event
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="id">The challenge event id</param>
     pplx::task<void> deleteChallengeEvent(int64_t id);
@@ -113,7 +113,7 @@ public:
     /// Delete a challenge template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deleteChallengeTemplate(utility::string_t id, utility::string_t cascade);
@@ -121,7 +121,7 @@ public:
     /// Retrieve a challenge
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The challenge id</param>
     pplx::task<std::shared_ptr<ChallengeResource>> getChallenge(int64_t id);
@@ -129,7 +129,7 @@ public:
     /// List and search challenge activities
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="challengeId">The challenge id</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«BareChallengeActivityResource»>> getChallengeActivities(int64_t challengeId, int32_t size, int32_t page, utility::string_t order);
@@ -137,7 +137,7 @@ public:
     /// Get a single challenge activity
     /// </summary>
     /// <remarks>
-    /// A challenge can have multiple instances of the same activity and thus the id used is of the specific entry within the challenge
+    /// A challenge can have multiple instances of the same activity and thus the id used is of the specific entry within the challenge. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The challenge_activity id</param>/// <param name="challengeId">The challenge id</param>
     pplx::task<std::shared_ptr<ChallengeActivityResource>> getChallengeActivity(int64_t id, int64_t challengeId);
@@ -145,7 +145,7 @@ public:
     /// Get a single challenge activity template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<TemplateResource>> getChallengeActivityTemplate(utility::string_t id);
@@ -153,7 +153,7 @@ public:
     /// List and search challenge activity templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getChallengeActivityTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -161,7 +161,7 @@ public:
     /// Retrieve a single challenge event details
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The challenge event id</param>
     pplx::task<std::shared_ptr<ChallengeEventResource>> getChallengeEvent(int64_t id);
@@ -169,7 +169,7 @@ public:
     /// Retrieve a list of challenge events
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterStartDate">A comma separated string without spaces.  First value is the operator to search on, second value is the event start date, a unix timestamp in seconds.  Allowed operators: (GT, LT, EQ, GOE, LOE). (optional)</param>/// <param name="filterEndDate">A comma separated string without spaces.  First value is the operator to search on, second value is the event end date, a unix timestamp in seconds.  Allowed operators: (GT, LT, EQ, GOE, LOE). (optional)</param>/// <param name="filterCampaigns">check only for events from currently running campaigns (optional)</param>/// <param name="filterChallenge">check only for events from the challenge specified by id (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«ChallengeEventResource»>> getChallengeEvents(utility::string_t filterStartDate, utility::string_t filterEndDate, bool filterCampaigns, int64_t filterChallenge, int32_t size, int32_t page, utility::string_t order);
@@ -177,7 +177,7 @@ public:
     /// Get a single challenge template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<TemplateResource>> getChallengeTemplate(utility::string_t id);
@@ -185,7 +185,7 @@ public:
     /// List and search challenge templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getChallengeTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -193,7 +193,7 @@ public:
     /// Retrieve a list of challenges
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterActiveCampaign">Filter for challenges that are tied to active campaigns (optional)</param>/// <param name="filterStartDate">A comma separated string without spaces.  First value is the operator to search on, second value is the challenge start date, a unix timestamp in seconds.  Allowed operators: (GT, LT, EQ, GOE, LOE). (optional)</param>/// <param name="filterEndDate">A comma separated string without spaces.  First value is the operator to search on, second value is the challenge end date, a unix timestamp in seconds.  Allowed operators: (GT, LT, EQ, GOE, LOE). (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«ChallengeResource»>> getChallenges(bool filterActiveCampaign, utility::string_t filterStartDate, utility::string_t filterEndDate, int32_t size, int32_t page, utility::string_t order);
@@ -201,7 +201,7 @@ public:
     /// Update a challenge
     /// </summary>
     /// <remarks>
-    /// If the challenge is a copy, changes will propagate to all the related challenges
+    /// If the challenge is a copy, changes will propagate to all the related challenges. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="id">The challenge id</param>/// <param name="challengeResource">The challenge resource object (optional)</param>
     pplx::task<std::shared_ptr<ChallengeResource>> updateChallenge(int64_t id, std::shared_ptr<ChallengeResource> challengeResource);
@@ -209,7 +209,7 @@ public:
     /// Update a challenge activity
     /// </summary>
     /// <remarks>
-    /// A challenge can have multiple instances of the same activity and thus the id used is of the specific entry within the challenge
+    /// A challenge can have multiple instances of the same activity and thus the id used is of the specific entry within the challenge. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="id">The challenge_activity id</param>/// <param name="challengeId">The challenge id</param>/// <param name="challengeActivityResource">The challenge activity resource object (optional)</param>/// <param name="validateSettings">Whether to validate the settings being sent against the available settings on the base activity. (optional, default to false)</param>
     pplx::task<std::shared_ptr<ChallengeActivityResource>> updateChallengeActivity(int64_t id, int64_t challengeId, std::shared_ptr<ChallengeActivityResource> challengeActivityResource, bool validateSettings);
@@ -217,7 +217,7 @@ public:
     /// Update an challenge activity template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="challengeActivityTemplateResource">The challengeActivity template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> updateChallengeActivityTemplate(utility::string_t id, std::shared_ptr<TemplateResource> challengeActivityTemplateResource);
@@ -225,7 +225,7 @@ public:
     /// Update a challenge template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="challengeTemplateResource">The challenge template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> updateChallengeTemplate(utility::string_t id, std::shared_ptr<TemplateResource> challengeTemplateResource);

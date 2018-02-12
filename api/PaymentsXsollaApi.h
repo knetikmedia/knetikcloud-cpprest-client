@@ -42,7 +42,7 @@ public:
     /// Create a payment token that should be used to forward the user to Xsolla so they can complete payment
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; XSOLLA_ADMIN or owner
     /// </remarks>
     /// <param name="request">The payment request to be sent to XSolla (optional)</param>
     pplx::task<utility::string_t> createXsollaTokenUrl(std::shared_ptr<XsollaPaymentRequest> request);

@@ -43,7 +43,7 @@ public:
     /// Create a trigger
     /// </summary>
     /// <remarks>
-    /// Customer added triggers will not be fired automatically or have rules associated with them by default. Custom rules must be added to get use from the trigger and it must then be fired from the outside. See the Bre Event services
+    /// Customer added triggers will not be fired automatically or have rules associated with them by default. Custom rules must be added to get use from the trigger and it must then be fired from the outside. See the Bre Event services. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_TRIGGERS_ADMIN
     /// </remarks>
     /// <param name="breTriggerResource">The BRE trigger resource object (optional)</param>
     pplx::task<std::shared_ptr<BreTriggerResource>> createBRETrigger(std::shared_ptr<BreTriggerResource> breTriggerResource);
@@ -51,7 +51,7 @@ public:
     /// Delete a trigger
     /// </summary>
     /// <remarks>
-    /// May fail if there are existing rules against it. Cannot delete core triggers
+    /// May fail if there are existing rules against it. Cannot delete core triggers. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_TRIGGERS_ADMIN
     /// </remarks>
     /// <param name="eventName">The trigger event name</param>
     pplx::task<void> deleteBRETrigger(utility::string_t eventName);
@@ -59,7 +59,7 @@ public:
     /// Get a single trigger
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_TRIGGERS_USER
     /// </remarks>
     /// <param name="eventName">The trigger event name</param>
     pplx::task<std::shared_ptr<BreTriggerResource>> getBRETrigger(utility::string_t eventName);
@@ -67,7 +67,7 @@ public:
     /// List triggers
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_TRIGGERS_USER
     /// </remarks>
     /// <param name="filterSystem">Filter for triggers that are system triggers when true, or not when false. Leave off for both mixed (optional)</param>/// <param name="filterCategory">Filter for triggers that are within a specific category (optional)</param>/// <param name="filterTags">Filter for triggers that have all of the given tags (comma separated list) (optional)</param>/// <param name="filterName">Filter for triggers that have names containing the given string (optional)</param>/// <param name="filterSearch">Filter for triggers containing the given words somewhere within name, description and tags (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«BreTriggerResource»>> getBRETriggers(bool filterSystem, utility::string_t filterCategory, utility::string_t filterTags, utility::string_t filterName, utility::string_t filterSearch, int32_t size, int32_t page);
@@ -75,7 +75,7 @@ public:
     /// Update a trigger
     /// </summary>
     /// <remarks>
-    /// May fail if new parameters mismatch requirements of existing rules. Cannot update core triggers
+    /// May fail if new parameters mismatch requirements of existing rules. Cannot update core triggers. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_TRIGGERS_ADMIN
     /// </remarks>
     /// <param name="eventName">The trigger event name</param>/// <param name="breTriggerResource">The BRE trigger resource object (optional)</param>
     pplx::task<std::shared_ptr<BreTriggerResource>> updateBRETrigger(utility::string_t eventName, std::shared_ptr<BreTriggerResource> breTriggerResource);

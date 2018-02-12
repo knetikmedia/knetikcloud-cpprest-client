@@ -55,7 +55,7 @@ public:
     /// Adds a user to a video&#39;s whitelist
     /// </summary>
     /// <remarks>
-    /// Whitelisted users can view video regardless of privacy setting.
+    /// Whitelisted users can view video regardless of privacy setting. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="id">The video id</param>/// <param name="userId">The user id (optional)</param>
     pplx::task<void> addUserToVideoWhitelist(int64_t id, std::shared_ptr<IntWrapper> userId);
@@ -63,7 +63,7 @@ public:
     /// Adds a new video in the system
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoResource">The video object (optional)</param>
     pplx::task<std::shared_ptr<VideoResource>> addVideo(std::shared_ptr<VideoResource> videoResource);
@@ -71,7 +71,7 @@ public:
     /// Add a new video comment
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id </param>/// <param name="commentResource">The comment object (optional)</param>
     pplx::task<std::shared_ptr<CommentResource>> addVideoComment(int32_t videoId, std::shared_ptr<CommentResource> commentResource);
@@ -79,7 +79,7 @@ public:
     /// Adds a contributor to a video
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="contributionResource">The contribution object (optional)</param>
     pplx::task<void> addVideoContributor(int64_t videoId, std::shared_ptr<ContributionResource> contributionResource);
@@ -87,7 +87,7 @@ public:
     /// Add a new flag
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="reason">The flag reason (optional)</param>
     pplx::task<std::shared_ptr<FlagResource>> addVideoFlag(int64_t videoId, std::shared_ptr<StringWrapper> reason);
@@ -95,7 +95,7 @@ public:
     /// Adds one or more existing videos as related to this one
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="videoRelationshipResource">The video relationship object  (optional)</param>
     pplx::task<std::shared_ptr<VideoRelationshipResource>> addVideoRelationships(int64_t videoId, std::shared_ptr<VideoRelationshipResource> videoRelationshipResource);
@@ -103,7 +103,7 @@ public:
     /// Create a video disposition
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="dispositionResource">The disposition object (optional)</param>
     pplx::task<std::shared_ptr<DispositionResource>> createVideoDisposition(int32_t videoId, std::shared_ptr<DispositionResource> dispositionResource);
@@ -111,7 +111,7 @@ public:
     /// Create a video template
     /// </summary>
     /// <remarks>
-    /// Video Templates define a type of video and the properties they have
+    /// Video Templates define a type of video and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="videoTemplateResource">The video template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createVideoTemplate(std::shared_ptr<TemplateResource> videoTemplateResource);
@@ -119,7 +119,7 @@ public:
     /// Deletes a video from the system if no resources are attached to it
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="id">The video id</param>
     pplx::task<void> deleteVideo(int64_t id);
@@ -127,7 +127,7 @@ public:
     /// Delete a video comment
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="id">The comment id</param>
     pplx::task<void> deleteVideoComment(int64_t videoId, int64_t id);
@@ -135,7 +135,7 @@ public:
     /// Delete a video disposition
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="dispositionId">The disposition id</param>
     pplx::task<void> deleteVideoDisposition(int64_t dispositionId);
@@ -143,7 +143,7 @@ public:
     /// Delete a flag
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>
     pplx::task<void> deleteVideoFlag(int64_t videoId);
@@ -151,7 +151,7 @@ public:
     /// Delete a video&#39;s relationship
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="id">The relationship id</param>
     pplx::task<void> deleteVideoRelationship(int64_t videoId, int64_t id);
@@ -159,7 +159,7 @@ public:
     /// Delete a video template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deleteVideoTemplate(utility::string_t id, utility::string_t cascade);
@@ -167,7 +167,7 @@ public:
     /// Get user videos
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="userId">The user id</param>/// <param name="excludeFlagged">Skip videos that have been flagged by the current user (optional, default to true)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«VideoResource»>> getUserVideos(int32_t userId, bool excludeFlagged, int32_t size, int32_t page);
@@ -175,7 +175,7 @@ public:
     /// Loads a specific video details
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="id">The video id</param>
     pplx::task<std::shared_ptr<VideoResource>> getVideo(int64_t id);
@@ -183,7 +183,7 @@ public:
     /// Returns a page of comments for a video
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«CommentResource»>> getVideoComments(int32_t videoId, int32_t size, int32_t page);
@@ -191,7 +191,7 @@ public:
     /// Returns a page of dispositions for a video
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«DispositionResource»>> getVideoDispositions(int32_t videoId, int32_t size, int32_t page);
@@ -199,7 +199,7 @@ public:
     /// Returns a page of video relationships
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«VideoRelationshipResource»>> getVideoRelationships(int64_t videoId, int32_t size, int32_t page);
@@ -207,7 +207,7 @@ public:
     /// Get a single video template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<TemplateResource>> getVideoTemplate(utility::string_t id);
@@ -215,7 +215,7 @@ public:
     /// List and search video templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getVideoTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -223,7 +223,7 @@ public:
     /// Search videos using the documented filters
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="excludeFlagged">Skip videos that have been flagged by the current user (optional, default to true)</param>/// <param name="filterVideosByUploader">Filter for videos by uploader id (optional)</param>/// <param name="filterCategory">Filter for videos from a specific category by id (optional)</param>/// <param name="filterTagset">Filter for videos with specified tags (separated by comma) (optional)</param>/// <param name="filterVideosByName">Filter for videos which name *STARTS* with the given string (optional)</param>/// <param name="filterVideosByContributor">Filter for videos with contribution from the artist specified by ID (optional)</param>/// <param name="filterVideosByAuthor">Filter for videos with an artist as author specified by ID (optional)</param>/// <param name="filterHasAuthor">Filter for videos that have an author set if true, or that have no author if false (optional)</param>/// <param name="filterHasUploader">Filter for videos that have an uploader set if true, or that have no uploader if false (optional)</param>/// <param name="filterRelatedTo">Filter for videos that have designated a particular video as the TO of a relationship. Pattern should match VIDEO_ID or VIDEO_ID:DETAILS to match with a specific details string as well (optional)</param>/// <param name="filterFriends">Filter for videos uploaded by friends. &#39;true&#39; for friends of the caller (requires user token) or a user id for a specific user&#39;s friends (requires VIDEOS_ADMIN permission) (optional)</param>/// <param name="filterDisposition">Filter for videos a given user has a given disposition towards. USER_ID:DISPOSITION where USER_ID is the id of the user who has this disposition or &#39;me&#39; for the caller (requires user token for &#39;me&#39;) and DISPOSITION is the name of the disposition. E.G. filter_disposition&#x3D;123:like or filter_disposition&#x3D;me:favorite (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to author:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«VideoResource»>> getVideos(bool excludeFlagged, int32_t filterVideosByUploader, utility::string_t filterCategory, utility::string_t filterTagset, utility::string_t filterVideosByName, int32_t filterVideosByContributor, int32_t filterVideosByAuthor, bool filterHasAuthor, bool filterHasUploader, utility::string_t filterRelatedTo, bool filterFriends, utility::string_t filterDisposition, int32_t size, int32_t page, utility::string_t order);
@@ -231,7 +231,7 @@ public:
     /// Removes a user from a video&#39;s whitelist
     /// </summary>
     /// <remarks>
-    /// Remove the user with the id given in the path from the whitelist of users that can view this video regardless of privacy setting.
+    /// Remove the user with the id given in the path from the whitelist of users that can view this video regardless of privacy setting. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="id">The user id</param>
     pplx::task<void> removeUserFromVideoWhitelist(int64_t videoId, int32_t id);
@@ -239,7 +239,7 @@ public:
     /// Removes a contributor from a video
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="id">The contributor id</param>
     pplx::task<void> removeVideoContributor(int64_t videoId, int32_t id);
@@ -247,7 +247,7 @@ public:
     /// Modifies a video&#39;s details
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="id">The video id</param>/// <param name="videoResource">The video object (optional)</param>
     pplx::task<void> updateVideo(int64_t id, std::shared_ptr<VideoResource> videoResource);
@@ -255,7 +255,7 @@ public:
     /// Update a video comment
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="id">The comment id</param>/// <param name="content">The comment content (optional)</param>
     pplx::task<void> updateVideoComment(int64_t videoId, int64_t id, std::shared_ptr<StringWrapper> content);
@@ -263,7 +263,7 @@ public:
     /// Update a video&#39;s relationship details
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; VIDEOS_USER or VIDEOS_ADMIN
     /// </remarks>
     /// <param name="videoId">The video id</param>/// <param name="relationshipId">The relationship id</param>/// <param name="details">The video relationship details (optional)</param>
     pplx::task<void> updateVideoRelationship(int64_t videoId, int64_t relationshipId, std::shared_ptr<StringWrapper> details);
@@ -271,7 +271,7 @@ public:
     /// Update a video template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="videoTemplateResource">The video template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> updateVideoTemplate(utility::string_t id, std::shared_ptr<TemplateResource> videoTemplateResource);
@@ -279,7 +279,7 @@ public:
     /// Increment a video&#39;s view count
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The video id</param>
     pplx::task<void> viewVideo(int64_t id);

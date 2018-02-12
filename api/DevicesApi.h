@@ -47,7 +47,7 @@ public:
     /// Add device users
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; DEVICES_ADMIN or owner
     /// </remarks>
     /// <param name="userResources">userResources</param>/// <param name="id">id</param>
     pplx::task<std::shared_ptr<DeviceResource>> addDeviceUsers(std::vector<std::shared_ptr<SimpleUserResource>> userResources, utility::string_t id);
@@ -55,7 +55,7 @@ public:
     /// Create a device
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="device">device</param>
     pplx::task<std::shared_ptr<DeviceResource>> createDevice(std::shared_ptr<DeviceResource> device);
@@ -63,7 +63,7 @@ public:
     /// Create a device template
     /// </summary>
     /// <remarks>
-    /// Device Templates define a type of device and the properties they have
+    /// Device Templates define a type of device and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="deviceTemplateResource">The device template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createDeviceTemplate(std::shared_ptr<TemplateResource> deviceTemplateResource);
@@ -71,7 +71,7 @@ public:
     /// Delete a device
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; DEVICES_ADMIN or owner
     /// </remarks>
     /// <param name="id">id</param>
     pplx::task<void> deleteDevice(utility::string_t id);
@@ -79,7 +79,7 @@ public:
     /// Delete an device template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deleteDeviceTemplate(utility::string_t id, utility::string_t cascade);
@@ -87,7 +87,7 @@ public:
     /// Delete a device user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; DEVICES_ADMIN or owner
     /// </remarks>
     /// <param name="id">The id of the device</param>/// <param name="userId">The user id of the device user</param>
     pplx::task<void> deleteDeviceUser(utility::string_t id, int32_t userId);
@@ -95,7 +95,7 @@ public:
     /// Delete all device users
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; DEVICES_ADMIN or owner
     /// </remarks>
     /// <param name="id">The id of the device</param>/// <param name="filterId">Filter for device users to delete with a user id in a given comma separated list of ids (optional)</param>
     pplx::task<void> deleteDeviceUsers(utility::string_t id, utility::string_t filterId);
@@ -103,7 +103,7 @@ public:
     /// Get a single device
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; DEVICES_ADMIN or owner
     /// </remarks>
     /// <param name="id">id</param>
     pplx::task<std::shared_ptr<DeviceResource>> getDevice(utility::string_t id);
@@ -111,7 +111,7 @@ public:
     /// Get a single device template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; description
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<TemplateResource>> getDeviceTemplate(utility::string_t id);
@@ -119,7 +119,7 @@ public:
     /// List and search device templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or DEVICES_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getDeviceTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -127,7 +127,7 @@ public:
     /// List and search devices
     /// </summary>
     /// <remarks>
-    /// Get a list of devices with optional filtering
+    /// Get a list of devices with optional filtering. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; DEVICES_ADMIN or user
     /// </remarks>
     /// <param name="filterMake">Filter for devices with specified make (optional)</param>/// <param name="filterModel">Filter for devices with specified model (optional)</param>/// <param name="filterOs">Filter for devices with specified OS (optional)</param>/// <param name="filterSerial">Filter for devices with specified serial (optional)</param>/// <param name="filterType">Filter for devices with specified type (optional)</param>/// <param name="filterTag">A comma separated list without spaces to filter for devices with specified tags (matches any) (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«DeviceResource»>> getDevices(utility::string_t filterMake, utility::string_t filterModel, utility::string_t filterOs, utility::string_t filterSerial, utility::string_t filterType, utility::string_t filterTag, int32_t size, int32_t page, utility::string_t order);
@@ -135,7 +135,7 @@ public:
     /// Update a device
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CUSTOMERS_ADMIN
     /// </remarks>
     /// <param name="device">device</param>/// <param name="id">id</param>
     pplx::task<std::shared_ptr<DeviceResource>> updateDevice(std::shared_ptr<DeviceResource> device, utility::string_t id);
@@ -143,7 +143,7 @@ public:
     /// Update an device template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="deviceTemplateResource">The device template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> updateDeviceTemplate(utility::string_t id, std::shared_ptr<TemplateResource> deviceTemplateResource);

@@ -43,7 +43,7 @@ public:
     /// Create a sale
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; SALES_ADMIN
     /// </remarks>
     /// <param name="catalogSale">The catalog sale object (optional)</param>
     pplx::task<std::shared_ptr<CatalogSale>> createCatalogSale(std::shared_ptr<CatalogSale> catalogSale);
@@ -51,7 +51,7 @@ public:
     /// Delete a sale
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; SALES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the sale</param>
     pplx::task<void> deleteCatalogSale(int32_t id);
@@ -59,7 +59,7 @@ public:
     /// Get a single sale
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; SALES_USER or SALES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the sale</param>
     pplx::task<std::shared_ptr<CatalogSale>> getCatalogSale(int32_t id);
@@ -67,7 +67,7 @@ public:
     /// List and search sales
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; SALES_USER or SALES_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«CatalogSale»>> getCatalogSales(int32_t size, int32_t page, utility::string_t order);
@@ -75,7 +75,7 @@ public:
     /// Update a sale
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; SALES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the sale</param>/// <param name="catalogSale">The catalog sale object (optional)</param>
     pplx::task<std::shared_ptr<CatalogSale>> updateCatalogSale(int32_t id, std::shared_ptr<CatalogSale> catalogSale);

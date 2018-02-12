@@ -41,7 +41,7 @@ public:
     /// Mark an invoice paid with Google
     /// </summary>
     /// <remarks>
-    /// Mark an invoice paid with Google. Verifies signature from Google and treats the developerPayload field inside the json payload as the id of the invoice to pay. Returns the transaction ID if successful.
+    /// Mark an invoice paid with Google. Verifies signature from Google and treats the developerPayload field inside the json payload as the id of the invoice to pay. Returns the transaction ID if successful. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="request">The request for paying an invoice through a Google in-app payment (optional)</param>
     pplx::task<int32_t> handleGooglePayment(std::shared_ptr<GooglePaymentRequest> request);

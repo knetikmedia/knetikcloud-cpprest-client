@@ -41,7 +41,7 @@ public:
     /// Delete maintenance info
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; MAINTENANCE_ADMIN
     /// </remarks>
     
     pplx::task<void> deleteMaintenance();
@@ -49,7 +49,7 @@ public:
     /// Get current maintenance info
     /// </summary>
     /// <remarks>
-    /// Get current maintenance info. 404 if no maintenance.
+    /// Get current maintenance info. 404 if no maintenance. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     
     pplx::task<std::shared_ptr<Maintenance>> getMaintenance();
@@ -57,7 +57,7 @@ public:
     /// Set current maintenance info
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; MAINTENANCE_ADMIN
     /// </remarks>
     /// <param name="maintenance">The maintenance object (optional)</param>
     pplx::task<void> setMaintenance(std::shared_ptr<Maintenance> maintenance);
@@ -65,7 +65,7 @@ public:
     /// Update current maintenance info
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; MAINTENANCE_ADMIN
     /// </remarks>
     /// <param name="maintenance">The maintenance object (optional)</param>
     pplx::task<void> updateMaintenance(std::shared_ptr<Maintenance> maintenance);

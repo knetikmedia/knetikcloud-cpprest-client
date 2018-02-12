@@ -24,6 +24,7 @@
 
 #include "SelectedSettingRequest.h"
 #include <cpprest/details/basic_types.h>
+#include "CoreActivityOccurrenceSettings.h"
 #include "Participant.h"
 #include "ItemIdRequest.h"
 #include <vector>
@@ -72,6 +73,13 @@ public:
     void unsetChallenge_activity_id();
     void setChallengeActivityId(int64_t value);
     /// <summary>
+    /// Defines core settings about the activity that affect how it can be created/played by users.
+    /// </summary>
+    std::shared_ptr<CoreActivityOccurrenceSettings> getCoreSettings() const;
+    bool coreSettingsIsSet() const;
+    void unsetCore_settings();
+    void setCoreSettings(std::shared_ptr<CoreActivityOccurrenceSettings> value);
+    /// <summary>
     /// The entitlement item required to enter the occurrence. Required if not part of an event. Must come from the set of entitlement items listed in the activity
     /// </summary>
     std::shared_ptr<ItemIdRequest> getEntitlement() const;
@@ -85,6 +93,13 @@ public:
     bool eventIdIsSet() const;
     void unsetEvent_id();
     void setEventId(int64_t value);
+    /// <summary>
+    /// The host of the occurrence, if not a participant (will be left out of users array). Must be the caller that creates the occurrence unless admin. Requires activity/challenge to allow host_option of &#39;non_player&#39; if not admin as well
+    /// </summary>
+    int32_t getHost() const;
+    bool hostIsSet() const;
+    void unsetHost();
+    void setHost(int32_t value);
     /// <summary>
     /// The values selected from the available settings defined for the activity. Ex: difficulty: hard. Can be left out if the activity is played during an event and the settings are already set at the event level. Ex: every monday, difficulty: hard, number of questions: 10, category: sport. Otherwise, the set must exactly match those of the activity.
     /// </summary>
@@ -119,10 +134,14 @@ protected:
     bool m_Activity_idIsSet;
     int64_t m_Challenge_activity_id;
     bool m_Challenge_activity_idIsSet;
+    std::shared_ptr<CoreActivityOccurrenceSettings> m_Core_settings;
+    bool m_Core_settingsIsSet;
     std::shared_ptr<ItemIdRequest> m_Entitlement;
     bool m_EntitlementIsSet;
     int64_t m_Event_id;
     bool m_Event_idIsSet;
+    int32_t m_Host;
+    bool m_HostIsSet;
     std::vector<std::shared_ptr<SelectedSettingRequest>> m_Settings;
     bool m_SettingsIsSet;
     bool m_Simulated;

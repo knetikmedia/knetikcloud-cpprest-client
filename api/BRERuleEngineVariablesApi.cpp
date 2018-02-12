@@ -76,7 +76,6 @@ pplx::task<std::vector<std::shared_ptr<VariableTypeResource>>> BRERuleEngineVari
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -205,7 +204,6 @@ pplx::task<std::shared_ptr<PageResource«SimpleReferenceResource«object»»>> B
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

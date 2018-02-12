@@ -42,7 +42,7 @@ public:
     /// Retrieve a challenge event leaderboard details
     /// </summary>
     /// <remarks>
-    /// Lists all leaderboard entries with additional user details
+    /// Lists all leaderboard entries with additional user details. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="filterEvent">A sepecific challenge event id (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«ChallengeEventParticipantResource»>> getChallengeEventLeaderboard(int64_t filterEvent, int32_t size, int32_t page, utility::string_t order);
@@ -50,7 +50,7 @@ public:
     /// Retrieve a challenge event participant details
     /// </summary>
     /// <remarks>
-    /// Lists all user submitted scores sorted by value, including those that do not apear in the leaderboard due to value or aggregation
+    /// Lists all user submitted scores sorted by value, including those that do not apear in the leaderboard due to value or aggregation. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_CHALLENGES_ADMIN
     /// </remarks>
     /// <param name="filterEvent">A sepecific challenge event id (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«ChallengeEventParticipantResource»>> getChallengeEventParticipants(int64_t filterEvent, int32_t size, int32_t page, utility::string_t order);

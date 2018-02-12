@@ -43,7 +43,7 @@ public:
     /// Add a friend
     /// </summary>
     /// <remarks>
-    /// As a user, either creates or confirm a pending request. As an admin, call this endpoint twice while inverting the IDs to create a confirmed friendship.
+    /// As a user, either creates or confirm a pending request. As an admin, call this endpoint twice while inverting the IDs to create a confirmed friendship. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; FRIENDSHIPS_ADMIN or (FRIENDSHIPS_USER and owner)
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39; if logged in</param>/// <param name="id">The id of the user to befriend</param>
     pplx::task<void> addFriend(utility::string_t userId, int32_t id);
@@ -51,7 +51,7 @@ public:
     /// Get friends list
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; FRIENDSHIPS_ADMIN or (FRIENDSHIPS_USER and owner)
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39;</param>/// <param name="filterUsername">Filter for friends with the given username (optional)</param>/// <param name="filterUserId">Filter for friends by user id (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«SimpleUserResource»>> getFriends(utility::string_t userId, utility::string_t filterUsername, int32_t filterUserId, int32_t size, int32_t page);
@@ -59,7 +59,7 @@ public:
     /// Returns the invite token
     /// </summary>
     /// <remarks>
-    /// This is a unique invite token that allows direct connection to the request user.  Exposing that token presents privacy issues if the token is leaked. Use friend request flow instead if confirmation is required
+    /// This is a unique invite token that allows direct connection to the request user.  Exposing that token presents privacy issues if the token is leaked. Use friend request. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; FRIENDSHIPS_ADMIN or (FRIENDSHIPS_USER and owner)flow instead if confirmation is required
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39; if logged in</param>
     pplx::task<utility::string_t> getInviteToken(utility::string_t userId);
@@ -67,7 +67,7 @@ public:
     /// Get pending invites
     /// </summary>
     /// <remarks>
-    /// Invites that the specified user received
+    /// Invites that the specified user received. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; FRIENDSHIPS_ADMIN or (FRIENDSHIPS_USER and owner)
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39;</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«SimpleUserResource»>> getInvites(utility::string_t userId, int32_t size, int32_t page);
@@ -75,7 +75,7 @@ public:
     /// Redeem friendship token
     /// </summary>
     /// <remarks>
-    /// Immediately connects the requested user with the user mapped by the provided invite token
+    /// Immediately connects the requested user with the user mapped by the provided invite token. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; FRIENDSHIPS_ADMIN or (FRIENDSHIPS_USER and owner)
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39; if logged in</param>/// <param name="token">The invite token (optional)</param>
     pplx::task<void> redeemFriendshipToken(utility::string_t userId, std::shared_ptr<StringWrapper> token);
@@ -83,7 +83,7 @@ public:
     /// Remove or decline a friend
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; FRIENDSHIPS_ADMIN or (FRIENDSHIPS_USER and owner)
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39; if logged in</param>/// <param name="id">The id of the user to befriend</param>
     pplx::task<void> removeOrDeclineFriend(utility::string_t userId, int32_t id);

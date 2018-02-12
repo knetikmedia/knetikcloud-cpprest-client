@@ -43,7 +43,7 @@ public:
     /// Create a user relationship
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; RELATIONSHIPS_ADMIN
     /// </remarks>
     /// <param name="relationship">The new relationship (optional)</param>
     pplx::task<std::shared_ptr<UserRelationshipResource>> createUserRelationship(std::shared_ptr<UserRelationshipResource> relationship);
@@ -51,7 +51,7 @@ public:
     /// Delete a user relationship
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; RELATIONSHIPS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the relationship</param>
     pplx::task<void> deleteUserRelationship(int64_t id);
@@ -59,7 +59,7 @@ public:
     /// Get a user relationship
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; RELATIONSHIPS_USER or RELATIONSHIPS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the relationship</param>
     pplx::task<std::shared_ptr<UserRelationshipResource>> getUserRelationship(int64_t id);
@@ -67,7 +67,7 @@ public:
     /// Get a list of user relationships
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; RELATIONSHIPS_USER or RELATIONSHIPS_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«UserRelationshipResource»>> getUserRelationships(int32_t size, int32_t page, utility::string_t order);
@@ -75,7 +75,7 @@ public:
     /// Update a user relationship
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; RELATIONSHIPS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the relationship</param>/// <param name="relationship">The new relationship (optional)</param>
     pplx::task<std::shared_ptr<UserRelationshipResource>> updateUserRelationship(int64_t id, std::shared_ptr<UserRelationshipResource> relationship);

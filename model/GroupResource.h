@@ -64,7 +64,7 @@ public:
     void unsetAdditional_properties();
     void setAdditionalProperties(std::map<utility::string_t, std::shared_ptr<Property>> value);
     /// <summary>
-    /// A description of the group. Max 250 characters
+    /// A description of the group
     /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;

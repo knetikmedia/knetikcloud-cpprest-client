@@ -44,7 +44,7 @@ public:
     /// Add a new disposition
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; DISPOSITIONS_USER and user, or DISPOSITIONS_ADMIN
     /// </remarks>
     /// <param name="disposition">The new disposition record (optional)</param>
     pplx::task<std::shared_ptr<DispositionResource>> addDisposition(std::shared_ptr<DispositionResource> disposition);
@@ -52,7 +52,7 @@ public:
     /// Delete a disposition
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; DISPOSITIONS_USER and owner, or DISPOSITIONS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the disposition record</param>
     pplx::task<void> deleteDisposition(int64_t id);
@@ -60,7 +60,7 @@ public:
     /// Returns a disposition
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id of the disposition record</param>
     pplx::task<std::shared_ptr<DispositionResource>> getDisposition(int64_t id);
@@ -68,7 +68,7 @@ public:
     /// Returns a list of disposition counts
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterContext">Filter for dispositions within a context type (games, articles, polls, etc). Optionally with a specific id like filter_context&#x3D;video:47 (optional)</param>/// <param name="filterOwner">Filter for dispositions from a specific user by id or &#39;me&#39; (optional)</param>
     pplx::task<std::vector<std::shared_ptr<DispositionCount>>> getDispositionCounts(utility::string_t filterContext, utility::string_t filterOwner);
@@ -76,7 +76,7 @@ public:
     /// Returns a page of dispositions
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterContext">Filter for dispositions within a context type (games, articles, polls, etc). Optionally with a specific id like filter_context&#x3D;video:47 (optional)</param>/// <param name="filterOwner">Filter for dispositions from a specific user by id or &#39;me&#39; (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«DispositionResource»>> getDispositions(utility::string_t filterContext, utility::string_t filterOwner, int32_t size, int32_t page, utility::string_t order);

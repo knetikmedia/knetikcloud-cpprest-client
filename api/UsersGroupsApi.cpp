@@ -775,7 +775,6 @@ pplx::task<void> UsersGroupsApi::deleteGroup(utility::string_t uniqueName)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -879,7 +878,6 @@ pplx::task<void> UsersGroupsApi::deleteGroupMemberTemplate(utility::string_t id,
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -987,7 +985,6 @@ pplx::task<void> UsersGroupsApi::deleteGroupTemplate(utility::string_t id, utili
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1054,6 +1051,130 @@ pplx::task<void> UsersGroupsApi::deleteGroupTemplate(utility::string_t id, utili
         return void();
     });
 }
+pplx::task<void> UsersGroupsApi::disableGroupNotification(utility::string_t uniqueName, utility::string_t userId, std::shared_ptr<ValueWrapper«boolean»> disabled)
+{
+
+    // verify the required parameter 'disabled' is set
+    if (disabled == nullptr)
+    {
+        throw ApiException(400, U("Missing required parameter 'disabled' when calling UsersGroupsApi->disableGroupNotification"));
+    }
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/users/groups/{unique_name}/members/{user_id}/messages/disabled");
+    boost::replace_all(path, U("{") U("unique_name") U("}"), ApiClient::parameterToString(uniqueName));
+boost::replace_all(path, U("{") U("user_id") U("}"), ApiClient::parameterToString(userId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("UsersGroupsApi->disableGroupNotification does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(disabled);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(disabled.get())
+        {
+            disabled->toMultipart(multipart, U("disabled"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("UsersGroupsApi->disableGroupNotification does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling disableGroupNotification: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling disableGroupNotification: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        return void();
+    });
+}
 pplx::task<std::shared_ptr<GroupResource>> UsersGroupsApi::getGroup(utility::string_t uniqueName)
 {
 
@@ -1095,7 +1216,6 @@ pplx::task<std::shared_ptr<GroupResource>> UsersGroupsApi::getGroup(utility::str
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1217,7 +1337,6 @@ pplx::task<std::vector<std::shared_ptr<GroupResource>>> UsersGroupsApi::getGroup
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1241,6 +1360,10 @@ pplx::task<std::vector<std::shared_ptr<GroupResource>>> UsersGroupsApi::getGroup
     //Set the request content type in the header.
     headerParams[U("Content-Type")] = requestHttpContentType;
 
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
     .then([=](web::http::http_response response)
@@ -1343,7 +1466,6 @@ boost::replace_all(path, U("{") U("user_id") U("}"), ApiClient::parameterToStrin
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1465,7 +1587,6 @@ pplx::task<std::shared_ptr<TemplateResource>> UsersGroupsApi::getGroupMemberTemp
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1586,7 +1707,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> UsersGroupsApi::ge
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1720,7 +1840,6 @@ pplx::task<std::shared_ptr<PageResource«GroupMemberResource»>> UsersGroupsApi:
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1813,6 +1932,135 @@ pplx::task<std::shared_ptr<PageResource«GroupMemberResource»>> UsersGroupsApi:
         return result;
     });
 }
+pplx::task<std::shared_ptr<PageResource«ChatMessageResource»>> UsersGroupsApi::getGroupMessages(utility::string_t uniqueName, int32_t size, int32_t page)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/users/groups/{unique_name}/messages");
+    boost::replace_all(path, U("{") U("unique_name") U("}"), ApiClient::parameterToString(uniqueName));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("UsersGroupsApi->getGroupMessages does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+
+    
+    {
+        queryParams[U("size")] = ApiClient::parameterToString(size);
+    }
+    
+    {
+        queryParams[U("page")] = ApiClient::parameterToString(page);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("UsersGroupsApi->getGroupMessages does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling getGroupMessages: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling getGroupMessages: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<PageResource«ChatMessageResource»> result(new PageResource«ChatMessageResource»());
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling getGroupMessages: unsupported response type"));
+        }
+
+        return result;
+    });
+}
 pplx::task<std::shared_ptr<TemplateResource>> UsersGroupsApi::getGroupTemplate(utility::string_t id)
 {
 
@@ -1854,7 +2102,6 @@ pplx::task<std::shared_ptr<TemplateResource>> UsersGroupsApi::getGroupTemplate(u
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1975,7 +2222,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> UsersGroupsApi::ge
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2109,7 +2355,6 @@ pplx::task<std::vector<utility::string_t>> UsersGroupsApi::getGroupsForUser(int3
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2239,7 +2484,6 @@ pplx::task<std::shared_ptr<PageResource«GroupResource»>> UsersGroupsApi::listG
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2356,6 +2600,137 @@ pplx::task<std::shared_ptr<PageResource«GroupResource»>> UsersGroupsApi::listG
         return result;
     });
 }
+pplx::task<std::shared_ptr<ChatMessageResource>> UsersGroupsApi::postGroupMessage(utility::string_t uniqueName, std::shared_ptr<ChatMessageRequest> chatMessageRequest)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/users/groups/{unique_name}/messages");
+    boost::replace_all(path, U("{") U("unique_name") U("}"), ApiClient::parameterToString(uniqueName));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("UsersGroupsApi->postGroupMessage does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(chatMessageRequest);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(chatMessageRequest.get())
+        {
+            chatMessageRequest->toMultipart(multipart, U("chatMessageRequest"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("UsersGroupsApi->postGroupMessage does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+
+    return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling postGroupMessage: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling postGroupMessage: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<ChatMessageResource> result(new ChatMessageResource());
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling postGroupMessage: unsupported response type"));
+        }
+
+        return result;
+    });
+}
 pplx::task<void> UsersGroupsApi::removeGroupMember(utility::string_t uniqueName, int32_t userId)
 {
 
@@ -2398,7 +2773,6 @@ boost::replace_all(path, U("{") U("user_id") U("}"), ApiClient::parameterToStrin
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

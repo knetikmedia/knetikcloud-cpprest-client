@@ -210,7 +210,6 @@ pplx::task<void> MediaModerationApi::deleteFlag(utility::string_t contextName, u
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -325,7 +324,6 @@ pplx::task<std::shared_ptr<PageResource«FlagResource»>> MediaModerationApi::ge
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -467,7 +465,6 @@ pplx::task<std::shared_ptr<FlagReportResource>> MediaModerationApi::getModeratio
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -588,7 +585,6 @@ pplx::task<std::shared_ptr<PageResource«FlagReportResource»>> MediaModerationA
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

@@ -45,7 +45,7 @@ public:
     /// Create an object
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; INVENTORY_ADMIN
     /// </remarks>
     /// <param name="templateId">The id of the template this object is to be part of</param>/// <param name="cascade">Whether to cascade group changes, such as in the limited gettable behavior. A 400 error will return otherwise if the group is already in use with different values. (optional, default to false)</param>/// <param name="objectItem">The object item object (optional)</param>
     pplx::task<std::shared_ptr<ObjectResource>> createObjectItem(utility::string_t templateId, bool cascade, std::shared_ptr<ObjectResource> objectItem);
@@ -53,7 +53,7 @@ public:
     /// Create an object template
     /// </summary>
     /// <remarks>
-    /// Object templates define a type of entitlement and the properties they have
+    /// Object templates define a type of entitlement and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="template">The entitlement template to be created (optional)</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> createObjectTemplate(std::shared_ptr<ItemTemplateResource> template);
@@ -61,7 +61,7 @@ public:
     /// Delete an object
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; INVENTORY_ADMIN
     /// </remarks>
     /// <param name="templateId">The id of the template this object is part of</param>/// <param name="objectId">The id of the object</param>
     pplx::task<void> deleteObjectItem(utility::string_t templateId, int32_t objectId);
@@ -69,7 +69,7 @@ public:
     /// Delete an entitlement template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deleteObjectTemplate(utility::string_t id, utility::string_t cascade);
@@ -77,7 +77,7 @@ public:
     /// Get a single object
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="templateId">The id of the template this object is part of</param>/// <param name="objectId">The id of the object</param>
     pplx::task<std::shared_ptr<ObjectResource>> getObjectItem(utility::string_t templateId, int32_t objectId);
@@ -85,7 +85,7 @@ public:
     /// List and search objects
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="templateId">The id of the template to get objects for</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«ObjectResource»>> getObjectItems(utility::string_t templateId, int32_t size, int32_t page, utility::string_t order);
@@ -93,7 +93,7 @@ public:
     /// Get a single entitlement template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or ACHIEVEMENTS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> getObjectTemplate(utility::string_t id);
@@ -101,7 +101,7 @@ public:
     /// List and search entitlement templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or ACHIEVEMENTS_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> getObjectTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -109,7 +109,7 @@ public:
     /// Update an object
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; INVENTORY_ADMIN
     /// </remarks>
     /// <param name="templateId">The id of the template this object is part of</param>/// <param name="objectId">The id of the object</param>/// <param name="cascade">Whether to cascade group changes, such as in the limited gettable behavior. A 400 error will return otherwise if the group is already in use with different values. (optional, default to false)</param>/// <param name="objectItem">The object item object (optional)</param>
     pplx::task<void> updateObjectItem(utility::string_t templateId, int32_t objectId, bool cascade, std::shared_ptr<ObjectResource> objectItem);
@@ -117,7 +117,7 @@ public:
     /// Update an entitlement template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="template">The updated template (optional)</param>
     pplx::task<std::shared_ptr<ItemTemplateResource>> updateObjectTemplate(utility::string_t id, std::shared_ptr<ItemTemplateResource> template);

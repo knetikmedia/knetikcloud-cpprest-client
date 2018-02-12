@@ -898,7 +898,6 @@ pplx::task<void> GamificationTriviaApi::deleteImportJob(int64_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1002,7 +1001,6 @@ pplx::task<void> GamificationTriviaApi::deleteQuestion(utility::string_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1107,7 +1105,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1211,7 +1208,6 @@ pplx::task<void> GamificationTriviaApi::deleteQuestionTemplate(utility::string_t
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1319,7 +1315,6 @@ pplx::task<std::shared_ptr<ImportJobResource>> GamificationTriviaApi::getImportJ
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1440,7 +1435,6 @@ pplx::task<std::shared_ptr<PageResource«ImportJobResource»>> GamificationTrivi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1590,7 +1584,6 @@ pplx::task<std::shared_ptr<QuestionResource>> GamificationTriviaApi::getQuestion
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1713,7 +1706,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1835,7 +1827,6 @@ pplx::task<std::vector<std::shared_ptr<AnswerResource>>> GamificationTriviaApi::
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1963,7 +1954,6 @@ pplx::task<std::vector<std::shared_ptr<DeltaResource>>> GamificationTriviaApi::g
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2096,7 +2086,6 @@ pplx::task<std::vector<utility::string_t>> GamificationTriviaApi::getQuestionTag
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -2223,7 +2212,6 @@ pplx::task<std::shared_ptr<QuestionTemplateResource>> GamificationTriviaApi::get
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -2344,7 +2332,6 @@ pplx::task<std::shared_ptr<PageResource«QuestionTemplateResource»>> Gamificati
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2477,7 +2464,6 @@ pplx::task<std::shared_ptr<PageResource«QuestionResource»>> GamificationTrivia
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2642,7 +2628,6 @@ pplx::task<int64_t> GamificationTriviaApi::getQuestionsCount(utility::string_t f
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2920,7 +2905,6 @@ boost::replace_all(path, U("{") U("tag") U("}"), ApiClient::parameterToString(ta
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -3024,7 +3008,6 @@ pplx::task<int32_t> GamificationTriviaApi::removeTagToQuestionsBatch(utility::st
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -3178,7 +3161,6 @@ pplx::task<std::vector<utility::string_t>> GamificationTriviaApi::searchQuestion
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

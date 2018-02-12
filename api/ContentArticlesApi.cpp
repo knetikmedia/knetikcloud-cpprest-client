@@ -345,7 +345,6 @@ pplx::task<void> ContentArticlesApi::deleteArticle(utility::string_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -449,7 +448,6 @@ pplx::task<void> ContentArticlesApi::deleteArticleTemplate(utility::string_t id,
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -557,7 +555,6 @@ pplx::task<std::shared_ptr<ArticleResource>> ContentArticlesApi::getArticle(util
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -679,7 +676,6 @@ pplx::task<std::shared_ptr<TemplateResource>> ContentArticlesApi::getArticleTemp
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -800,7 +796,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> ContentArticlesApi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -933,7 +928,6 @@ pplx::task<std::shared_ptr<PageResource«ArticleResource»>> ContentArticlesApi:
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

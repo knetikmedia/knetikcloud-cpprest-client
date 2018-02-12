@@ -45,7 +45,7 @@ public:
     /// Create a new client
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CLIENTS_ADMIN
     /// </remarks>
     /// <param name="clientResource">The client resource object (optional)</param>
     pplx::task<std::shared_ptr<ClientResource>> createClient(std::shared_ptr<ClientResource> clientResource);
@@ -53,7 +53,7 @@ public:
     /// Delete a client
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CLIENTS_ADMIN
     /// </remarks>
     /// <param name="clientKey">The key of the client</param>
     pplx::task<void> deleteClient(utility::string_t clientKey);
@@ -61,7 +61,7 @@ public:
     /// Get a single client
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CLIENTS_ADMIN
     /// </remarks>
     /// <param name="clientKey">The key of the client</param>
     pplx::task<std::shared_ptr<ClientResource>> getClient(utility::string_t clientKey);
@@ -69,7 +69,7 @@ public:
     /// List available client grant types
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CLIENTS_ADMIN
     /// </remarks>
     
     pplx::task<std::vector<std::shared_ptr<GrantTypeResource>>> getClientGrantTypes();
@@ -77,7 +77,7 @@ public:
     /// List and search clients
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CLIENTS_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«ClientResource»>> getClients(int32_t size, int32_t page, utility::string_t order);
@@ -85,7 +85,7 @@ public:
     /// Set grant types for a client
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CLIENTS_ADMIN
     /// </remarks>
     /// <param name="clientKey">The key of the client</param>/// <param name="grantList">A list of unique grant types (optional)</param>
     pplx::task<void> setClientGrantTypes(utility::string_t clientKey, std::vector<utility::string_t> grantList);
@@ -93,7 +93,7 @@ public:
     /// Set redirect uris for a client
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CLIENTS_ADMIN
     /// </remarks>
     /// <param name="clientKey">The key of the client</param>/// <param name="redirectList">A list of unique redirect uris (optional)</param>
     pplx::task<void> setClientRedirectUris(utility::string_t clientKey, std::vector<utility::string_t> redirectList);
@@ -101,7 +101,7 @@ public:
     /// Update a client
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CLIENTS_ADMIN
     /// </remarks>
     /// <param name="clientKey">The key of the client</param>/// <param name="clientResource">The client resource object (optional)</param>
     pplx::task<std::shared_ptr<ClientResource>> updateClient(utility::string_t clientKey, std::shared_ptr<ClientResource> clientResource);

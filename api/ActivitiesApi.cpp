@@ -36,6 +36,149 @@ ActivitiesApi::~ActivitiesApi()
 {
 }
 
+pplx::task<std::shared_ptr<ActivityOccurrenceResource>> ActivitiesApi::addUser(int64_t activityOccurrenceId, bool test, bool bypassRestrictions, std::shared_ptr<IntWrapper> userId)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/activity-occurrences/{activity_occurrence_id}/users");
+    boost::replace_all(path, U("{") U("activity_occurrence_id") U("}"), ApiClient::parameterToString(activityOccurrenceId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("ActivitiesApi->addUser does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+    
+    {
+        queryParams[U("test")] = ApiClient::parameterToString(test);
+    }
+    
+    {
+        queryParams[U("bypass_restrictions")] = ApiClient::parameterToString(bypassRestrictions);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(userId);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(userId.get())
+        {
+            userId->toMultipart(multipart, U("userId"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("ActivitiesApi->addUser does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling addUser: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling addUser: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<ActivityOccurrenceResource> result(new ActivityOccurrenceResource());
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling addUser: unsupported response type"));
+        }
+
+        return result;
+    });
+}
 pplx::task<std::shared_ptr<ActivityResource>> ActivitiesApi::createActivity(std::shared_ptr<ActivityResource> activityResource)
 {
 
@@ -483,7 +626,6 @@ pplx::task<void> ActivitiesApi::deleteActivity(int64_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -587,7 +729,6 @@ pplx::task<void> ActivitiesApi::deleteActivityTemplate(utility::string_t id, uti
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -694,7 +835,6 @@ pplx::task<std::shared_ptr<PageResource«BareActivityResource»>> ActivitiesApi:
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -840,7 +980,6 @@ pplx::task<std::shared_ptr<ActivityResource>> ActivitiesApi::getActivity(int64_t
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -962,7 +1101,6 @@ pplx::task<std::shared_ptr<ActivityOccurrenceResource>> ActivitiesApi::getActivi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1084,7 +1222,6 @@ pplx::task<std::shared_ptr<TemplateResource>> ActivitiesApi::getActivityTemplate
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1205,7 +1342,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> ActivitiesApi::get
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1338,7 +1474,6 @@ pplx::task<std::shared_ptr<PageResource«ActivityOccurrenceResource»>> Activiti
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1445,6 +1580,118 @@ pplx::task<std::shared_ptr<PageResource«ActivityOccurrenceResource»>> Activiti
         }
 
         return result;
+    });
+}
+pplx::task<void> ActivitiesApi::removeUser(int64_t activityOccurrenceId, utility::string_t userId, bool ban, bool bypassRestrictions)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/activity-occurrences/{activity_occurrence_id}/users/{user_id}");
+    boost::replace_all(path, U("{") U("activity_occurrence_id") U("}"), ApiClient::parameterToString(activityOccurrenceId));
+boost::replace_all(path, U("{") U("user_id") U("}"), ApiClient::parameterToString(userId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("ActivitiesApi->removeUser does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+
+    
+    {
+        queryParams[U("ban")] = ApiClient::parameterToString(ban);
+    }
+    
+    {
+        queryParams[U("bypass_restrictions")] = ApiClient::parameterToString(bypassRestrictions);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, U("ActivitiesApi->removeUser does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling removeUser: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling removeUser: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        return void();
     });
 }
 pplx::task<std::shared_ptr<ActivityOccurrenceResults>> ActivitiesApi::setActivityOccurrenceResults(int64_t activityOccurrenceId, std::shared_ptr<ActivityOccurrenceResultsResource> activityOccurrenceResults)
@@ -1577,6 +1824,274 @@ pplx::task<std::shared_ptr<ActivityOccurrenceResults>> ActivitiesApi::setActivit
         {
             throw ApiException(500
                 , U("error calling setActivityOccurrenceResults: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<ActivityOccurrenceResource>> ActivitiesApi::setActivityOccurrenceSettings(int64_t activityOccurrenceId, std::shared_ptr<ActivityOccurrenceSettingsResource> settings)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/activity-occurrences/{activity_occurrence_id}/settings");
+    boost::replace_all(path, U("{") U("activity_occurrence_id") U("}"), ApiClient::parameterToString(activityOccurrenceId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("ActivitiesApi->setActivityOccurrenceSettings does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(settings);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+                if(settings.get())
+        {
+            settings->toMultipart(multipart, U("settings"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("ActivitiesApi->setActivityOccurrenceSettings does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling setActivityOccurrenceSettings: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling setActivityOccurrenceSettings: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<ActivityOccurrenceResource> result(new ActivityOccurrenceResource());
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling setActivityOccurrenceSettings: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::shared_ptr<ActivityUserResource>> ActivitiesApi::setUserStatus(int64_t activityOccurrenceId, utility::string_t userId, utility::string_t status)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = U("/activity-occurrences/{activity_occurrence_id}/users/{user_id}/status");
+    boost::replace_all(path, U("{") U("activity_occurrence_id") U("}"), ApiClient::parameterToString(activityOccurrenceId));
+boost::replace_all(path, U("{") U("user_id") U("}"), ApiClient::parameterToString(userId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( U("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(U("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(U("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = U("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, U("ActivitiesApi->setUserStatus does not produce any supported media type"));
+    }
+
+    headerParams[U("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( U("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(U("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(status);
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(U("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = U("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+        multipart->add(ModelBase::toHttpContent("status", status));
+
+        httpBody = multipart;
+        requestHttpContentType += U("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, U("ActivitiesApi->setUserStatus does not consume any supported media type"));
+    }
+
+    //Set the request content type in the header.
+    headerParams[U("Content-Type")] = requestHttpContentType;
+
+    // authentication (oauth2_client_credentials_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+    // authentication (oauth2_password_grant) required
+    // oauth2 authentication is added automatically as part of the http_client_config
+
+    return m_ApiClient->callApi(path, U("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , U("error calling setUserStatus: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(U("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[U("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , U("error calling setUserStatus: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<ActivityUserResource> result(new ActivityUserResource());
+
+        if(responseHttpContentType == U("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == U("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , U("error calling setUserStatus: unsupported response type"));
         }
 
         return result;
@@ -1717,7 +2232,7 @@ pplx::task<std::shared_ptr<ActivityResource>> ActivitiesApi::updateActivity(int6
         return result;
     });
 }
-pplx::task<void> ActivitiesApi::updateActivityOccurrence(int64_t activityOccurrenceId, utility::string_t activityOccurrenceStatus)
+pplx::task<void> ActivitiesApi::updateActivityOccurrenceStatus(int64_t activityOccurrenceId, std::shared_ptr<ValueWrapper«string»> activityOccurrenceStatus)
 {
 
 
@@ -1752,7 +2267,7 @@ pplx::task<void> ActivitiesApi::updateActivityOccurrence(int64_t activityOccurre
     }
     else
     {
-        throw ApiException(400, U("ActivitiesApi->updateActivityOccurrence does not produce any supported media type"));
+        throw ApiException(400, U("ActivitiesApi->updateActivityOccurrenceStatus does not produce any supported media type"));
     }
 
     headerParams[U("Accept")] = responseHttpContentType;
@@ -1779,14 +2294,17 @@ pplx::task<void> ActivitiesApi::updateActivityOccurrence(int64_t activityOccurre
     {
         requestHttpContentType = U("multipart/form-data");
         std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
-        multipart->add(ModelBase::toHttpContent("activityOccurrenceStatus", activityOccurrenceStatus));
+                if(activityOccurrenceStatus.get())
+        {
+            activityOccurrenceStatus->toMultipart(multipart, U("activityOccurrenceStatus"));
+        }
 
         httpBody = multipart;
         requestHttpContentType += U("; boundary=") + multipart->getBoundary();
     }
     else
     {
-        throw ApiException(415, U("ActivitiesApi->updateActivityOccurrence does not consume any supported media type"));
+        throw ApiException(415, U("ActivitiesApi->updateActivityOccurrenceStatus does not consume any supported media type"));
     }
 
     //Set the request content type in the header.
@@ -1808,7 +2326,7 @@ pplx::task<void> ActivitiesApi::updateActivityOccurrence(int64_t activityOccurre
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , U("error calling updateActivityOccurrence: ") + response.reason_phrase()
+                , U("error calling updateActivityOccurrenceStatus: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -1819,7 +2337,7 @@ pplx::task<void> ActivitiesApi::updateActivityOccurrence(int64_t activityOccurre
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , U("error calling updateActivityOccurrence: unexpected response type: ") + contentType
+                    , U("error calling updateActivityOccurrenceStatus: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }

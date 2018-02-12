@@ -25,9 +25,12 @@ CreateActivityOccurrenceRequest::CreateActivityOccurrenceRequest()
     m_Activity_idIsSet = false;
     m_Challenge_activity_id = 0L;
     m_Challenge_activity_idIsSet = false;
+    m_Core_settingsIsSet = false;
     m_EntitlementIsSet = false;
     m_Event_id = 0L;
     m_Event_idIsSet = false;
+    m_Host = 0;
+    m_HostIsSet = false;
     m_SettingsIsSet = false;
     m_Simulated = false;
     m_SimulatedIsSet = false;
@@ -57,6 +60,10 @@ web::json::value CreateActivityOccurrenceRequest::toJson() const
     {
         val[U("challenge_activity_id")] = ModelBase::toJson(m_Challenge_activity_id);
     }
+    if(m_Core_settingsIsSet)
+    {
+        val[U("core_settings")] = ModelBase::toJson(m_Core_settings);
+    }
     if(m_EntitlementIsSet)
     {
         val[U("entitlement")] = ModelBase::toJson(m_Entitlement);
@@ -64,6 +71,10 @@ web::json::value CreateActivityOccurrenceRequest::toJson() const
     if(m_Event_idIsSet)
     {
         val[U("event_id")] = ModelBase::toJson(m_Event_id);
+    }
+    if(m_HostIsSet)
+    {
+        val[U("host")] = ModelBase::toJson(m_Host);
     }
     {
         std::vector<web::json::value> jsonArray;
@@ -109,6 +120,15 @@ void CreateActivityOccurrenceRequest::fromJson(web::json::value& val)
     {
         setChallengeActivityId(ModelBase::int64_tFromJson(val[U("challenge_activity_id")]));
     }
+    if(val.has_field(U("core_settings")))
+    {
+        if(!val[U("core_settings")].is_null())
+        {
+            std::shared_ptr<CoreActivityOccurrenceSettings> newItem(new CoreActivityOccurrenceSettings());
+            newItem->fromJson(val[U("core_settings")]);
+            setCoreSettings( newItem );
+        }
+    }
     if(val.has_field(U("entitlement")))
     {
         if(!val[U("entitlement")].is_null())
@@ -121,6 +141,10 @@ void CreateActivityOccurrenceRequest::fromJson(web::json::value& val)
     if(val.has_field(U("event_id")))
     {
         setEventId(ModelBase::int64_tFromJson(val[U("event_id")]));
+    }
+    if(val.has_field(U("host")))
+    {
+        setHost(ModelBase::int32_tFromJson(val[U("host")]));
     }
     {
         m_Settings.clear();
@@ -188,6 +212,14 @@ void CreateActivityOccurrenceRequest::toMultipart(std::shared_ptr<MultipartFormD
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("challenge_activity_id"), m_Challenge_activity_id));
     }
+    if(m_Core_settingsIsSet)
+    {
+        if (m_Core_settings.get())
+        {
+            m_Core_settings->toMultipart(multipart, U("core_settings."));
+        }
+        
+    }
     if(m_EntitlementIsSet)
     {
         if (m_Entitlement.get())
@@ -199,6 +231,10 @@ void CreateActivityOccurrenceRequest::toMultipart(std::shared_ptr<MultipartFormD
     if(m_Event_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("event_id"), m_Event_id));
+    }
+    if(m_HostIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("host"), m_Host));
     }
     {
         std::vector<web::json::value> jsonArray;
@@ -251,6 +287,15 @@ void CreateActivityOccurrenceRequest::fromMultiPart(std::shared_ptr<MultipartFor
     {
         setChallengeActivityId(ModelBase::int64_tFromHttpContent(multipart->getContent(U("challenge_activity_id"))));
     }
+    if(multipart->hasContent(U("core_settings")))
+    {
+        if(multipart->hasContent(U("core_settings")))
+        {
+            std::shared_ptr<CoreActivityOccurrenceSettings> newItem(new CoreActivityOccurrenceSettings());
+            newItem->fromMultiPart(multipart, U("core_settings."));
+            setCoreSettings( newItem );
+        }
+    }
     if(multipart->hasContent(U("entitlement")))
     {
         if(multipart->hasContent(U("entitlement")))
@@ -263,6 +308,10 @@ void CreateActivityOccurrenceRequest::fromMultiPart(std::shared_ptr<MultipartFor
     if(multipart->hasContent(U("event_id")))
     {
         setEventId(ModelBase::int64_tFromHttpContent(multipart->getContent(U("event_id"))));
+    }
+    if(multipart->hasContent(U("host")))
+    {
+        setHost(ModelBase::int32_tFromHttpContent(multipart->getContent(U("host"))));
     }
     {
         m_Settings.clear();
@@ -358,6 +407,27 @@ void CreateActivityOccurrenceRequest::unsetChallenge_activity_id()
     m_Challenge_activity_idIsSet = false;
 }
 
+std::shared_ptr<CoreActivityOccurrenceSettings> CreateActivityOccurrenceRequest::getCoreSettings() const
+{
+    return m_Core_settings;
+}
+
+
+void CreateActivityOccurrenceRequest::setCoreSettings(std::shared_ptr<CoreActivityOccurrenceSettings> value)
+{
+    m_Core_settings = value;
+    m_Core_settingsIsSet = true;
+}
+bool CreateActivityOccurrenceRequest::coreSettingsIsSet() const
+{
+    return m_Core_settingsIsSet;
+}
+
+void CreateActivityOccurrenceRequest::unsetCore_settings()
+{
+    m_Core_settingsIsSet = false;
+}
+
 std::shared_ptr<ItemIdRequest> CreateActivityOccurrenceRequest::getEntitlement() const
 {
     return m_Entitlement;
@@ -398,6 +468,27 @@ bool CreateActivityOccurrenceRequest::eventIdIsSet() const
 void CreateActivityOccurrenceRequest::unsetEvent_id()
 {
     m_Event_idIsSet = false;
+}
+
+int32_t CreateActivityOccurrenceRequest::getHost() const
+{
+    return m_Host;
+}
+
+
+void CreateActivityOccurrenceRequest::setHost(int32_t value)
+{
+    m_Host = value;
+    m_HostIsSet = true;
+}
+bool CreateActivityOccurrenceRequest::hostIsSet() const
+{
+    return m_HostIsSet;
+}
+
+void CreateActivityOccurrenceRequest::unsetHost()
+{
+    m_HostIsSet = false;
 }
 
 std::vector<std::shared_ptr<SelectedSettingRequest>>& CreateActivityOccurrenceRequest::getSettings()

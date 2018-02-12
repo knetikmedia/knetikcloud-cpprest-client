@@ -22,6 +22,7 @@ namespace model {
 ActivityResource::ActivityResource()
 {
     m_Additional_propertiesIsSet = false;
+    m_Core_settingsIsSet = false;
     m_Created_date = 0L;
     m_Created_dateIsSet = false;
     m_EntitlementsIsSet = false;
@@ -43,6 +44,7 @@ ActivityResource::ActivityResource()
     m_Template_id = U("");
     m_Template_idIsSet = false;
     m_Type = U("");
+    m_TypeIsSet = false;
     m_Unique_key = U("");
     m_Unique_keyIsSet = false;
     m_Updated_date = 0L;
@@ -75,6 +77,10 @@ web::json::value ActivityResource::toJson() const
         {
             val[U("additional_properties")] = web::json::value::array(jsonArray);
         }
+    }
+    if(m_Core_settingsIsSet)
+    {
+        val[U("core_settings")] = ModelBase::toJson(m_Core_settings);
     }
     if(m_Created_dateIsSet)
     {
@@ -135,7 +141,10 @@ web::json::value ActivityResource::toJson() const
     {
         val[U("template_id")] = ModelBase::toJson(m_Template_id);
     }
-    val[U("type")] = ModelBase::toJson(m_Type);
+    if(m_TypeIsSet)
+    {
+        val[U("type")] = ModelBase::toJson(m_Type);
+    }
     if(m_Unique_keyIsSet)
     {
         val[U("unique_key")] = ModelBase::toJson(m_Unique_key);
@@ -173,6 +182,15 @@ void ActivityResource::fromJson(web::json::value& val)
                 m_Additional_properties.insert(std::pair<utility::string_t,std::shared_ptr<Property>>( key, newItem ));
             }
         }
+        }
+    }
+    if(val.has_field(U("core_settings")))
+    {
+        if(!val[U("core_settings")].is_null())
+        {
+            std::shared_ptr<CoreActivitySettings> newItem(new CoreActivitySettings());
+            newItem->fromJson(val[U("core_settings")]);
+            setCoreSettings( newItem );
         }
     }
     if(val.has_field(U("created_date")))
@@ -257,7 +275,10 @@ void ActivityResource::fromJson(web::json::value& val)
     {
         setTemplateId(ModelBase::stringFromJson(val[U("template_id")]));
     }
-    setType(ModelBase::stringFromJson(val[U("type")]));
+    if(val.has_field(U("type")))
+    {
+        setType(ModelBase::stringFromJson(val[U("type")]));
+    }
     if(val.has_field(U("unique_key")))
     {
         setUniqueKey(ModelBase::stringFromJson(val[U("unique_key")]));
@@ -290,6 +311,14 @@ void ActivityResource::toMultipart(std::shared_ptr<MultipartFormData> multipart,
         {
             multipart->add(ModelBase::toHttpContent(namePrefix + U("additional_properties"), web::json::value::array(jsonArray), U("application/json")));
         }
+    }
+    if(m_Core_settingsIsSet)
+    {
+        if (m_Core_settings.get())
+        {
+            m_Core_settings->toMultipart(multipart, U("core_settings."));
+        }
+        
     }
     if(m_Created_dateIsSet)
     {
@@ -361,7 +390,11 @@ void ActivityResource::toMultipart(std::shared_ptr<MultipartFormData> multipart,
         multipart->add(ModelBase::toHttpContent(namePrefix + U("template_id"), m_Template_id));
         
     }
-    multipart->add(ModelBase::toHttpContent(namePrefix + U("type"), m_Type));
+    if(m_TypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("type"), m_Type));
+        
+    }
     if(m_Unique_keyIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("unique_key"), m_Unique_key));
@@ -405,6 +438,15 @@ void ActivityResource::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
                 m_Additional_properties.insert(std::pair<utility::string_t,std::shared_ptr<Property>>( key, newItem ));
             }
         }
+        }
+    }
+    if(multipart->hasContent(U("core_settings")))
+    {
+        if(multipart->hasContent(U("core_settings")))
+        {
+            std::shared_ptr<CoreActivitySettings> newItem(new CoreActivitySettings());
+            newItem->fromMultiPart(multipart, U("core_settings."));
+            setCoreSettings( newItem );
         }
     }
     if(multipart->hasContent(U("created_date")))
@@ -491,7 +533,10 @@ void ActivityResource::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
     {
         setTemplateId(ModelBase::stringFromHttpContent(multipart->getContent(U("template_id"))));
     }
-    setType(ModelBase::stringFromHttpContent(multipart->getContent(U("type"))));
+    if(multipart->hasContent(U("type")))
+    {
+        setType(ModelBase::stringFromHttpContent(multipart->getContent(U("type"))));
+    }
     if(multipart->hasContent(U("unique_key")))
     {
         setUniqueKey(ModelBase::stringFromHttpContent(multipart->getContent(U("unique_key"))));
@@ -520,6 +565,27 @@ bool ActivityResource::additionalPropertiesIsSet() const
 void ActivityResource::unsetAdditional_properties()
 {
     m_Additional_propertiesIsSet = false;
+}
+
+std::shared_ptr<CoreActivitySettings> ActivityResource::getCoreSettings() const
+{
+    return m_Core_settings;
+}
+
+
+void ActivityResource::setCoreSettings(std::shared_ptr<CoreActivitySettings> value)
+{
+    m_Core_settings = value;
+    m_Core_settingsIsSet = true;
+}
+bool ActivityResource::coreSettingsIsSet() const
+{
+    return m_Core_settingsIsSet;
+}
+
+void ActivityResource::unsetCore_settings()
+{
+    m_Core_settingsIsSet = false;
 }
 
 int64_t ActivityResource::getCreatedDate() const
@@ -771,8 +837,18 @@ utility::string_t ActivityResource::getType() const
 void ActivityResource::setType(utility::string_t value)
 {
     m_Type = value;
-    
+    m_TypeIsSet = true;
 }
+bool ActivityResource::typeIsSet() const
+{
+    return m_TypeIsSet;
+}
+
+void ActivityResource::unsetType()
+{
+    m_TypeIsSet = false;
+}
+
 utility::string_t ActivityResource::getUniqueKey() const
 {
     return m_Unique_key;

@@ -345,7 +345,6 @@ pplx::task<void> MediaArtistsApi::deleteArtist(int64_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -449,7 +448,6 @@ pplx::task<void> MediaArtistsApi::deleteArtistTemplate(utility::string_t id, uti
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -557,7 +555,6 @@ pplx::task<std::shared_ptr<ArtistResource>> MediaArtistsApi::getArtist(int64_t i
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -683,7 +680,6 @@ pplx::task<std::shared_ptr<TemplateResource>> MediaArtistsApi::getArtistTemplate
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -804,7 +800,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> MediaArtistsApi::g
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -937,7 +932,6 @@ pplx::task<std::shared_ptr<PageResource«ArtistResource»>> MediaArtistsApi::get
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

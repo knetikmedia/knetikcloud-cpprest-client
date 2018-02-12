@@ -349,7 +349,6 @@ pplx::task<void> StoreCouponsApi::deleteCouponItem(int32_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -453,7 +452,6 @@ pplx::task<void> StoreCouponsApi::deleteCouponTemplate(utility::string_t id, uti
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -561,7 +559,6 @@ pplx::task<std::shared_ptr<CouponItem>> StoreCouponsApi::getCouponItem(int32_t i
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -683,7 +680,6 @@ pplx::task<std::shared_ptr<CouponItem>> StoreCouponsApi::getCouponItemBySku(util
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -805,7 +801,6 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> StoreCouponsApi::getCouponTemp
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -926,7 +921,6 @@ pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> StoreCouponsAp
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

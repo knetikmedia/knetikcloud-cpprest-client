@@ -104,7 +104,9 @@ public:
     /// The type of the activity
     /// </summary>
     utility::string_t getType() const;
-        void setType(utility::string_t value);
+    bool typeIsSet() const;
+    void unsetType();
+    void setType(utility::string_t value);
     /// <summary>
     /// The unique key (for static reference in code) of the activity
     /// </summary>
@@ -135,7 +137,8 @@ protected:
     bool m_Template;
     bool m_TemplateIsSet;
     utility::string_t m_Type;
-        utility::string_t m_Unique_key;
+    bool m_TypeIsSet;
+    utility::string_t m_Unique_key;
     bool m_Unique_keyIsSet;
     int64_t m_Updated_date;
     bool m_Updated_dateIsSet;

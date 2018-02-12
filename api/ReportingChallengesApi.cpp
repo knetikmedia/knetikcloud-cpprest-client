@@ -76,7 +76,6 @@ pplx::task<std::shared_ptr<PageResource«ChallengeEventParticipantResource»>> R
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -213,7 +212,6 @@ pplx::task<std::shared_ptr<PageResource«ChallengeEventParticipantResource»>> R
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

@@ -44,7 +44,7 @@ public:
     /// Get a list of countries
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     
     pplx::task<std::vector<std::shared_ptr<CountryResource>>> getCountries();
@@ -52,7 +52,7 @@ public:
     /// Get the iso3 code of your country
     /// </summary>
     /// <remarks>
-    /// Determined by geo ip location
+    /// Determined by geo ip location. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     
     pplx::task<utility::string_t> getCountryByGeoLocation();
@@ -60,7 +60,7 @@ public:
     /// Get a list of a country&#39;s states
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="countryCodeIso3">The iso3 code of the country</param>
     pplx::task<std::vector<std::shared_ptr<StateResource>>> getCountryStates(utility::string_t countryCodeIso3);
@@ -68,7 +68,7 @@ public:
     /// Get the currency information of your country
     /// </summary>
     /// <remarks>
-    /// Determined by geo ip location, currency to country mapping and a fallback setting
+    /// Determined by geo ip location, currency to country mapping and a fallback setting. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     
     pplx::task<std::shared_ptr<CurrencyResource>> getCurrencyByGeoLocation();

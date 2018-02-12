@@ -47,7 +47,7 @@ public:
     /// Create a level schema
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN
     /// </remarks>
     /// <param name="level">The level schema definition (optional)</param>
     pplx::task<std::shared_ptr<LevelingResource>> createLevel(std::shared_ptr<LevelingResource> level);
@@ -55,7 +55,7 @@ public:
     /// Delete a level
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN
     /// </remarks>
     /// <param name="name">The level schema name</param>
     pplx::task<void> deleteLevel(utility::string_t name);
@@ -63,7 +63,7 @@ public:
     /// Retrieve a level
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN
     /// </remarks>
     /// <param name="name">The level schema name</param>
     pplx::task<std::shared_ptr<LevelingResource>> getLevel(utility::string_t name);
@@ -71,7 +71,7 @@ public:
     /// Get the list of triggers that can be used to trigger a leveling progress update
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN
     /// </remarks>
     
     pplx::task<std::vector<std::shared_ptr<BreTriggerResource>>> getLevelTriggers();
@@ -79,7 +79,7 @@ public:
     /// List and search levels
     /// </summary>
     /// <remarks>
-    /// Get a list of levels schemas with optional filtering
+    /// Get a list of levels schemas with optional filtering. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN
     /// </remarks>
     /// <param name="filterName">Filter for level schemas whose name contains a given string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to name:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«LevelingResource»>> getLevels(utility::string_t filterName, int32_t size, int32_t page, utility::string_t order);
@@ -87,7 +87,7 @@ public:
     /// Get a user&#39;s progress for a given level schema
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN or self
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39;</param>/// <param name="name">The level schema name</param>
     pplx::task<std::shared_ptr<UserLevelingResource>> getUserLevel(utility::string_t userId, utility::string_t name);
@@ -95,7 +95,7 @@ public:
     /// Get a user&#39;s progress for all level schemas
     /// </summary>
     /// <remarks>
-    /// Filtering and sorting is based on the LevelingResource object, not the UserLevelingResource that is returned here.
+    /// Filtering and sorting is based on the LevelingResource object, not the UserLevelingResource that is returned here. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN or self
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39;</param>/// <param name="filterName">Filter for level schemas whose name contains a given string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«UserLevelingResource»>> getUserLevels(utility::string_t userId, utility::string_t filterName, int32_t size, int32_t page, utility::string_t order);
@@ -103,7 +103,7 @@ public:
     /// Update or create a leveling progress record for a user
     /// </summary>
     /// <remarks>
-    /// If no progress record yet exists for the user, it will be created. Otherwise the provided value will be added to it. May be negative. If progress meets or exceeds the level&#39;s max_value it will be marked as earned and a BRE event will be triggered for the &lt;code&gt;BreAchievementEarnedTrigger&lt;/code&gt;.
+    /// If no progress record yet exists for the user, it will be created. Otherwise the provided value will be added to it. May be negative. If progress meets or exceeds the level&#39;s max_value it will be marked as earned and a BRE event will be triggered for the &lt;code&gt;BreAchievementEarnedTrigger&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="name">The level schema name</param>/// <param name="progress">The amount of progress to add (optional)</param>
     pplx::task<void> incrementProgress(int32_t userId, utility::string_t name, std::shared_ptr<IntWrapper> progress);
@@ -111,7 +111,7 @@ public:
     /// Set leveling progress for a user
     /// </summary>
     /// <remarks>
-    /// If no progress record yet exists for the user, it will be created. Otherwise it will be updated to the provided value. If progress meets or exceeds the level&#39;s max_value it will be marked as earned and a BRE event will be triggered for the &lt;code&gt;BreAchievementEarnedTrigger&lt;/code&gt;.
+    /// If no progress record yet exists for the user, it will be created. Otherwise it will be updated to the provided value. If progress meets or exceeds the level&#39;s max_value it will be marked as earned and a BRE event will be triggered for the &lt;code&gt;BreAchievementEarnedTrigger&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="name">The level schema name</param>/// <param name="progress">The new progress amount (optional)</param>
     pplx::task<void> setProgress(int32_t userId, utility::string_t name, std::shared_ptr<IntWrapper> progress);
@@ -119,7 +119,7 @@ public:
     /// Update a level
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; LEVELING_ADMIN
     /// </remarks>
     /// <param name="name">The level schema name</param>/// <param name="newLevel">The level schema definition (optional)</param>
     pplx::task<std::shared_ptr<LevelingResource>> updateLevel(utility::string_t name, std::shared_ptr<LevelingResource> newLevel);

@@ -77,7 +77,6 @@ pplx::task<std::shared_ptr<ExpressionResource>> BRERuleEngineExpressionsApi::get
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -198,7 +197,6 @@ pplx::task<std::vector<std::shared_ptr<ExpressionResource>>> BRERuleEngineExpres
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

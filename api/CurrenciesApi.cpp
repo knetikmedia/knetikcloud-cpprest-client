@@ -211,7 +211,6 @@ pplx::task<void> CurrenciesApi::deleteCurrency(utility::string_t code)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -314,7 +313,6 @@ pplx::task<std::shared_ptr<PageResource«CurrencyResource»>> CurrenciesApi::get
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -460,7 +458,6 @@ pplx::task<std::shared_ptr<CurrencyResource>> CurrenciesApi::getCurrency(utility
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

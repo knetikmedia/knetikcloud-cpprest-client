@@ -35,6 +35,7 @@ BareActivityResource::BareActivityResource()
     m_Template = false;
     m_TemplateIsSet = false;
     m_Type = U("");
+    m_TypeIsSet = false;
     m_Unique_key = U("");
     m_Unique_keyIsSet = false;
     m_Updated_date = 0L;
@@ -79,7 +80,10 @@ web::json::value BareActivityResource::toJson() const
     {
         val[U("template")] = ModelBase::toJson(m_Template);
     }
-    val[U("type")] = ModelBase::toJson(m_Type);
+    if(m_TypeIsSet)
+    {
+        val[U("type")] = ModelBase::toJson(m_Type);
+    }
     if(m_Unique_keyIsSet)
     {
         val[U("unique_key")] = ModelBase::toJson(m_Unique_key);
@@ -119,7 +123,10 @@ void BareActivityResource::fromJson(web::json::value& val)
     {
         setTemplate(ModelBase::boolFromJson(val[U("template")]));
     }
-    setType(ModelBase::stringFromJson(val[U("type")]));
+    if(val.has_field(U("type")))
+    {
+        setType(ModelBase::stringFromJson(val[U("type")]));
+    }
     if(val.has_field(U("unique_key")))
     {
         setUniqueKey(ModelBase::stringFromJson(val[U("unique_key")]));
@@ -166,7 +173,11 @@ void BareActivityResource::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("template"), m_Template));
     }
-    multipart->add(ModelBase::toHttpContent(namePrefix + U("type"), m_Type));
+    if(m_TypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("type"), m_Type));
+        
+    }
     if(m_Unique_keyIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("unique_key"), m_Unique_key));
@@ -211,7 +222,10 @@ void BareActivityResource::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     {
         setTemplate(ModelBase::boolFromHttpContent(multipart->getContent(U("template"))));
     }
-    setType(ModelBase::stringFromHttpContent(multipart->getContent(U("type"))));
+    if(multipart->hasContent(U("type")))
+    {
+        setType(ModelBase::stringFromHttpContent(multipart->getContent(U("type"))));
+    }
     if(multipart->hasContent(U("unique_key")))
     {
         setUniqueKey(ModelBase::stringFromHttpContent(multipart->getContent(U("unique_key"))));
@@ -368,8 +382,18 @@ utility::string_t BareActivityResource::getType() const
 void BareActivityResource::setType(utility::string_t value)
 {
     m_Type = value;
-    
+    m_TypeIsSet = true;
 }
+bool BareActivityResource::typeIsSet() const
+{
+    return m_TypeIsSet;
+}
+
+void BareActivityResource::unsetType()
+{
+    m_TypeIsSet = false;
+}
+
 utility::string_t BareActivityResource::getUniqueKey() const
 {
     return m_Unique_key;

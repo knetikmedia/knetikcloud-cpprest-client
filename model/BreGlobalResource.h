@@ -96,7 +96,7 @@ public:
     void unsetSystem_global();
     void setSystemGlobal(bool value);
     /// <summary>
-    /// The variable type the global stores. See the See Bre Variables enpoint for list
+    /// The variable type the global stores. See the BRE variables endpoint for list
     /// </summary>
     utility::string_t getType() const;
         void setType(utility::string_t value);

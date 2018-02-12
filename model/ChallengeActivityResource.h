@@ -23,6 +23,7 @@
 #include "ModelBase.h"
 
 #include "ActivityEntitlementResource.h"
+#include "CoreChallengeActivitySettings.h"
 #include "SelectedSettingResource.h"
 #include <cpprest/details/basic_types.h>
 #include <map>
@@ -79,6 +80,13 @@ public:
     void unsetChallenge_id();
     void setChallengeId(int64_t value);
     /// <summary>
+    /// Defines core settings about the activity that affect how it can be created/played by users. Values may be left null to inherit from parent activity.
+    /// </summary>
+    std::shared_ptr<CoreChallengeActivitySettings> getCoreSettings() const;
+    bool coreSettingsIsSet() const;
+    void unsetCore_settings();
+    void setCoreSettings(std::shared_ptr<CoreChallengeActivitySettings> value);
+    /// <summary>
     /// The entitlement item needed to participate in the activity as part of this event. Null indicates free entry. When creating/updating only id is used. Item must be pre-existing
     /// </summary>
     std::shared_ptr<ActivityEntitlementResource> getEntitlement() const;
@@ -120,6 +128,8 @@ protected:
     bool m_Additional_propertiesIsSet;
     int64_t m_Challenge_id;
     bool m_Challenge_idIsSet;
+    std::shared_ptr<CoreChallengeActivitySettings> m_Core_settings;
+    bool m_Core_settingsIsSet;
     std::shared_ptr<ActivityEntitlementResource> m_Entitlement;
     bool m_EntitlementIsSet;
     int64_t m_Id;

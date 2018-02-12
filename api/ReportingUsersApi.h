@@ -42,7 +42,7 @@ public:
     /// Get user registration info
     /// </summary>
     /// <remarks>
-    /// Get user registration counts grouped by time range
+    /// Get user registration counts grouped by time range. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; REPORTING_USER_ADMIN
     /// </remarks>
     /// <param name="granularity">The time duration to aggregate by (optional, default to day)</param>/// <param name="startDate">The start of the time range to aggregate, unix timestamp in seconds. Default is beginning of time (optional)</param>/// <param name="endDate">The end of the time range to aggregate, unix timestamp in seconds. Default is end of time (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«AggregateCountResource»>> getUserRegistrations(utility::string_t granularity, int64_t startDate, int64_t endDate, int32_t size, int32_t page);

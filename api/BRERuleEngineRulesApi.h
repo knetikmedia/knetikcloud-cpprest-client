@@ -45,7 +45,7 @@ public:
     /// Create a rule
     /// </summary>
     /// <remarks>
-    /// Rules define which actions to run when a given event verifies the specified condition. Full list of predicates and other type of expressions can be found at GET /bre/expressions/
+    /// Rules define which actions to run when a given event verifies the specified condition. Full list of predicates and other type of expressions can be found at GET /bre/expressions/. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_RULES_ADMIN
     /// </remarks>
     /// <param name="breRule">The BRE rule object (optional)</param>
     pplx::task<std::shared_ptr<BreRule>> createBRERule(std::shared_ptr<BreRule> breRule);
@@ -53,7 +53,7 @@ public:
     /// Delete a rule
     /// </summary>
     /// <remarks>
-    /// May fail if there are existing rules against it. Cannot delete core rules
+    /// May fail if there are existing rules against it. Cannot delete core rules. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_RULES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the rule</param>
     pplx::task<void> deleteBRERule(utility::string_t id);
@@ -61,7 +61,7 @@ public:
     /// Returns a string representation of the provided expression
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_RULES_ADMIN
     /// </remarks>
     /// <param name="expression">The expression (optional)</param>
     pplx::task<utility::string_t> getBREExpressionAsString(std::shared_ptr<Expression«object»> expression);
@@ -69,7 +69,7 @@ public:
     /// Get a single rule
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_RULES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the rule</param>
     pplx::task<std::shared_ptr<BreRule>> getBRERule(utility::string_t id);
@@ -77,7 +77,7 @@ public:
     /// List rules
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_RULES_ADMIN
     /// </remarks>
     /// <param name="filterName">Filter for rules containing the given name (optional)</param>/// <param name="filterEnabled">Filter for rules by active status, null for both (optional, default to null)</param>/// <param name="filterSystem">Filter for rules that are system rules when true, or not when false. Leave off for both mixed (optional)</param>/// <param name="filterTrigger">Filter for rules that are for the trigger with the given name (optional)</param>/// <param name="filterAction">Filter for rules that use the action with the given name (optional)</param>/// <param name="filterCondition">Filter for rules that have a condition containing the given string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
     pplx::task<std::shared_ptr<PageResource«BreRule»>> getBRERules(utility::string_t filterName, bool filterEnabled, bool filterSystem, utility::string_t filterTrigger, utility::string_t filterAction, utility::string_t filterCondition, int32_t size, int32_t page);
@@ -85,7 +85,7 @@ public:
     /// Enable or disable a rule
     /// </summary>
     /// <remarks>
-    /// This is helpful for turning off systems rules which cannot be deleted or modified otherwise
+    /// This is helpful for turning off systems rules which cannot be deleted or modified otherwise. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_RULES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the rule</param>/// <param name="enabled">The boolean value (optional)</param>
     pplx::task<void> setBRERule(utility::string_t id, std::shared_ptr<BooleanResource> enabled);
@@ -93,7 +93,7 @@ public:
     /// Update a rule
     /// </summary>
     /// <remarks>
-    /// Cannot update system rules
+    /// Cannot update system rules. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_RULES_ADMIN
     /// </remarks>
     /// <param name="id">The id of the rule</param>/// <param name="breRule">The BRE rule object (optional)</param>
     pplx::task<std::shared_ptr<BreRule>> updateBRERule(utility::string_t id, std::shared_ptr<BreRule> breRule);

@@ -81,7 +81,6 @@ pplx::task<utility::string_t> AmazonWebServicesS3Api::getDownloadURL(utility::st
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -219,7 +218,6 @@ pplx::task<std::shared_ptr<AmazonS3Activity>> AmazonWebServicesS3Api::getSignedS
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

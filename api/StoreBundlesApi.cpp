@@ -349,7 +349,6 @@ pplx::task<void> StoreBundlesApi::deleteBundleItem(int32_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -453,7 +452,6 @@ pplx::task<void> StoreBundlesApi::deleteBundleTemplate(utility::string_t id, uti
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -561,7 +559,6 @@ pplx::task<std::shared_ptr<BundleItem>> StoreBundlesApi::getBundleItem(int32_t i
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -683,7 +680,6 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> StoreBundlesApi::getBundleTemp
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -804,7 +800,6 @@ pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> StoreBundlesAp
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

@@ -42,7 +42,7 @@ public:
     /// Pay invoice with Apple receipt
     /// </summary>
     /// <remarks>
-    /// Mark an invoice paid using Apple payment receipt. A receipt will only be accepted once and the details of the transaction must match the invoice, including the product_id matching the sku text of the item in the invoice. Returns the transaction ID if successful.
+    /// Mark an invoice paid using Apple payment receipt. A receipt will only be accepted once and the details of the transaction must match the invoice, including the product_id matching the sku text of the item in the invoice. Returns the transaction ID if successful. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="request">The request for paying an invoice through an Apple receipt (optional)</param>
     pplx::task<utility::string_t> verifyAppleReceipt(std::shared_ptr<ApplyPaymentRequest> request);

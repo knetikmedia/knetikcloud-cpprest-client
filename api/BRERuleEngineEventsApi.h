@@ -42,7 +42,7 @@ public:
     /// Fire a new event, based on an existing trigger
     /// </summary>
     /// <remarks>
-    /// Parameters within the event must match names and types from the trigger. Actual rule execution is asynchornous.  Returns request id, which will be used as the event id
+    /// Parameters within the event must match names and types from the trigger. Actual rule execution is asynchornous.  Returns request id, which will be used as the event id. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; BRE_RULE_ENGINE_EVENTS_USER
     /// </remarks>
     /// <param name="breEvent">The BRE event object (optional)</param>
     pplx::task<utility::string_t> sendBREEvent(std::shared_ptr<BreEvent> breEvent);

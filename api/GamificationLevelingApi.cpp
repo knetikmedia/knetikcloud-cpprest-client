@@ -211,7 +211,6 @@ pplx::task<void> GamificationLevelingApi::deleteLevel(utility::string_t name)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -315,7 +314,6 @@ pplx::task<std::shared_ptr<LevelingResource>> GamificationLevelingApi::getLevel(
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -436,7 +434,6 @@ pplx::task<std::vector<std::shared_ptr<BreTriggerResource>>> GamificationLevelin
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -564,7 +561,6 @@ pplx::task<std::shared_ptr<PageResource«LevelingResource»>> GamificationLeveli
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -703,7 +699,6 @@ boost::replace_all(path, U("{") U("name") U("}"), ApiClient::parameterToString(n
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -825,7 +820,6 @@ pplx::task<std::shared_ptr<PageResource«UserLevelingResource»>> GamificationLe
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

@@ -44,7 +44,7 @@ public:
     /// Get batch result with token
     /// </summary>
     /// <remarks>
-    /// Tokens expire in 24 hours
+    /// Tokens expire in 24 hours. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="token">token</param>
     pplx::task<std::vector<std::shared_ptr<BatchReturn>>> getBatch(utility::string_t token);
@@ -52,7 +52,7 @@ public:
     /// Request to run API call given the method, content type, path url, and body of request
     /// </summary>
     /// <remarks>
-    /// Should the request take longer than one of the alloted timeout parameters, a token will be returned instead, which can be used on the token endpoint in this service
+    /// Should the request take longer than one of the alloted timeout parameters, a token will be returned instead, which can be used on the token endpoint in this service. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="batch">The batch object (optional)</param>
     pplx::task<std::vector<std::shared_ptr<BatchReturn>>> sendBatch(std::shared_ptr<Batch> batch);

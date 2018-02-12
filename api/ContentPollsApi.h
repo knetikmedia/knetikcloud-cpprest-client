@@ -47,7 +47,7 @@ public:
     /// Add your vote to a poll
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; POLLS_ADMIN or POLLS_USER
     /// </remarks>
     /// <param name="id">The poll id</param>/// <param name="answerKey">The answer key (optional)</param>
     pplx::task<std::shared_ptr<PollResponseResource>> answerPoll(utility::string_t id, std::shared_ptr<StringWrapper> answerKey);
@@ -55,7 +55,7 @@ public:
     /// Create a new poll
     /// </summary>
     /// <remarks>
-    /// Polls are blobs of text with titles, a category and assets. Formatting and display of the text is in the hands of the front end.
+    /// Polls are blobs of text with titles, a category and assets. Formatting and display of the text is in the hands of the front end. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; POLLS_ADMIN
     /// </remarks>
     /// <param name="pollResource">The poll object (optional)</param>
     pplx::task<std::shared_ptr<PollResource>> createPoll(std::shared_ptr<PollResource> pollResource);
@@ -63,7 +63,7 @@ public:
     /// Create a poll template
     /// </summary>
     /// <remarks>
-    /// Poll templates define a type of poll and the properties they have
+    /// Poll templates define a type of poll and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="pollTemplateResource">The poll template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createPollTemplate(std::shared_ptr<TemplateResource> pollTemplateResource);
@@ -71,7 +71,7 @@ public:
     /// Delete an existing poll
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; POLLS_ADMIN
     /// </remarks>
     /// <param name="id">The poll id</param>
     pplx::task<void> deletePoll(utility::string_t id);
@@ -79,7 +79,7 @@ public:
     /// Delete a poll template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deletePollTemplate(utility::string_t id, utility::string_t cascade);
@@ -87,7 +87,7 @@ public:
     /// Get a single poll
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The poll id</param>
     pplx::task<std::shared_ptr<PollResource>> getPoll(utility::string_t id);
@@ -95,7 +95,7 @@ public:
     /// Get poll answer
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; POLLS_ADMIN or POLLS_USER
     /// </remarks>
     /// <param name="id">The poll id</param>
     pplx::task<std::shared_ptr<PollResponseResource>> getPollAnswer(utility::string_t id);
@@ -103,7 +103,7 @@ public:
     /// Get a single poll template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or POLLS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<TemplateResource>> getPollTemplate(utility::string_t id);
@@ -111,7 +111,7 @@ public:
     /// List and search poll templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or POLLS_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getPollTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -119,7 +119,7 @@ public:
     /// List and search polls
     /// </summary>
     /// <remarks>
-    /// Get a list of polls with optional filtering. Assets will not be filled in on the resources returned. Use &#39;Get a single poll&#39; to retrieve the full resource with assets for a given item as needed.
+    /// Get a list of polls with optional filtering. Assets will not be filled in on the resources returned. Use &#39;Get a single poll&#39; to retrieve the full resource with assets for a given item as needed. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterCategory">Filter for polls from a specific category by id (optional)</param>/// <param name="filterTagset">Filter for polls with specified tags (separated by comma) (optional)</param>/// <param name="filterText">Filter for polls whose text contains a string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«PollResource»>> getPolls(utility::string_t filterCategory, utility::string_t filterTagset, utility::string_t filterText, int32_t size, int32_t page, utility::string_t order);
@@ -127,7 +127,7 @@ public:
     /// Update an existing poll
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; POLLS_ADMIN
     /// </remarks>
     /// <param name="id">The poll id</param>/// <param name="pollResource">The poll object (optional)</param>
     pplx::task<std::shared_ptr<PollResource>> updatePoll(utility::string_t id, std::shared_ptr<PollResource> pollResource);
@@ -135,7 +135,7 @@ public:
     /// Update a poll template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="pollTemplateResource">The poll template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> updatePollTemplate(utility::string_t id, std::shared_ptr<TemplateResource> pollTemplateResource);

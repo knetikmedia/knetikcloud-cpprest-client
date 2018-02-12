@@ -43,7 +43,7 @@ public:
     /// Returns the authentication log for a user
     /// </summary>
     /// <remarks>
-    /// A log entry is recorded everytime a user requests a new token. Standard pagination available
+    /// A log entry is recorded everytime a user requests a new token. Standard pagination available. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; SECURITY_ADMIN
     /// </remarks>
     /// <param name="userId">The user id (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«LocationLogResource»>> getUserLocationLog(int32_t userId, int32_t size, int32_t page, utility::string_t order);
@@ -51,7 +51,7 @@ public:
     /// Returns the authentication token details. Use /users endpoint for detailed user&#39;s info
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; SECURITY_ADMIN
     /// </remarks>
     
     pplx::task<std::shared_ptr<TokenDetailsResource>> getUserTokenDetails();

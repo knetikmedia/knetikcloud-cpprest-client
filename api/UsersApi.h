@@ -22,7 +22,10 @@
 
 #include "ApiClient.h"
 
+#include "ChatMessageRequest.h"
+#include "ChatMessageResource.h"
 #include "NewPasswordRequest.h"
+#include "PageResource«ChatMessageResource».h"
 #include "PageResource«TemplateResource».h"
 #include "PageResource«UserBaseResource».h"
 #include "PasswordResetRequest.h"
@@ -48,7 +51,7 @@ public:
     /// Add a tag to a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="tag">tag</param>
     pplx::task<void> addUserTag(int32_t userId, std::shared_ptr<StringWrapper> tag);
@@ -56,7 +59,7 @@ public:
     /// Create a user template
     /// </summary>
     /// <remarks>
-    /// User Templates define a type of user and the properties they have
+    /// User Templates define a type of user and the properties they have. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="userTemplateResource">The user template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> createUserTemplate(std::shared_ptr<TemplateResource> userTemplateResource);
@@ -64,15 +67,23 @@ public:
     /// Delete a user template
     /// </summary>
     /// <remarks>
-    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects
+    /// If cascade &#x3D; &#39;detach&#39;, it will force delete the template even if it&#39;s attached to other objects. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="cascade">The value needed to delete used templates (optional)</param>
     pplx::task<void> deleteUserTemplate(utility::string_t id, utility::string_t cascade);
     /// <summary>
+    /// Get a list of direct messages with this user
+    /// </summary>
+    /// <remarks>
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
+    /// </remarks>
+    /// <param name="recipientId">The user id</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>
+    pplx::task<std::shared_ptr<PageResource«ChatMessageResource»>> getDirectMessages1(int32_t recipientId, int32_t size, int32_t page);
+    /// <summary>
     /// Get a single user
     /// </summary>
     /// <remarks>
-    /// Additional private info is included as USERS_ADMIN
+    /// Additional private info is included as USERS_ADMIN. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id of the user or &#39;me&#39;</param>
     pplx::task<std::shared_ptr<UserResource>> getUser(utility::string_t id);
@@ -80,7 +91,7 @@ public:
     /// List tags for a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN
     /// </remarks>
     /// <param name="userId">The id of the user</param>
     pplx::task<std::vector<utility::string_t>> getUserTags(int32_t userId);
@@ -88,7 +99,7 @@ public:
     /// Get a single user template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or USERS_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>
     pplx::task<std::shared_ptr<TemplateResource>> getUserTemplate(utility::string_t id);
@@ -96,7 +107,7 @@ public:
     /// List and search user templates
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN or USERS_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«TemplateResource»>> getUserTemplates(int32_t size, int32_t page, utility::string_t order);
@@ -104,7 +115,7 @@ public:
     /// List and search users
     /// </summary>
     /// <remarks>
-    /// Additional private info is included as USERS_ADMIN
+    /// Additional private info is included as USERS_ADMIN. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterDisplayname">Filter for users whose display name starts with provided string. (optional)</param>/// <param name="filterEmail">Filter for users whose email starts with provided string. Requires USERS_ADMIN permission (optional)</param>/// <param name="filterFirstname">Filter for users whose first name starts with provided string. Requires USERS_ADMIN permission (optional)</param>/// <param name="filterFullname">Filter for users whose full name starts with provided string. Requires USERS_ADMIN permission (optional)</param>/// <param name="filterLastname">Filter for users whose last name starts with provided string. Requires USERS_ADMIN permission (optional)</param>/// <param name="filterUsername">Filter for users whose username starts with the provided string. Requires USERS_ADMIN permission (optional)</param>/// <param name="filterTag">Filter for users who have a given tag (optional)</param>/// <param name="filterGroup">Filter for users in a given group, by unique name (optional)</param>/// <param name="filterRole">Filter for users with a given role (optional)</param>/// <param name="filterLastActivity">A comma separated string without spaces.  First value is the operator to search on, second value is the date, a unix timestamp in seconds.  Allowed operators: (GT, LT, EQ, GOE, LOE). (optional)</param>/// <param name="filterIdList">A comma separated list of ids. (optional)</param>/// <param name="filterSearch">Filter for users whose display_name starts with the provided string, or username if display_name is null (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«UserBaseResource»>> getUsers(utility::string_t filterDisplayname, utility::string_t filterEmail, utility::string_t filterFirstname, utility::string_t filterFullname, utility::string_t filterLastname, utility::string_t filterUsername, utility::string_t filterTag, utility::string_t filterGroup, utility::string_t filterRole, utility::string_t filterLastActivity, utility::string_t filterIdList, utility::string_t filterSearch, int32_t size, int32_t page, utility::string_t order);
@@ -112,15 +123,23 @@ public:
     /// Choose a new password after a reset
     /// </summary>
     /// <remarks>
-    /// Finish resetting a user&#39;s password using the secret provided from the password-reset endpoint.  Password should be in plain text and will be encrypted on receipt. Use SSL for security.
+    /// Finish resetting a user&#39;s password using the secret provided from the password-reset endpoint.  Password should be in plain text and will be encrypted on receipt. Use SSL for security. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id of the user</param>/// <param name="newPasswordRequest">The new password request object (optional)</param>
     pplx::task<void> passwordReset(int32_t id, std::shared_ptr<NewPasswordRequest> newPasswordRequest);
     /// <summary>
+    /// Send a user message
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="recipientId">The user id</param>/// <param name="chatMessageRequest">The chat message request (optional)</param>
+    pplx::task<std::shared_ptr<ChatMessageResource>> postUserMessage(int32_t recipientId, std::shared_ptr<ChatMessageRequest> chatMessageRequest);
+    /// <summary>
     /// Register a new user
     /// </summary>
     /// <remarks>
-    /// Password should be in plain text and will be encrypted on receipt. Use SSL for security
+    /// Password should be in plain text and will be encrypted on receipt. Use SSL for security. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="userResource">The user resource object (optional)</param>
     pplx::task<std::shared_ptr<UserResource>> registerUser(std::shared_ptr<UserResource> userResource);
@@ -128,7 +147,7 @@ public:
     /// Remove a tag from a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN
     /// </remarks>
     /// <param name="userId">The id of the user</param>/// <param name="tag">The tag to remove</param>
     pplx::task<void> removeUserTag(int32_t userId, utility::string_t tag);
@@ -136,7 +155,7 @@ public:
     /// Set a user&#39;s password
     /// </summary>
     /// <remarks>
-    /// Password should be in plain text and will be encrypted on receipt. Use SSL for security.
+    /// Password should be in plain text and will be encrypted on receipt. Use SSL for security. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN or (USERS_USER and owner)
     /// </remarks>
     /// <param name="id">The id of the user</param>/// <param name="password">The new plain text password (optional)</param>
     pplx::task<void> setPassword(int32_t id, std::shared_ptr<StringWrapper> password);
@@ -144,7 +163,7 @@ public:
     /// Reset a user&#39;s password
     /// </summary>
     /// <remarks>
-    /// A reset code will be generated and a &#39;forgot_password&#39; BRE event will be fired with that code.  The default system rule will send an email to the selected user if an email service has been setup. You can modify that rule in BRE to send an SMS instead or any other type of notification as you see fit
+    /// A reset code will be generated and a &#39;forgot_password&#39; BRE event will be fired with that code.  The default system rule will send an email to the selected user if an email service has been setup. You can modify that rule in BRE to send an SMS instead or any other type of notification as you see fit. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">The id of the user</param>
     pplx::task<void> startPasswordReset(int32_t id);
@@ -152,7 +171,7 @@ public:
     /// Reset a user&#39;s password without user id
     /// </summary>
     /// <remarks>
-    /// A reset code will be generated and a &#39;forgot_password&#39; BRE event will be fired with that code.  The default system rule will send an email to the selected user if an email service has been setup. You can modify that rule in BRE to send an SMS instead or any other type of notification as you see fit.  Must submit their email, username, or mobile phone number
+    /// A reset code will be generated and a &#39;forgot_password&#39; BRE event will be fired with that code.  The default system rule will send an email to the selected user if an email service has been setup. You can modify that rule in BRE to send an SMS instead or any other type of notification as you see fit.  Must submit their email, username, or mobile phone number. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="passwordReset">An object containing one of three methods to look up a user (optional)</param>
     pplx::task<void> submitPasswordReset(std::shared_ptr<PasswordResetRequest> passwordReset);
@@ -160,7 +179,7 @@ public:
     /// Update a user
     /// </summary>
     /// <remarks>
-    /// Password will not be edited on this endpoint, use password specific endpoints.
+    /// Password will not be edited on this endpoint, use password specific endpoints. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; USERS_ADMIN or owner
     /// </remarks>
     /// <param name="id">The id of the user or &#39;me&#39;</param>/// <param name="userResource">The user resource object (optional)</param>
     pplx::task<void> updateUser(utility::string_t id, std::shared_ptr<UserResource> userResource);
@@ -168,7 +187,7 @@ public:
     /// Update a user template
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TEMPLATE_ADMIN
     /// </remarks>
     /// <param name="id">The id of the template</param>/// <param name="userTemplateResource">The user template resource object (optional)</param>
     pplx::task<std::shared_ptr<TemplateResource>> updateUserTemplate(utility::string_t id, std::shared_ptr<TemplateResource> userTemplateResource);

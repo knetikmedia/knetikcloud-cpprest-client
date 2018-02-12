@@ -213,7 +213,6 @@ boost::replace_all(path, U("{") U("item_id") U("}"), ApiClient::parameterToStrin
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -593,7 +592,6 @@ pplx::task<void> UsersInventoryApi::deleteEntitlementItem(int32_t entitlementId)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -697,7 +695,6 @@ pplx::task<void> UsersInventoryApi::deleteEntitlementTemplate(utility::string_t 
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -805,7 +802,6 @@ pplx::task<std::shared_ptr<EntitlementItem>> UsersInventoryApi::getEntitlementIt
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -926,7 +922,6 @@ pplx::task<std::shared_ptr<PageResource«EntitlementItem»>> UsersInventoryApi::
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1064,7 +1059,6 @@ pplx::task<std::shared_ptr<ItemTemplateResource>> UsersInventoryApi::getEntitlem
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1185,7 +1179,6 @@ pplx::task<std::shared_ptr<PageResource«ItemTemplateResource»>> UsersInventory
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1319,7 +1312,6 @@ pplx::task<std::shared_ptr<PageResource«UserInventoryResource»>> UsersInventor
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1432,7 +1424,7 @@ pplx::task<std::shared_ptr<PageResource«UserInventoryResource»>> UsersInventor
         return result;
     });
 }
-pplx::task<std::shared_ptr<UserInventoryResource>> UsersInventoryApi::getUserInventory(int32_t userId, int32_t id)
+pplx::task<std::shared_ptr<UserInventoryResource>> UsersInventoryApi::getUserInventory(utility::string_t userId, int32_t id)
 {
 
 
@@ -1474,7 +1466,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1597,7 +1588,6 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1726,7 +1716,6 @@ pplx::task<std::shared_ptr<PageResource«UserInventoryResource»>> UsersInventor
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

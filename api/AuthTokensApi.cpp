@@ -76,7 +76,6 @@ pplx::task<void> AuthTokensApi::deleteTokens(utility::string_t username, utility
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -189,7 +188,6 @@ boost::replace_all(path, U("{") U("client_id") U("}"), ApiClient::parameterToStr
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -310,7 +308,6 @@ pplx::task<std::shared_ptr<PageResource«OauthAccessTokenResource»>> AuthTokens
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

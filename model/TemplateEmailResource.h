@@ -68,6 +68,13 @@ public:
     std::vector<int32_t>& getRecipients();
         void setRecipients(std::vector<int32_t> value);
     /// <summary>
+    /// The subject for email
+    /// </summary>
+    utility::string_t getSubject() const;
+    bool subjectIsSet() const;
+    void unsetSubject();
+    void setSubject(utility::string_t value);
+    /// <summary>
     /// The key for the template
     /// </summary>
     utility::string_t getTemplateKey() const;
@@ -84,7 +91,9 @@ protected:
     utility::string_t m_From;
     bool m_FromIsSet;
     std::vector<int32_t> m_Recipients;
-        utility::string_t m_Template_key;
+        utility::string_t m_Subject;
+    bool m_SubjectIsSet;
+    utility::string_t m_Template_key;
         std::vector<std::shared_ptr<KeyValuePair«string,string»>> m_Template_vars;
     bool m_Template_varsIsSet;
 };

@@ -26,6 +26,8 @@
 #include "ActivityEntitlementResource.h"
 #include "SelectedSettingResource.h"
 #include <cpprest/details/basic_types.h>
+#include "SimpleUserResource.h"
+#include "CoreActivityOccurrenceSettings.h"
 #include <vector>
 
 namespace com {
@@ -63,12 +65,26 @@ public:
     int64_t getActivityId() const;
         void setActivityId(int64_t value);
     /// <summary>
+    /// The ids of banned users that cannot join the occurrence. See occurrence-user delete endpoint
+    /// </summary>
+    std::vector<int32_t>& getBans();
+    bool bansIsSet() const;
+    void unsetBans();
+    void setBans(std::vector<int32_t> value);
+    /// <summary>
     /// The id of the challenge activity (as part of the event, required if eventId set)
     /// </summary>
     int64_t getChallengeActivityId() const;
     bool challengeActivityIdIsSet() const;
     void unsetChallenge_activity_id();
     void setChallengeActivityId(int64_t value);
+    /// <summary>
+    /// Defines core settings about the activity occurrence that affect how it behaves in the system. Validated against core settings in activity/challenge-activity.
+    /// </summary>
+    std::shared_ptr<CoreActivityOccurrenceSettings> getCoreSettings() const;
+    bool coreSettingsIsSet() const;
+    void unsetCore_settings();
+    void setCoreSettings(std::shared_ptr<CoreActivityOccurrenceSettings> value);
     /// <summary>
     /// The date this occurrence was created, unix timestamp in seconds
     /// </summary>
@@ -90,6 +106,13 @@ public:
     bool eventIdIsSet() const;
     void unsetEvent_id();
     void setEventId(int64_t value);
+    /// <summary>
+    /// The host of the occurrence, if not a participant (will be left out of users array). Must be the caller that creates the occurrence unless admin. Requires activity/challenge to allow host_option of &#39;non_player&#39; if not admin as well
+    /// </summary>
+    std::shared_ptr<SimpleUserResource> getHost() const;
+    bool hostIsSet() const;
+    void unsetHost();
+    void setHost(std::shared_ptr<SimpleUserResource> value);
     /// <summary>
     /// The id of the activity occurrence
     /// </summary>
@@ -149,14 +172,20 @@ public:
 
 protected:
     int64_t m_Activity_id;
-        int64_t m_Challenge_activity_id;
+        std::vector<int32_t> m_Bans;
+    bool m_BansIsSet;
+    int64_t m_Challenge_activity_id;
     bool m_Challenge_activity_idIsSet;
+    std::shared_ptr<CoreActivityOccurrenceSettings> m_Core_settings;
+    bool m_Core_settingsIsSet;
     int64_t m_Created_date;
     bool m_Created_dateIsSet;
     std::shared_ptr<ActivityEntitlementResource> m_Entitlement;
     bool m_EntitlementIsSet;
     int64_t m_Event_id;
     bool m_Event_idIsSet;
+    std::shared_ptr<SimpleUserResource> m_Host;
+    bool m_HostIsSet;
     int64_t m_Id;
     bool m_IdIsSet;
     utility::string_t m_Reward_status;

@@ -567,7 +567,6 @@ pplx::task<std::shared_ptr<Cart>> StoreShoppingCartsApi::getCart(utility::string
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -688,7 +687,6 @@ pplx::task<std::shared_ptr<PageResource«CartSummary»>> StoreShoppingCartsApi::
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -826,7 +824,6 @@ pplx::task<std::shared_ptr<CartShippableResponse>> StoreShoppingCartsApi::getShi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -948,7 +945,6 @@ pplx::task<std::shared_ptr<SampleCountriesResponse>> StoreShoppingCartsApi::getS
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1071,7 +1067,6 @@ boost::replace_all(path, U("{") U("code") U("}"), ApiClient::parameterToString(c
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

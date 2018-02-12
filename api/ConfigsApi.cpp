@@ -211,7 +211,6 @@ pplx::task<void> ConfigsApi::deleteConfig(utility::string_t name)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -315,7 +314,6 @@ pplx::task<std::shared_ptr<Config>> ConfigsApi::getConfig(utility::string_t name
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -436,7 +434,6 @@ pplx::task<std::shared_ptr<PageResource«Config»>> ConfigsApi::getConfigs(utili
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

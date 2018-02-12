@@ -45,7 +45,7 @@ public:
     /// Create a new payment method for a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; PAYMENTS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">ID of the user for whom the payment method is being created</param>/// <param name="paymentMethod">Payment method being created (optional)</param>
     pplx::task<std::shared_ptr<PaymentMethodResource>> createPaymentMethod(int32_t userId, std::shared_ptr<PaymentMethodResource> paymentMethod);
@@ -53,7 +53,7 @@ public:
     /// Delete an existing payment method for a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; PAYMENTS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">ID of the user for whom the payment method is being updated</param>/// <param name="id">ID of the payment method being deleted</param>
     pplx::task<void> deletePaymentMethod(int32_t userId, int32_t id);
@@ -61,7 +61,7 @@ public:
     /// Get a single payment method for a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; PAYMENTS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">ID of the user for whom the payment method is being retrieved</param>/// <param name="id">ID of the payment method being retrieved</param>
     pplx::task<std::shared_ptr<PaymentMethodResource>> getPaymentMethod(int32_t userId, int32_t id);
@@ -69,7 +69,7 @@ public:
     /// Get a single payment method type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="id">ID of the payment method type being retrieved</param>
     pplx::task<std::shared_ptr<PaymentMethodTypeResource>> getPaymentMethodType(int32_t id);
@@ -77,7 +77,7 @@ public:
     /// Get all payment method types
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="filterName">Filter for payment method types whose name matches a given string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">a comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«PaymentMethodTypeResource»>> getPaymentMethodTypes(utility::string_t filterName, int32_t size, int32_t page, utility::string_t order);
@@ -85,7 +85,7 @@ public:
     /// Get all payment methods for a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; PAYMENTS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">ID of the user for whom the payment methods are being retrieved</param>/// <param name="filterName">Filter for payment methods whose name starts with a given string (optional)</param>/// <param name="filterPaymentType">Filter for payment methods with a specific payment type (optional)</param>/// <param name="filterPaymentMethodTypeId">Filter for payment methods with a specific payment method type by id (optional)</param>/// <param name="filterPaymentMethodTypeName">Filter for payment methods whose payment method type name starts with a given string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">a comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::vector<std::shared_ptr<PaymentMethodResource>>> getPaymentMethods(int32_t userId, utility::string_t filterName, utility::string_t filterPaymentType, int32_t filterPaymentMethodTypeId, utility::string_t filterPaymentMethodTypeName, int32_t size, int32_t page, utility::string_t order);
@@ -93,7 +93,7 @@ public:
     /// Authorize payment of an invoice for later capture
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; PAYMENTS_ADMIN or PAYMENTS_USER
     /// </remarks>
     /// <param name="request">Payment authorization request (optional)</param>
     pplx::task<std::shared_ptr<PaymentAuthorizationResource>> paymentAuthorization(std::shared_ptr<PaymentAuthorizationResource> request);
@@ -101,7 +101,7 @@ public:
     /// Capture an existing invoice payment authorization
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; PAYMENTS_ADMIN
     /// </remarks>
     /// <param name="id">ID of the payment authorization to capture</param>
     pplx::task<void> paymentCapture(int32_t id);
@@ -109,7 +109,7 @@ public:
     /// Update an existing payment method for a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; PAYMENTS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">ID of the user for whom the payment method is being updated</param>/// <param name="id">ID of the payment method being updated</param>/// <param name="paymentMethod">The updated payment method data (optional)</param>
     pplx::task<std::shared_ptr<PaymentMethodResource>> updatePaymentMethod(int32_t userId, int32_t id, std::shared_ptr<PaymentMethodResource> paymentMethod);

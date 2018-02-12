@@ -211,7 +211,6 @@ pplx::task<void> BRERuleEngineRulesApi::deleteBRERule(utility::string_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -459,7 +458,6 @@ pplx::task<std::shared_ptr<BreRule>> BRERuleEngineRulesApi::getBRERule(utility::
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -580,7 +578,6 @@ pplx::task<std::shared_ptr<PageResource«BreRule»>> BRERuleEngineRulesApi::getB
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

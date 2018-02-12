@@ -23,6 +23,8 @@
 #include "ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include "BreActionLog.h"
+#include <vector>
 
 namespace com {
 namespace knetikcloud {
@@ -53,6 +55,13 @@ public:
     /////////////////////////////////////////////
     /// BreRuleLog members
 
+    /// <summary>
+    /// The actions of the BRE rule
+    /// </summary>
+    std::vector<std::shared_ptr<BreActionLog>>& getActions();
+    bool actionsIsSet() const;
+    void unsetActions();
+    void setActions(std::vector<std::shared_ptr<BreActionLog>> value);
     /// <summary>
     /// Whether the rule ran
     /// </summary>
@@ -97,6 +106,8 @@ public:
     void setRuleStartDate(int64_t value);
 
 protected:
+    std::vector<std::shared_ptr<BreActionLog>> m_Actions;
+    bool m_ActionsIsSet;
     bool m_Ran;
     bool m_RanIsSet;
     utility::string_t m_Reason;

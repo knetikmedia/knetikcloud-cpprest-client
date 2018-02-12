@@ -76,7 +76,6 @@ pplx::task<std::shared_ptr<PageResource«LocationLogResource»>> UtilSecurityApi
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -213,7 +212,6 @@ pplx::task<std::shared_ptr<TokenDetailsResource>> UtilSecurityApi::getUserTokenD
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

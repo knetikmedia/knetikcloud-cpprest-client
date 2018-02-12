@@ -76,7 +76,6 @@ pplx::task<std::shared_ptr<PageResource«UsageInfo»>> ReportingUsageApi::getUsa
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -225,7 +224,6 @@ pplx::task<std::shared_ptr<PageResource«UsageInfo»>> ReportingUsageApi::getUsa
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -374,7 +372,6 @@ pplx::task<std::shared_ptr<PageResource«UsageInfo»>> ReportingUsageApi::getUsa
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -523,7 +520,6 @@ pplx::task<std::shared_ptr<PageResource«UsageInfo»>> ReportingUsageApi::getUsa
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -672,7 +668,6 @@ pplx::task<std::shared_ptr<PageResource«UsageInfo»>> ReportingUsageApi::getUsa
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -821,7 +816,6 @@ pplx::task<std::vector<utility::string_t>> ReportingUsageApi::getUsageEndpoints(
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

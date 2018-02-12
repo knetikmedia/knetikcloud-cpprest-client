@@ -480,7 +480,6 @@ pplx::task<void> ContentPollsApi::deletePoll(utility::string_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -584,7 +583,6 @@ pplx::task<void> ContentPollsApi::deletePollTemplate(utility::string_t id, utili
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -692,7 +690,6 @@ pplx::task<std::shared_ptr<PollResource>> ContentPollsApi::getPoll(utility::stri
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -814,7 +811,6 @@ pplx::task<std::shared_ptr<PollResponseResource>> ContentPollsApi::getPollAnswer
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -936,7 +932,6 @@ pplx::task<std::shared_ptr<TemplateResource>> ContentPollsApi::getPollTemplate(u
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1057,7 +1052,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> ContentPollsApi::g
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1190,7 +1184,6 @@ pplx::task<std::shared_ptr<PageResource«PollResource»>> ContentPollsApi::getPo
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

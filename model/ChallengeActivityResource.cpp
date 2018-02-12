@@ -25,6 +25,7 @@ ChallengeActivityResource::ChallengeActivityResource()
     m_Additional_propertiesIsSet = false;
     m_Challenge_id = 0L;
     m_Challenge_idIsSet = false;
+    m_Core_settingsIsSet = false;
     m_EntitlementIsSet = false;
     m_Id = 0L;
     m_IdIsSet = false;
@@ -65,6 +66,10 @@ web::json::value ChallengeActivityResource::toJson() const
     if(m_Challenge_idIsSet)
     {
         val[U("challenge_id")] = ModelBase::toJson(m_Challenge_id);
+    }
+    if(m_Core_settingsIsSet)
+    {
+        val[U("core_settings")] = ModelBase::toJson(m_Core_settings);
     }
     if(m_EntitlementIsSet)
     {
@@ -128,6 +133,15 @@ void ChallengeActivityResource::fromJson(web::json::value& val)
     if(val.has_field(U("challenge_id")))
     {
         setChallengeId(ModelBase::int64_tFromJson(val[U("challenge_id")]));
+    }
+    if(val.has_field(U("core_settings")))
+    {
+        if(!val[U("core_settings")].is_null())
+        {
+            std::shared_ptr<CoreChallengeActivitySettings> newItem(new CoreChallengeActivitySettings());
+            newItem->fromJson(val[U("core_settings")]);
+            setCoreSettings( newItem );
+        }
     }
     if(val.has_field(U("entitlement")))
     {
@@ -204,6 +218,14 @@ void ChallengeActivityResource::toMultipart(std::shared_ptr<MultipartFormData> m
     if(m_Challenge_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("challenge_id"), m_Challenge_id));
+    }
+    if(m_Core_settingsIsSet)
+    {
+        if (m_Core_settings.get())
+        {
+            m_Core_settings->toMultipart(multipart, U("core_settings."));
+        }
+        
     }
     if(m_EntitlementIsSet)
     {
@@ -282,6 +304,15 @@ void ChallengeActivityResource::fromMultiPart(std::shared_ptr<MultipartFormData>
     if(multipart->hasContent(U("challenge_id")))
     {
         setChallengeId(ModelBase::int64_tFromHttpContent(multipart->getContent(U("challenge_id"))));
+    }
+    if(multipart->hasContent(U("core_settings")))
+    {
+        if(multipart->hasContent(U("core_settings")))
+        {
+            std::shared_ptr<CoreChallengeActivitySettings> newItem(new CoreChallengeActivitySettings());
+            newItem->fromMultiPart(multipart, U("core_settings."));
+            setCoreSettings( newItem );
+        }
     }
     if(multipart->hasContent(U("entitlement")))
     {
@@ -382,6 +413,27 @@ bool ChallengeActivityResource::challengeIdIsSet() const
 void ChallengeActivityResource::unsetChallenge_id()
 {
     m_Challenge_idIsSet = false;
+}
+
+std::shared_ptr<CoreChallengeActivitySettings> ChallengeActivityResource::getCoreSettings() const
+{
+    return m_Core_settings;
+}
+
+
+void ChallengeActivityResource::setCoreSettings(std::shared_ptr<CoreChallengeActivitySettings> value)
+{
+    m_Core_settings = value;
+    m_Core_settingsIsSet = true;
+}
+bool ChallengeActivityResource::coreSettingsIsSet() const
+{
+    return m_Core_settingsIsSet;
+}
+
+void ChallengeActivityResource::unsetCore_settings()
+{
+    m_Core_settingsIsSet = false;
 }
 
 std::shared_ptr<ActivityEntitlementResource> ChallengeActivityResource::getEntitlement() const

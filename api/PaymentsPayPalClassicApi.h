@@ -45,7 +45,7 @@ public:
     /// Create a PayPal Classic billing agreement for the user
     /// </summary>
     /// <remarks>
-    /// Returns the token that should be used to forward the user to PayPal so they can accept the agreement.
+    /// Returns the token that should be used to forward the user to PayPal so they can accept the agreement. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; PAYPAL_CLASSIC_ADMIN or owner
     /// </remarks>
     /// <param name="request">The request to create a PayPal billing agreement (optional)</param>
     pplx::task<utility::string_t> createPayPalBillingAgreementUrl(std::shared_ptr<CreateBillingAgreementRequest> request);
@@ -53,7 +53,7 @@ public:
     /// Create a payment token for PayPal express checkout
     /// </summary>
     /// <remarks>
-    /// Returns the token that should be used to forward the user to PayPal so they can complete the checkout.
+    /// Returns the token that should be used to forward the user to PayPal so they can complete the checkout. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; PAYPAL_CLASSIC_ADMIN or owner
     /// </remarks>
     /// <param name="request">The request to create a PayPal payment token (optional)</param>
     pplx::task<utility::string_t> createPayPalExpressCheckout(std::shared_ptr<CreatePayPalPaymentRequest> request);
@@ -61,7 +61,7 @@ public:
     /// Finalizes a billing agreement after the user has accepted through PayPal
     /// </summary>
     /// <remarks>
-    /// Returns the ID of the new payment method created for the user for the billing agreement.
+    /// Returns the ID of the new payment method created for the user for the billing agreement. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; PAYPAL_CLASSIC_ADMIN or owner
     /// </remarks>
     /// <param name="request">The request to finalize a PayPal billing agreement (optional)</param>
     pplx::task<int32_t> finalizePayPalBillingAgreement(std::shared_ptr<FinalizeBillingAgreementRequest> request);
@@ -69,7 +69,7 @@ public:
     /// Finalizes a payment after the user has completed checkout with PayPal
     /// </summary>
     /// <remarks>
-    /// The invoice will be marked paid/failed by asynchronous IPN callback.
+    /// The invoice will be marked paid/failed by asynchronous IPN callback. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; PAYPAL_CLASSIC_ADMIN or owner
     /// </remarks>
     /// <param name="request">The request to finalize the payment (optional)</param>
     pplx::task<void> finalizePayPalCheckout(std::shared_ptr<FinalizePayPalPaymentRequest> request);

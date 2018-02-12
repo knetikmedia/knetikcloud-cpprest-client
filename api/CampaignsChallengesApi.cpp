@@ -618,7 +618,6 @@ pplx::task<void> CampaignsChallengesApi::deleteChallenge(int64_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -723,7 +722,6 @@ boost::replace_all(path, U("{") U("challenge_id") U("}"), ApiClient::parameterTo
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -827,7 +825,6 @@ pplx::task<void> CampaignsChallengesApi::deleteChallengeActivityTemplate(utility
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -935,7 +932,6 @@ pplx::task<void> CampaignsChallengesApi::deleteChallengeEvent(int64_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1039,7 +1035,6 @@ pplx::task<void> CampaignsChallengesApi::deleteChallengeTemplate(utility::string
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1147,7 +1142,6 @@ pplx::task<std::shared_ptr<ChallengeResource>> CampaignsChallengesApi::getChalle
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1269,7 +1263,6 @@ pplx::task<std::shared_ptr<PageResource«BareChallengeActivityResource»>> Campa
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1404,7 +1397,6 @@ boost::replace_all(path, U("{") U("challenge_id") U("}"), ApiClient::parameterTo
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1526,7 +1518,6 @@ pplx::task<std::shared_ptr<TemplateResource>> CampaignsChallengesApi::getChallen
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1647,7 +1638,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> CampaignsChallenge
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1781,7 +1771,6 @@ pplx::task<std::shared_ptr<ChallengeEventResource>> CampaignsChallengesApi::getC
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1902,7 +1891,6 @@ pplx::task<std::shared_ptr<PageResource«ChallengeEventResource»>> CampaignsCha
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2052,7 +2040,6 @@ pplx::task<std::shared_ptr<TemplateResource>> CampaignsChallengesApi::getChallen
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -2173,7 +2160,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> CampaignsChallenge
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -2306,7 +2292,6 @@ pplx::task<std::shared_ptr<PageResource«ChallengeResource»>> CampaignsChalleng
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

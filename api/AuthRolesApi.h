@@ -46,7 +46,7 @@ public:
     /// Create a new role
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="roleResource">The role resource object (optional)</param>
     pplx::task<std::shared_ptr<RoleResource>> createRole(std::shared_ptr<RoleResource> roleResource);
@@ -54,7 +54,7 @@ public:
     /// Delete a role
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="role">The role value</param>/// <param name="force">If true, removes role from users/clients (optional)</param>
     pplx::task<void> deleteRole(utility::string_t role, bool force);
@@ -62,7 +62,7 @@ public:
     /// Get roles for a client
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="clientKey">The client key</param>
     pplx::task<std::vector<std::shared_ptr<RoleResource>>> getClientRoles(utility::string_t clientKey);
@@ -70,7 +70,7 @@ public:
     /// Get a single role
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="role">The role value</param>
     pplx::task<std::shared_ptr<RoleResource>> getRole(utility::string_t role);
@@ -78,7 +78,7 @@ public:
     /// List and search roles
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="filterName">Filter for roles that have a name starting with specified string (optional)</param>/// <param name="filterRole">Filter for roles that have a role starting with specified string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«RoleResource»>> getRoles(utility::string_t filterName, utility::string_t filterRole, int32_t size, int32_t page, utility::string_t order);
@@ -86,7 +86,7 @@ public:
     /// Get roles for a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="userId">The user&#39;s id</param>
     pplx::task<std::vector<std::shared_ptr<RoleResource>>> getUserRoles(int32_t userId);
@@ -94,7 +94,7 @@ public:
     /// Set roles for a client
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="clientKey">The client key</param>/// <param name="rolesList">The list of unique roles (optional)</param>
     pplx::task<std::shared_ptr<ClientResource>> setClientRoles(utility::string_t clientKey, std::vector<utility::string_t> rolesList);
@@ -102,7 +102,7 @@ public:
     /// Set permissions for a role
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="role">The role value</param>/// <param name="permissionsList">The list of unique permissions (optional)</param>
     pplx::task<std::shared_ptr<RoleResource>> setPermissionsForRole(utility::string_t role, std::vector<utility::string_t> permissionsList);
@@ -110,7 +110,7 @@ public:
     /// Set roles for a user
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="userId">The user&#39;s id</param>/// <param name="rolesList">The list of unique roles (optional)</param>
     pplx::task<std::shared_ptr<UserResource>> setUserRoles(int32_t userId, std::vector<utility::string_t> rolesList);
@@ -118,7 +118,7 @@ public:
     /// Update a role
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ROLES_ADMIN
     /// </remarks>
     /// <param name="role">The role value</param>/// <param name="roleResource">The role resource object (optional)</param>
     pplx::task<std::shared_ptr<RoleResource>> updateRole(utility::string_t role, std::shared_ptr<RoleResource> roleResource);

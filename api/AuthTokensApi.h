@@ -43,7 +43,7 @@ public:
     /// Delete tokens by username, client id, or both
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TOKENS_ADMIN
     /// </remarks>
     /// <param name="username">The username of the user (optional)</param>/// <param name="clientId">The id of the client (optional)</param>
     pplx::task<void> deleteTokens(utility::string_t username, utility::string_t clientId);
@@ -51,7 +51,7 @@ public:
     /// Get a single token by username and client id
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TOKENS_ADMIN
     /// </remarks>
     /// <param name="username">The username of the user</param>/// <param name="clientId">The id of the client</param>
     pplx::task<std::shared_ptr<OauthAccessTokenResource>> getToken(utility::string_t username, utility::string_t clientId);
@@ -59,7 +59,7 @@ public:
     /// List usernames and client ids
     /// </summary>
     /// <remarks>
-    /// Token value not shown
+    /// Token value not shown. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; TOKENS_ADMIN
     /// </remarks>
     /// <param name="filterClientId">Filters for token whose client id matches provided string (optional)</param>/// <param name="filterUsername">Filters for token whose username matches provided string (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional)</param>
     pplx::task<std::shared_ptr<PageResource«OauthAccessTokenResource»>> getTokens(utility::string_t filterClientId, utility::string_t filterUsername, int32_t size, int32_t page, utility::string_t order);

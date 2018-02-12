@@ -54,7 +54,7 @@ public:
     /// Config members
 
     /// <summary>
-    /// The description of the config.  Max 140 characters
+    /// The description of the config.  Max 255 characters
     /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;

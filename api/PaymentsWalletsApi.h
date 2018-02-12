@@ -47,7 +47,7 @@ public:
     /// Returns the user&#39;s wallet for the given currency code
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; WALLETS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">The ID of the user for whom wallet is being retrieved</param>/// <param name="currencyCode">Currency code of the user&#39;s wallet</param>
     pplx::task<std::shared_ptr<SimpleWallet>> getUserWallet(int32_t userId, utility::string_t currencyCode);
@@ -55,7 +55,7 @@ public:
     /// Retrieve a user&#39;s wallet transactions
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; WALLETS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">The ID of the user for whom wallet transactions are being retrieved</param>/// <param name="currencyCode">Currency code of the user&#39;s wallet</param>/// <param name="filterType">Filter for transactions with specified type (optional)</param>/// <param name="filterMaxDate">Filter for transactions from no earlier than the specified date as a unix timestamp in seconds (optional)</param>/// <param name="filterMinDate">Filter for transactions from no later than the specified date as a unix timestamp in seconds (optional)</param>/// <param name="filterSign">Filter for transactions with amount with the given sign.  Allowable values: (&#39;positive&#39;, &#39;negative&#39;) (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«WalletTransactionResource»>> getUserWalletTransactions(int32_t userId, utility::string_t currencyCode, utility::string_t filterType, int64_t filterMaxDate, int64_t filterMinDate, utility::string_t filterSign, int32_t size, int32_t page, utility::string_t order);
@@ -63,7 +63,7 @@ public:
     /// List all of a user&#39;s wallets
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; WALLETS_ADMIN or owner
     /// </remarks>
     /// <param name="userId">The ID of the user for whom wallets are being retrieved</param>
     pplx::task<std::vector<std::shared_ptr<SimpleWallet>>> getUserWallets(int32_t userId);
@@ -71,7 +71,7 @@ public:
     /// Retrieves a summation of wallet balances by currency code
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; WALLETS_ADMIN
     /// </remarks>
     
     pplx::task<std::shared_ptr<PageResource«WalletTotalResponse»>> getWalletBalances();
@@ -79,7 +79,7 @@ public:
     /// Retrieve wallet transactions across the system
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; WALLETS_ADMIN
     /// </remarks>
     /// <param name="filterInvoice">Filter for transactions from a specific invoice (optional)</param>/// <param name="filterType">Filter for transactions with specified type (optional)</param>/// <param name="filterDate">A comma separated string without spaces.  First value is the operator to search on, second value is the log start date, a unix timestamp in seconds. Can be repeated for a range, eg: GT,123,LT,456  Allowed operators: (GT, LT, EQ, GOE, LOE). (optional)</param>/// <param name="filterSign">Filter for transactions with amount with the given sign (optional)</param>/// <param name="filterUserId">Filter for transactions for specific userId (optional)</param>/// <param name="filterUsername">Filter for transactions for specific username that start with the given string (optional)</param>/// <param name="filterDetails">Filter for transactions for specific details that start with the given string (optional)</param>/// <param name="filterCurrencyCode">Filter for transactions for specific currency code (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«WalletTransactionResource»>> getWalletTransactions(int32_t filterInvoice, utility::string_t filterType, utility::string_t filterDate, utility::string_t filterSign, int32_t filterUserId, utility::string_t filterUsername, utility::string_t filterDetails, utility::string_t filterCurrencyCode, int32_t size, int32_t page, utility::string_t order);
@@ -87,7 +87,7 @@ public:
     /// Retrieve a list of wallets across the system
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; WALLETS_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«SimpleWallet»>> getWallets(int32_t size, int32_t page, utility::string_t order);
@@ -95,7 +95,7 @@ public:
     /// Updates the balance for a user&#39;s wallet
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; WALLETS_ADMIN
     /// </remarks>
     /// <param name="userId">The ID of the user for whom wallet is being modified</param>/// <param name="currencyCode">Currency code of the user&#39;s wallet</param>/// <param name="request">The requested balance modification to be made to the user&#39;s wallet (optional)</param>
     pplx::task<std::shared_ptr<WalletTransactionResource>> updateWalletBalance(int32_t userId, utility::string_t currencyCode, std::shared_ptr<WalletAlterRequest> request);

@@ -76,7 +76,6 @@ pplx::task<std::vector<std::shared_ptr<CountryResource>>> LocationsApi::getCount
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -209,7 +208,6 @@ pplx::task<utility::string_t> LocationsApi::getCountryByGeoLocation()
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -336,7 +334,6 @@ pplx::task<std::vector<std::shared_ptr<StateResource>>> LocationsApi::getCountry
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -464,7 +461,6 @@ pplx::task<std::shared_ptr<CurrencyResource>> LocationsApi::getCurrencyByGeoLoca
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;

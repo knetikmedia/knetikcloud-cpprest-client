@@ -499,7 +499,6 @@ pplx::task<void> DevicesApi::deleteDevice(utility::string_t id)
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -603,7 +602,6 @@ pplx::task<void> DevicesApi::deleteDeviceTemplate(utility::string_t id, utility:
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -712,7 +710,6 @@ boost::replace_all(path, U("{") U("user_id") U("}"), ApiClient::parameterToStrin
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -816,7 +813,6 @@ pplx::task<void> DevicesApi::deleteDeviceUsers(utility::string_t id, utility::st
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -924,7 +920,6 @@ pplx::task<std::shared_ptr<DeviceResource>> DevicesApi::getDevice(utility::strin
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1046,7 +1041,6 @@ pplx::task<std::shared_ptr<TemplateResource>> DevicesApi::getDeviceTemplate(util
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -1167,7 +1161,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> DevicesApi::getDev
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -1300,7 +1293,6 @@ pplx::task<std::shared_ptr<PageResource«DeviceResource»>> DevicesApi::getDevic
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

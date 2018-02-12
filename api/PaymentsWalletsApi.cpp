@@ -78,7 +78,6 @@ boost::replace_all(path, U("{") U("currency_code") U("}"), ApiClient::parameterT
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -201,7 +200,6 @@ boost::replace_all(path, U("{") U("currency_code") U("}"), ApiClient::parameterT
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -351,7 +349,6 @@ pplx::task<std::vector<std::shared_ptr<SimpleWallet>>> PaymentsWalletsApi::getUs
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -479,7 +476,6 @@ pplx::task<std::shared_ptr<PageResource«WalletTotalResponse»>> PaymentsWallets
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -600,7 +596,6 @@ pplx::task<std::shared_ptr<PageResource«WalletTransactionResource»>> PaymentsW
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -765,7 +760,6 @@ pplx::task<std::shared_ptr<PageResource«SimpleWallet»>> PaymentsWalletsApi::ge
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {

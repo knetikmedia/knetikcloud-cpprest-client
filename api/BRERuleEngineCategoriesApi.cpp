@@ -211,7 +211,6 @@ pplx::task<void> BRERuleEngineCategoriesApi::deleteBRECategoryTemplate(utility::
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -318,7 +317,6 @@ pplx::task<std::shared_ptr<PageResource«BreCategoryResource»>> BRERuleEngineCa
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
@@ -448,7 +446,6 @@ pplx::task<std::shared_ptr<BreCategoryResource>> BRERuleEngineCategoriesApi::get
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -570,7 +567,6 @@ pplx::task<std::shared_ptr<TemplateResource>> BRERuleEngineCategoriesApi::getBRE
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
 
     std::shared_ptr<IHttpBody> httpBody;
@@ -691,7 +687,6 @@ pplx::task<std::shared_ptr<PageResource«TemplateResource»>> BRERuleEngineCateg
     headerParams[U("Accept")] = responseHttpContentType;
 
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( U("application/json") );
 
     
     {
