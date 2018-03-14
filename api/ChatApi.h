@@ -136,7 +136,7 @@ public:
     /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ANY
     /// </remarks>
     /// <param name="chatMessageResource">The chat message resource (optional)</param>
-    pplx::task<std::shared_ptr<ChatMessageResource>> sendMessage(std::shared_ptr<ChatMessageResource> chatMessageResource);
+    pplx::task<std::shared_ptr<ChatMessageResource>> sendChatMessage(std::shared_ptr<ChatMessageResource> chatMessageResource);
 
 protected:
     std::shared_ptr<ApiClient> m_ApiClient;

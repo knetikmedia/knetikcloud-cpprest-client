@@ -1359,7 +1359,7 @@ boost::replace_all(path, U("{") U("id") U("}"), ApiClient::parameterToString(id)
         return void();
     });
 }
-pplx::task<std::shared_ptr<ChatMessageResource>> ChatApi::sendMessage(std::shared_ptr<ChatMessageResource> chatMessageResource)
+pplx::task<std::shared_ptr<ChatMessageResource>> ChatApi::sendChatMessage(std::shared_ptr<ChatMessageResource> chatMessageResource)
 {
 
 
@@ -1393,7 +1393,7 @@ pplx::task<std::shared_ptr<ChatMessageResource>> ChatApi::sendMessage(std::share
     }
     else
     {
-        throw ApiException(400, U("ChatApi->sendMessage does not produce any supported media type"));
+        throw ApiException(400, U("ChatApi->sendChatMessage does not produce any supported media type"));
     }
 
     headerParams[U("Accept")] = responseHttpContentType;
@@ -1430,7 +1430,7 @@ pplx::task<std::shared_ptr<ChatMessageResource>> ChatApi::sendMessage(std::share
     }
     else
     {
-        throw ApiException(415, U("ChatApi->sendMessage does not consume any supported media type"));
+        throw ApiException(415, U("ChatApi->sendChatMessage does not consume any supported media type"));
     }
 
     //Set the request content type in the header.
@@ -1452,7 +1452,7 @@ pplx::task<std::shared_ptr<ChatMessageResource>> ChatApi::sendMessage(std::share
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , U("error calling sendMessage: ") + response.reason_phrase()
+                , U("error calling sendChatMessage: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -1463,7 +1463,7 @@ pplx::task<std::shared_ptr<ChatMessageResource>> ChatApi::sendMessage(std::share
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , U("error calling sendMessage: unexpected response type: ") + contentType
+                    , U("error calling sendChatMessage: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -1487,7 +1487,7 @@ pplx::task<std::shared_ptr<ChatMessageResource>> ChatApi::sendMessage(std::share
         else
         {
             throw ApiException(500
-                , U("error calling sendMessage: unsupported response type"));
+                , U("error calling sendChatMessage: unsupported response type"));
         }
 
         return result;

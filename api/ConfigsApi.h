@@ -43,7 +43,7 @@ public:
     /// Create a new config
     /// </summary>
     /// <remarks>
-    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; TOPICS_ADMIN
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; CONFIGS_ADMIN
     /// </remarks>
     /// <param name="config">The config object (optional)</param>
     pplx::task<std::shared_ptr<Config>> createConfig(std::shared_ptr<Config> config);

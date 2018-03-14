@@ -1964,7 +1964,7 @@ pplx::task<std::shared_ptr<ActivityOccurrenceResource>> ActivitiesApi::setActivi
         return result;
     });
 }
-pplx::task<std::shared_ptr<ActivityUserResource>> ActivitiesApi::setUserStatus(int64_t activityOccurrenceId, utility::string_t userId, utility::string_t status)
+pplx::task<std::shared_ptr<ActivityUserResource>> ActivitiesApi::setUserStatus(int64_t activityOccurrenceId, utility::string_t userId, std::shared_ptr<ActivityUserStatusWrapper> status)
 {
 
 
@@ -2027,7 +2027,10 @@ boost::replace_all(path, U("{") U("user_id") U("}"), ApiClient::parameterToStrin
     {
         requestHttpContentType = U("multipart/form-data");
         std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
-        multipart->add(ModelBase::toHttpContent("status", status));
+                if(status.get())
+        {
+            status->toMultipart(multipart, U("status"));
+        }
 
         httpBody = multipart;
         requestHttpContentType += U("; boundary=") + multipart->getBoundary();
@@ -2232,7 +2235,7 @@ pplx::task<std::shared_ptr<ActivityResource>> ActivitiesApi::updateActivity(int6
         return result;
     });
 }
-pplx::task<void> ActivitiesApi::updateActivityOccurrenceStatus(int64_t activityOccurrenceId, std::shared_ptr<ValueWrapper«string»> activityOccurrenceStatus)
+pplx::task<void> ActivitiesApi::updateActivityOccurrenceStatus(int64_t activityOccurrenceId, std::shared_ptr<ActivityOccurrenceStatusWrapper> activityOccurrenceStatus)
 {
 
 

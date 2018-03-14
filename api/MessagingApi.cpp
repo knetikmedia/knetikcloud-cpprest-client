@@ -677,7 +677,7 @@ pplx::task<std::shared_ptr<PageResource«MessageTemplateResource»>> MessagingAp
         return result;
     });
 }
-pplx::task<void> MessagingApi::sendMessage1(std::shared_ptr<MessageResource> messageResource)
+pplx::task<void> MessagingApi::sendMessage(std::shared_ptr<MessageResource> messageResource)
 {
 
 
@@ -711,7 +711,7 @@ pplx::task<void> MessagingApi::sendMessage1(std::shared_ptr<MessageResource> mes
     }
     else
     {
-        throw ApiException(400, U("MessagingApi->sendMessage1 does not produce any supported media type"));
+        throw ApiException(400, U("MessagingApi->sendMessage does not produce any supported media type"));
     }
 
     headerParams[U("Accept")] = responseHttpContentType;
@@ -748,7 +748,7 @@ pplx::task<void> MessagingApi::sendMessage1(std::shared_ptr<MessageResource> mes
     }
     else
     {
-        throw ApiException(415, U("MessagingApi->sendMessage1 does not consume any supported media type"));
+        throw ApiException(415, U("MessagingApi->sendMessage does not consume any supported media type"));
     }
 
     //Set the request content type in the header.
@@ -770,7 +770,7 @@ pplx::task<void> MessagingApi::sendMessage1(std::shared_ptr<MessageResource> mes
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , U("error calling sendMessage1: ") + response.reason_phrase()
+                , U("error calling sendMessage: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -781,7 +781,7 @@ pplx::task<void> MessagingApi::sendMessage1(std::shared_ptr<MessageResource> mes
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , U("error calling sendMessage1: unexpected response type: ") + contentType
+                    , U("error calling sendMessage: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }

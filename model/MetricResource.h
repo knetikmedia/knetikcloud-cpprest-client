@@ -60,7 +60,7 @@ public:
     int64_t getActivityOccurenceId() const;
         void setActivityOccurenceId(int64_t value);
     /// <summary>
-    /// Any tags for the metric. Each unique tag will translate into a unique leaderboard. Maximum 5 tags and 50 characters each
+    /// Any tags for the metric. Each unique tag will translate into a unique leaderboard. Maximum 10 tags and 50 characters each
     /// </summary>
     std::vector<utility::string_t>& getTags();
     bool tagsIsSet() const;

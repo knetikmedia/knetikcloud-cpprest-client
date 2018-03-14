@@ -25,17 +25,29 @@ ForwardLog::ForwardLog()
     m_End_dateIsSet = false;
     m_Error_msg = U("");
     m_Error_msgIsSet = false;
+    m_Event_id = U("");
+    m_Event_idIsSet = false;
+    m_Headers = U("");
+    m_HeadersIsSet = false;
     m_Http_status_code = 0;
     m_Http_status_codeIsSet = false;
     m_Id = U("");
     m_IdIsSet = false;
+    m_Method = U("");
+    m_MethodIsSet = false;
     m_PayloadIsSet = false;
     m_Response = U("");
     m_ResponseIsSet = false;
     m_Retry_count = 0;
     m_Retry_countIsSet = false;
+    m_Retryable = false;
+    m_RetryableIsSet = false;
+    m_Rule_id = U("");
+    m_Rule_idIsSet = false;
     m_Start_date = 0L;
     m_Start_dateIsSet = false;
+    m_Success = false;
+    m_SuccessIsSet = false;
     m_Url = U("");
     m_UrlIsSet = false;
 }
@@ -61,6 +73,14 @@ web::json::value ForwardLog::toJson() const
     {
         val[U("error_msg")] = ModelBase::toJson(m_Error_msg);
     }
+    if(m_Event_idIsSet)
+    {
+        val[U("event_id")] = ModelBase::toJson(m_Event_id);
+    }
+    if(m_HeadersIsSet)
+    {
+        val[U("headers")] = ModelBase::toJson(m_Headers);
+    }
     if(m_Http_status_codeIsSet)
     {
         val[U("http_status_code")] = ModelBase::toJson(m_Http_status_code);
@@ -68,6 +88,10 @@ web::json::value ForwardLog::toJson() const
     if(m_IdIsSet)
     {
         val[U("id")] = ModelBase::toJson(m_Id);
+    }
+    if(m_MethodIsSet)
+    {
+        val[U("method")] = ModelBase::toJson(m_Method);
     }
     if(m_PayloadIsSet)
     {
@@ -81,9 +105,21 @@ web::json::value ForwardLog::toJson() const
     {
         val[U("retry_count")] = ModelBase::toJson(m_Retry_count);
     }
+    if(m_RetryableIsSet)
+    {
+        val[U("retryable")] = ModelBase::toJson(m_Retryable);
+    }
+    if(m_Rule_idIsSet)
+    {
+        val[U("rule_id")] = ModelBase::toJson(m_Rule_id);
+    }
     if(m_Start_dateIsSet)
     {
         val[U("start_date")] = ModelBase::toJson(m_Start_date);
+    }
+    if(m_SuccessIsSet)
+    {
+        val[U("success")] = ModelBase::toJson(m_Success);
     }
     if(m_UrlIsSet)
     {
@@ -103,6 +139,14 @@ void ForwardLog::fromJson(web::json::value& val)
     {
         setErrorMsg(ModelBase::stringFromJson(val[U("error_msg")]));
     }
+    if(val.has_field(U("event_id")))
+    {
+        setEventId(ModelBase::stringFromJson(val[U("event_id")]));
+    }
+    if(val.has_field(U("headers")))
+    {
+        setHeaders(ModelBase::stringFromJson(val[U("headers")]));
+    }
     if(val.has_field(U("http_status_code")))
     {
         setHttpStatusCode(ModelBase::int32_tFromJson(val[U("http_status_code")]));
@@ -110,6 +154,10 @@ void ForwardLog::fromJson(web::json::value& val)
     if(val.has_field(U("id")))
     {
         setId(ModelBase::stringFromJson(val[U("id")]));
+    }
+    if(val.has_field(U("method")))
+    {
+        setMethod(ModelBase::stringFromJson(val[U("method")]));
     }
     if(val.has_field(U("payload")))
     {
@@ -128,9 +176,21 @@ void ForwardLog::fromJson(web::json::value& val)
     {
         setRetryCount(ModelBase::int32_tFromJson(val[U("retry_count")]));
     }
+    if(val.has_field(U("retryable")))
+    {
+        setRetryable(ModelBase::boolFromJson(val[U("retryable")]));
+    }
+    if(val.has_field(U("rule_id")))
+    {
+        setRuleId(ModelBase::stringFromJson(val[U("rule_id")]));
+    }
     if(val.has_field(U("start_date")))
     {
         setStartDate(ModelBase::int64_tFromJson(val[U("start_date")]));
+    }
+    if(val.has_field(U("success")))
+    {
+        setSuccess(ModelBase::boolFromJson(val[U("success")]));
     }
     if(val.has_field(U("url")))
     {
@@ -155,6 +215,16 @@ void ForwardLog::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
         multipart->add(ModelBase::toHttpContent(namePrefix + U("error_msg"), m_Error_msg));
         
     }
+    if(m_Event_idIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("event_id"), m_Event_id));
+        
+    }
+    if(m_HeadersIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("headers"), m_Headers));
+        
+    }
     if(m_Http_status_codeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("http_status_code"), m_Http_status_code));
@@ -162,6 +232,11 @@ void ForwardLog::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_IdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("id"), m_Id));
+        
+    }
+    if(m_MethodIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("method"), m_Method));
         
     }
     if(m_PayloadIsSet)
@@ -181,9 +256,22 @@ void ForwardLog::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("retry_count"), m_Retry_count));
     }
+    if(m_RetryableIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("retryable"), m_Retryable));
+    }
+    if(m_Rule_idIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("rule_id"), m_Rule_id));
+        
+    }
     if(m_Start_dateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + U("start_date"), m_Start_date));
+    }
+    if(m_SuccessIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + U("success"), m_Success));
     }
     if(m_UrlIsSet)
     {
@@ -208,6 +296,14 @@ void ForwardLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     {
         setErrorMsg(ModelBase::stringFromHttpContent(multipart->getContent(U("error_msg"))));
     }
+    if(multipart->hasContent(U("event_id")))
+    {
+        setEventId(ModelBase::stringFromHttpContent(multipart->getContent(U("event_id"))));
+    }
+    if(multipart->hasContent(U("headers")))
+    {
+        setHeaders(ModelBase::stringFromHttpContent(multipart->getContent(U("headers"))));
+    }
     if(multipart->hasContent(U("http_status_code")))
     {
         setHttpStatusCode(ModelBase::int32_tFromHttpContent(multipart->getContent(U("http_status_code"))));
@@ -215,6 +311,10 @@ void ForwardLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     if(multipart->hasContent(U("id")))
     {
         setId(ModelBase::stringFromHttpContent(multipart->getContent(U("id"))));
+    }
+    if(multipart->hasContent(U("method")))
+    {
+        setMethod(ModelBase::stringFromHttpContent(multipart->getContent(U("method"))));
     }
     if(multipart->hasContent(U("payload")))
     {
@@ -233,9 +333,21 @@ void ForwardLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     {
         setRetryCount(ModelBase::int32_tFromHttpContent(multipart->getContent(U("retry_count"))));
     }
+    if(multipart->hasContent(U("retryable")))
+    {
+        setRetryable(ModelBase::boolFromHttpContent(multipart->getContent(U("retryable"))));
+    }
+    if(multipart->hasContent(U("rule_id")))
+    {
+        setRuleId(ModelBase::stringFromHttpContent(multipart->getContent(U("rule_id"))));
+    }
     if(multipart->hasContent(U("start_date")))
     {
         setStartDate(ModelBase::int64_tFromHttpContent(multipart->getContent(U("start_date"))));
+    }
+    if(multipart->hasContent(U("success")))
+    {
+        setSuccess(ModelBase::boolFromHttpContent(multipart->getContent(U("success"))));
     }
     if(multipart->hasContent(U("url")))
     {
@@ -285,6 +397,48 @@ void ForwardLog::unsetError_msg()
     m_Error_msgIsSet = false;
 }
 
+utility::string_t ForwardLog::getEventId() const
+{
+    return m_Event_id;
+}
+
+
+void ForwardLog::setEventId(utility::string_t value)
+{
+    m_Event_id = value;
+    m_Event_idIsSet = true;
+}
+bool ForwardLog::eventIdIsSet() const
+{
+    return m_Event_idIsSet;
+}
+
+void ForwardLog::unsetEvent_id()
+{
+    m_Event_idIsSet = false;
+}
+
+utility::string_t ForwardLog::getHeaders() const
+{
+    return m_Headers;
+}
+
+
+void ForwardLog::setHeaders(utility::string_t value)
+{
+    m_Headers = value;
+    m_HeadersIsSet = true;
+}
+bool ForwardLog::headersIsSet() const
+{
+    return m_HeadersIsSet;
+}
+
+void ForwardLog::unsetHeaders()
+{
+    m_HeadersIsSet = false;
+}
+
 int32_t ForwardLog::getHttpStatusCode() const
 {
     return m_Http_status_code;
@@ -325,6 +479,27 @@ bool ForwardLog::idIsSet() const
 void ForwardLog::unsetId()
 {
     m_IdIsSet = false;
+}
+
+utility::string_t ForwardLog::getMethod() const
+{
+    return m_Method;
+}
+
+
+void ForwardLog::setMethod(utility::string_t value)
+{
+    m_Method = value;
+    m_MethodIsSet = true;
+}
+bool ForwardLog::methodIsSet() const
+{
+    return m_MethodIsSet;
+}
+
+void ForwardLog::unsetMethod()
+{
+    m_MethodIsSet = false;
 }
 
 std::shared_ptr<Object> ForwardLog::getPayload() const
@@ -390,6 +565,48 @@ void ForwardLog::unsetRetry_count()
     m_Retry_countIsSet = false;
 }
 
+bool ForwardLog::getRetryable() const
+{
+    return m_Retryable;
+}
+
+
+void ForwardLog::setRetryable(bool value)
+{
+    m_Retryable = value;
+    m_RetryableIsSet = true;
+}
+bool ForwardLog::retryableIsSet() const
+{
+    return m_RetryableIsSet;
+}
+
+void ForwardLog::unsetRetryable()
+{
+    m_RetryableIsSet = false;
+}
+
+utility::string_t ForwardLog::getRuleId() const
+{
+    return m_Rule_id;
+}
+
+
+void ForwardLog::setRuleId(utility::string_t value)
+{
+    m_Rule_id = value;
+    m_Rule_idIsSet = true;
+}
+bool ForwardLog::ruleIdIsSet() const
+{
+    return m_Rule_idIsSet;
+}
+
+void ForwardLog::unsetRule_id()
+{
+    m_Rule_idIsSet = false;
+}
+
 int64_t ForwardLog::getStartDate() const
 {
     return m_Start_date;
@@ -409,6 +626,27 @@ bool ForwardLog::startDateIsSet() const
 void ForwardLog::unsetStart_date()
 {
     m_Start_dateIsSet = false;
+}
+
+bool ForwardLog::getSuccess() const
+{
+    return m_Success;
+}
+
+
+void ForwardLog::setSuccess(bool value)
+{
+    m_Success = value;
+    m_SuccessIsSet = true;
+}
+bool ForwardLog::successIsSet() const
+{
+    return m_SuccessIsSet;
+}
+
+void ForwardLog::unsetSuccess()
+{
+    m_SuccessIsSet = false;
 }
 
 utility::string_t ForwardLog::getUrl() const

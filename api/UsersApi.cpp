@@ -405,7 +405,7 @@ pplx::task<std::shared_ptr<PageResource«ChatMessageResource»>> UsersApi::getDi
 
 
     std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = U("/users/users/{recipient_id}/messages");
+    utility::string_t path = U("/users/{recipient_id}/messages");
     boost::replace_all(path, U("{") U("recipient_id") U("}"), ApiClient::parameterToString(recipientId));
 
     std::map<utility::string_t, utility::string_t> queryParams;

@@ -77,7 +77,7 @@ public:
     /// <remarks>
     /// &lt;b&gt;Permissions Needed:&lt;/b&gt; FULFILLMENT_ADMIN
     /// </remarks>
-    /// <param name="id">The id</param>/// <param name="fulfillmentType">The fulfillment type (optional)</param>
+    /// <param name="id">The fulfillment id</param>/// <param name="fulfillmentType">The fulfillment type (optional)</param>
     pplx::task<void> updateFulfillmentType(int32_t id, std::shared_ptr<FulfillmentType> fulfillmentType);
 
 protected:

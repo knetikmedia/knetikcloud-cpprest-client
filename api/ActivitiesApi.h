@@ -28,8 +28,10 @@
 #include "ActivityOccurrenceResults.h"
 #include "ActivityOccurrenceResultsResource.h"
 #include "ActivityOccurrenceSettingsResource.h"
+#include "ActivityOccurrenceStatusWrapper.h"
 #include "ActivityResource.h"
 #include "ActivityUserResource.h"
+#include "ActivityUserStatusWrapper.h"
 #include "CreateActivityOccurrenceRequest.h"
 #include "IntWrapper.h"
 #include "PageResource«ActivityOccurrenceResource».h"
@@ -37,7 +39,6 @@
 #include "PageResource«TemplateResource».h"
 #include "Result.h"
 #include "TemplateResource.h"
-#include "ValueWrapper«string».h"
 #include <cpprest/details/basic_types.h>
 
 namespace com {
@@ -120,7 +121,7 @@ public:
     /// Load a single activity occurrence details
     /// </summary>
     /// <remarks>
-    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_ADMIN
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_USER or ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="activityOccurrenceId">The id of the activity occurrence</param>
     pplx::task<std::shared_ptr<ActivityOccurrenceResource>> getActivityOccurrenceDetails(int64_t activityOccurrenceId);
@@ -144,7 +145,7 @@ public:
     /// List activity occurrences
     /// </summary>
     /// <remarks>
-    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_ADMIN
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_USER or ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="filterActivity">Filter for occurrences of the given activity ID (optional)</param>/// <param name="filterStatus">Filter for occurrences in the given status (optional)</param>/// <param name="filterEvent">Filter for occurrences played during the given event (optional)</param>/// <param name="filterChallenge">Filter for occurrences played within the given challenge (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«ActivityOccurrenceResource»>> listActivityOccurrences(utility::string_t filterActivity, utility::string_t filterStatus, int32_t filterEvent, int32_t filterChallenge, int32_t size, int32_t page, utility::string_t order);
@@ -160,7 +161,7 @@ public:
     /// Sets the status of an activity occurrence to FINISHED and logs metrics
     /// </summary>
     /// <remarks>
-    /// In addition to user permissions requirements there is security based on the core_settings.results_trust setting.
+    /// In addition to user permissions requirements there is security based on the core_settings.results_trust setting. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_USER or ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="activityOccurrenceResults">The activity occurrence object (optional)</param>
     pplx::task<std::shared_ptr<ActivityOccurrenceResults>> setActivityOccurrenceResults(int64_t activityOccurrenceId, std::shared_ptr<ActivityOccurrenceResultsResource> activityOccurrenceResults);
@@ -168,7 +169,7 @@ public:
     /// Sets the settings of an activity occurrence
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_USER and host or ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="settings">The new settings (optional)</param>
     pplx::task<std::shared_ptr<ActivityOccurrenceResource>> setActivityOccurrenceSettings(int64_t activityOccurrenceId, std::shared_ptr<ActivityOccurrenceSettingsResource> settings);
@@ -179,7 +180,7 @@ public:
     /// 
     /// </remarks>
     /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="userId">The id of the user</param>/// <param name="status">The new status (optional)</param>
-    pplx::task<std::shared_ptr<ActivityUserResource>> setUserStatus(int64_t activityOccurrenceId, utility::string_t userId, utility::string_t status);
+    pplx::task<std::shared_ptr<ActivityUserResource>> setUserStatus(int64_t activityOccurrenceId, utility::string_t userId, std::shared_ptr<ActivityUserStatusWrapper> status);
     /// <summary>
     /// Update an activity
     /// </summary>
@@ -192,10 +193,10 @@ public:
     /// Update the status of an activity occurrence
     /// </summary>
     /// <remarks>
-    /// If setting to &#39;FINISHED&#39; reward will be run based on current metrics that have been recorded already. Alternatively, see results endpoint to finish and record all metrics at once. Can be called by non-host participants if non_host_status_control is true
+    /// If setting to &#39;FINISHED&#39; reward will be run based on current metrics that have been recorded already. Alternatively, see results endpoint to finish and record all metrics at once. Can be called by non-host participants if non_host_status_control is true. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; ACTIVITIES_USER and host or ACTIVITIES_ADMIN
     /// </remarks>
     /// <param name="activityOccurrenceId">The id of the activity occurrence</param>/// <param name="activityOccurrenceStatus">The activity occurrence status object (optional)</param>
-    pplx::task<void> updateActivityOccurrenceStatus(int64_t activityOccurrenceId, std::shared_ptr<ValueWrapper«string»> activityOccurrenceStatus);
+    pplx::task<void> updateActivityOccurrenceStatus(int64_t activityOccurrenceId, std::shared_ptr<ActivityOccurrenceStatusWrapper> activityOccurrenceStatus);
     /// <summary>
     /// Update an activity template
     /// </summary>

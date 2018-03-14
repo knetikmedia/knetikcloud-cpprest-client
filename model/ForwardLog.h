@@ -69,6 +69,20 @@ public:
     void unsetError_msg();
     void setErrorMsg(utility::string_t value);
     /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getEventId() const;
+    bool eventIdIsSet() const;
+    void unsetEvent_id();
+    void setEventId(utility::string_t value);
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getHeaders() const;
+    bool headersIsSet() const;
+    void unsetHeaders();
+    void setHeaders(utility::string_t value);
+    /// <summary>
     /// The http status code the forward log entry
     /// </summary>
     int32_t getHttpStatusCode() const;
@@ -82,6 +96,13 @@ public:
     bool idIsSet() const;
     void unsetId();
     void setId(utility::string_t value);
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getMethod() const;
+    bool methodIsSet() const;
+    void unsetMethod();
+    void setMethod(utility::string_t value);
     /// <summary>
     /// The payload of the forward log entry
     /// </summary>
@@ -104,12 +125,33 @@ public:
     void unsetRetry_count();
     void setRetryCount(int32_t value);
     /// <summary>
+    /// 
+    /// </summary>
+    bool getRetryable() const;
+    bool retryableIsSet() const;
+    void unsetRetryable();
+    void setRetryable(bool value);
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getRuleId() const;
+    bool ruleIdIsSet() const;
+    void unsetRule_id();
+    void setRuleId(utility::string_t value);
+    /// <summary>
     /// The start date of the forward log entry
     /// </summary>
     int64_t getStartDate() const;
     bool startDateIsSet() const;
     void unsetStart_date();
     void setStartDate(int64_t value);
+    /// <summary>
+    /// 
+    /// </summary>
+    bool getSuccess() const;
+    bool successIsSet() const;
+    void unsetSuccess();
+    void setSuccess(bool value);
     /// <summary>
     /// The endpoint url of the forward log entry
     /// </summary>
@@ -123,18 +165,30 @@ protected:
     bool m_End_dateIsSet;
     utility::string_t m_Error_msg;
     bool m_Error_msgIsSet;
+    utility::string_t m_Event_id;
+    bool m_Event_idIsSet;
+    utility::string_t m_Headers;
+    bool m_HeadersIsSet;
     int32_t m_Http_status_code;
     bool m_Http_status_codeIsSet;
     utility::string_t m_Id;
     bool m_IdIsSet;
+    utility::string_t m_Method;
+    bool m_MethodIsSet;
     std::shared_ptr<Object> m_Payload;
     bool m_PayloadIsSet;
     utility::string_t m_Response;
     bool m_ResponseIsSet;
     int32_t m_Retry_count;
     bool m_Retry_countIsSet;
+    bool m_Retryable;
+    bool m_RetryableIsSet;
+    utility::string_t m_Rule_id;
+    bool m_Rule_idIsSet;
     int64_t m_Start_date;
     bool m_Start_dateIsSet;
+    bool m_Success;
+    bool m_SuccessIsSet;
     utility::string_t m_Url;
     bool m_UrlIsSet;
 };

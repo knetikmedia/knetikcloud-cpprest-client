@@ -29,8 +29,8 @@
 #include "PageResource«NotificationUserTypeResource».h"
 #include "PageResource«UserNotificationResource».h"
 #include "Result.h"
+#include "UserNotificationStatusWrapper.h"
 #include "ValueWrapper«boolean».h"
-#include "ValueWrapper«string».h"
 #include <cpprest/details/basic_types.h>
 
 namespace com {
@@ -49,7 +49,7 @@ public:
     /// Create a notification type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN
     /// </remarks>
     /// <param name="notificationType">notificationType (optional)</param>
     pplx::task<std::shared_ptr<NotificationTypeResource>> createNotificationType(std::shared_ptr<NotificationTypeResource> notificationType);
@@ -57,7 +57,7 @@ public:
     /// Delete a notification type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN
     /// </remarks>
     /// <param name="id">id</param>
     pplx::task<void> deleteNotificationType(utility::string_t id);
@@ -65,7 +65,7 @@ public:
     /// Get a single notification type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN
     /// </remarks>
     /// <param name="id">id</param>
     pplx::task<std::shared_ptr<NotificationTypeResource>> getNotificationType(utility::string_t id);
@@ -73,7 +73,7 @@ public:
     /// List and search notification types
     /// </summary>
     /// <remarks>
-    /// Get a list of notification type with optional filtering
+    /// Get a list of notification type with optional filtering. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN
     /// </remarks>
     /// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«NotificationTypeResource»>> getNotificationTypes(int32_t size, int32_t page, utility::string_t order);
@@ -81,7 +81,7 @@ public:
     /// View a user&#39;s notification settings for a type
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN or self
     /// </remarks>
     /// <param name="typeId">The id of the topic</param>/// <param name="userId">The id of the subscriber or &#39;me&#39;</param>
     pplx::task<std::shared_ptr<NotificationUserTypeResource>> getUserNotificationInfo(utility::string_t typeId, utility::string_t userId);
@@ -89,7 +89,7 @@ public:
     /// View a user&#39;s notification settings
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN or self
     /// </remarks>
     /// <param name="userId">The id of the subscriber or &#39;me&#39;</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«NotificationUserTypeResource»>> getUserNotificationInfoList(utility::string_t userId, int32_t size, int32_t page, utility::string_t order);
@@ -97,7 +97,7 @@ public:
     /// Get notifications
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN or self
     /// </remarks>
     /// <param name="id">The id of the user or &#39;me&#39;</param>/// <param name="filterStatus">filter for notifications with a given status (optional)</param>/// <param name="size">The number of objects returned per page (optional, default to 25)</param>/// <param name="page">The number of the page returned, starting with 1 (optional, default to 1)</param>/// <param name="order">A comma separated list of sorting requirements in priority order, each entry matching PROPERTY_NAME:[ASC|DESC] (optional, default to id:ASC)</param>
     pplx::task<std::shared_ptr<PageResource«UserNotificationResource»>> getUserNotifications(utility::string_t id, utility::string_t filterStatus, int32_t size, int32_t page, utility::string_t order);
@@ -105,7 +105,7 @@ public:
     /// Send a notification
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN
     /// </remarks>
     /// <param name="notification">notification (optional)</param>
     pplx::task<std::shared_ptr<NotificationResource>> sendNotification(std::shared_ptr<NotificationResource> notification);
@@ -113,15 +113,15 @@ public:
     /// Set notification status
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN or self
     /// </remarks>
     /// <param name="userId">The id of the user or &#39;me&#39;</param>/// <param name="notificationId">The id of the notification</param>/// <param name="notification">status (optional)</param>
-    pplx::task<void> setUserNotificationStatus(utility::string_t userId, utility::string_t notificationId, std::shared_ptr<ValueWrapper«string»> notification);
+    pplx::task<void> setUserNotificationStatus(utility::string_t userId, utility::string_t notificationId, std::shared_ptr<UserNotificationStatusWrapper> notification);
     /// <summary>
     /// Enable or disable direct notifications for a user
     /// </summary>
     /// <remarks>
-    /// Allows enabling or disabling messages for a given notification type when sent direct to the user. Notifications can still be retrieved by endpoint. For notifications broadcased to a topic, see the topic service to disable messages for the user there.
+    /// Allows enabling or disabling messages for a given notification type when sent direct to the user. Notifications can still be retrieved by endpoint. For notifications broadcased to a topic, see the topic service to disable messages for the user there. &lt;br&gt;&lt;br&gt;&lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN or self
     /// </remarks>
     /// <param name="typeId">The id of the topic</param>/// <param name="userId">The id of the subscriber or &#39;me&#39;</param>/// <param name="silenced">silenced</param>
     pplx::task<void> silenceDirectNotifications(utility::string_t typeId, utility::string_t userId, std::shared_ptr<ValueWrapper«boolean»> silenced);
@@ -129,7 +129,7 @@ public:
     /// Update a notificationType
     /// </summary>
     /// <remarks>
-    /// 
+    /// &lt;b&gt;Permissions Needed:&lt;/b&gt; NOTIFICATIONS_ADMIN
     /// </remarks>
     /// <param name="id">id</param>/// <param name="notificationType">notificationType (optional)</param>
     pplx::task<std::shared_ptr<NotificationTypeResource>> updateNotificationType(utility::string_t id, std::shared_ptr<NotificationTypeResource> notificationType);

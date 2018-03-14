@@ -1052,7 +1052,7 @@ pplx::task<std::shared_ptr<NotificationResource>> NotificationsApi::sendNotifica
         return result;
     });
 }
-pplx::task<void> NotificationsApi::setUserNotificationStatus(utility::string_t userId, utility::string_t notificationId, std::shared_ptr<ValueWrapper«string»> notification)
+pplx::task<void> NotificationsApi::setUserNotificationStatus(utility::string_t userId, utility::string_t notificationId, std::shared_ptr<UserNotificationStatusWrapper> notification)
 {
 
 
